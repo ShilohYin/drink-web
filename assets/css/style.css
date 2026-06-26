@@ -1,0 +1,4 @@
+body{margin:0;font-family:Arial,sans-serif;background:#faf7f2;color:#3a2b20}
+header{display:flex;justify-content:space-between;padding:20px}
+.hero{padding:80px;text-align:center}
+button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius:8px}

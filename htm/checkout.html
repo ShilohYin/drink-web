@@ -1,0 +1,20 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/css/menu.css"><title>Checkout</title></head>
+<body>
+<header>
+  <h1 data-i18n="checkout">Checkout</h1>
+  <select id="langSwitch">
+    <option value="zh">中文</option>
+    <option value="en">English</option>
+    <option value="sr">Srpski</option>
+  </select>
+</header>
+<form id="checkoutForm">
+<input placeholder="Name" name="name" data-i18n-placeholder="name" required>
+<input placeholder="Phone" name="phone" data-i18n-placeholder="phone" required>
+<textarea placeholder="Remark" name="remark" data-i18n-placeholder="remark"></textarea>
+<button data-i18n="submit">Submit</button>
+</form>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/checkout.js"></script></body></html>

@@ -1,0 +1,6 @@
+body{font-family:Arial;margin:0;background:#faf7f2}
+header{display:flex;justify-content:space-between;padding:16px}
+main{display:grid;grid-template-columns:1fr 320px;gap:20px;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{border:1px solid #ddd;border-radius:10px;padding:12px;background:#fff}
+@media(max-width:768px){main{grid-template-columns:1fr}#cart{order:-1}}
