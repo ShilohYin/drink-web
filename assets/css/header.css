@@ -1,0 +1,31 @@
+header {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.header-nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.header-nav-links a {
+    color: #483228;
+    list-style: none;
+    text-decoration: none;
+}
+.header-nav-links-active {
+    font-weight: bold;
+    color: #804220 !important;
+    position: relative;
+}
+.header-nav-links-active:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #804220;
+}
