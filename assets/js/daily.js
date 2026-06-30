@@ -14,8 +14,10 @@ document.getElementById('dailyForm').onsubmit = async e => {
         method: "POST",
         body: form
     })
-    .then(res => res.text())
-    .then(console.log)
+    .then(() => {
+      console.log("success")
+    })
+    // .then(console.log("----------------------"))
     .catch(console.error);
 };
 
