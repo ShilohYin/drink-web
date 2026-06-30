@@ -36,3 +36,32 @@ button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius
     justify-content: center;
     border-radius: 8px;
 }
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 580px;
+    margin: 50px auto;
+}
+
+form label {
+    width: 100%;
+    line-height: 40px;
+    display: flex;
+    justify-content: end;
+}
+form input,
+form textarea {
+    line-height: 40px;
+    border: 1px solid #5b3b2a;
+    border-radius: 4px;
+    margin-left: 16px;
+    width: 400px;
+    padding-left: 8px;
+}
+.submit-btn {
+    padding: 16px 48px;
+    font-size: 16px;
+}

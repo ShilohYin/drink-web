@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/menu.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/daily-report.css">
+    <title>日盈利汇总</title>
+  </head>
+  <body>
+    <header>
+      <!-- <h1 data-i18n="checkout">每日汇总</h1> -->
+      <select id="langSwitch">
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+        <option value="sr">Srpski</option>
+      </select>
+    </header>
+    <form id="dailyForm" class="daily-form">
+      <label>
+        <strong>票  额:</strong>
+        <input placeholder="票额" id="votes" required>
+      </label>
+      <label>
+        <strong>现  金:</strong>
+        <input placeholder="现金" id="cash" required>
+      </label>
+      <label>
+        <strong>扫码支付:</strong>
+        <input placeholder="扫码支付" id="rmb" required>
+      </label>
+      <label>
+        <strong>消费支出:</strong>
+        <input placeholder="消费支出" id="consume" required>
+      </label>
+      <label>
+        <strong>Wolt外卖:</strong>
+        <input placeholder="Wolt外卖" id="wolt" required>
+      </label>
+      <label>
+        <strong>物料:</strong>
+        <input placeholder="物料" id="material" required>
+      </label>
+      <label>
+        <strong>Remark:</strong>
+        <input placeholder="Remark" id="remark" required>
+      </label>
+      <button class="submit-btn">Submit</button>
+    </form>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/daily.js"></script>
+  </body>
+</html>
