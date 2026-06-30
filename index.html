@@ -113,8 +113,17 @@
             <div class="footer-box">
                 <img src="assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="footer-logo" style="width: auto; height: 50px;">
             </div>
-            <p>&copy; 2024 KAOLA Bubble Tea. All rights reserved.</p>
+            <div class="social-links" aria-label="Social media links">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"></a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"></a>
+                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="TikTok"></a>
+                <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="WhatsApp"></a>
+            </div>
+            <p>&copy; <span id="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
         </footer>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
     <script src="assets/js/i18n.js"></script>
     <script src="assets/js/app.js"></script>
     </body>

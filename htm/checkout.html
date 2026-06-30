@@ -18,16 +18,20 @@
     </header>
     <form id="checkoutForm">
       <label>
-        <strong data-i18n="name">姓  名:</strong>
-        <input placeholder="姓名" id="name" required>
+        <strong data-i18n="name">姓名<em class="required">*</em></strong>
+        <input placeholder="请输入您的姓名" id="name" required>
       </label>
       <label>
-        <strong data-i18n="phone">手机号码:</strong>
-        <input placeholder="手机号码" id="phone" required>
+        <strong data-i18n="phone">电话<em class="required">*</em></strong>
+        <input placeholder="请输入您的电话" id="phone" required>
       </label>
       <label>
-        <strong data-i18n="remark">备  注:</strong>
-        <textarea placeholder="备注" id="remark"></textarea>
+        <strong data-i18n="phone">地址 </strong>
+        <input placeholder="请输入您的地址" id="phone" required>
+      </label>
+      <label>
+        <strong data-i18n="remark">备注 </strong>
+        <textarea placeholder="请输入备注信息" id="remark"></textarea>
       </label>
       <button class="submit-btn">Submit</button>
     </form>

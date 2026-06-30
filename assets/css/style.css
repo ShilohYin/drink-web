@@ -12,8 +12,45 @@ body{
 .hero{padding:80px;text-align:center}
 button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius:8px}
 
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 16px 0 8px;
+}
+
+.social-link {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background-image: url('../images/icon3.png');
+    background-repeat: no-repeat;
+    background-size: 1536px 1024px;
+    transform: scale(0.5);
+}
+
+.social-link:hover {
+    transform: scale(0.7);
+}
+
+.social-link.instagram {
+    background-position: -500px -380px;
+}
+
+.social-link.facebook {
+    background-position: -1100px -380px;
+}
+
+.social-link.tiktok {
+    background-position: -650px -380px;
+}
+
+.social-link.whatsapp {
+    background-position: -800px -380px;
+}
+
 .banner-image {
-    /* height: 400px; */
     width: 100%;
 }
 .teas-type-list {
@@ -60,6 +97,10 @@ form textarea {
     margin-left: 16px;
     width: 400px;
     padding-left: 8px;
+}
+form .required {
+    color: red;
+    margin-left: 4px;
 }
 .submit-btn {
     padding: 16px 48px;
