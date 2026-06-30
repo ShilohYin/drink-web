@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../assets/css/menu.css">
-    <title>Checkout</title>
+    <link rel="stylesheet" href="../assets/css/menu.css"><title>Checkout</title>
   </head>
   <body>
     <header>
@@ -15,14 +14,19 @@
         <option value="sr">Srpski</option>
       </select>
     </header>
-    <form id="checkoutForm">
-      <input placeholder="Name" id="name" required>
-      <input placeholder="Phone" id="phone" required>
+    <form id="dailyForm">
+      <input placeholder="票额" id="votes" required>
+      <input placeholder="现金" id="cash" required>
+      <input placeholder="扫码支付" id="rmb" >
+      <input placeholder="消费支出" id="consume" >
+      <input placeholder="Wolt外卖" id="wolt" >
+      <input placeholder="物料" id="material" >
       <textarea placeholder="Remark" id="remark"></textarea>
       <button>Submit</button>
     </form>
+    <script src="../assets/js/config.js"></script>
     <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/app.js"></script>
-    <script src="../assets/js/checkout.js"></script>
+    <script src="../assets/js/daily.js"></script>
   </body>
 </html>

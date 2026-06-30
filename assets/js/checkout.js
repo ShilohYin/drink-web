@@ -1,9 +1,22 @@
 document.getElementById('checkoutForm').onsubmit = async e => {
     e.preventDefault();
-    const data=Object.fromEntries(new FormData(e.target).entries());
-    data.cart=JSON.parse(localStorage.cart||'[]');
-    alert('这里调用 Google Apps Script API\n'+JSON.stringify(data,null,2));
+    
+    const form = new FormData();
+    form.append("name", document.getElementById("name").value);
+    form.append("phone", document.getElementById("phone").value);
+    // form.append("type", document.getElementById("phone").value);
+    // form.append("address", document.getElementById("address").value);
+    // form.append("items", document.getElementById("phone").value);
+    // form.append("total", document.getElementById("phone").value);
+    form.append("remark", document.getElementById("remark").value);
 
+    fetch(API_URL, {
+        method: "POST",
+        body: form
+    })
+    .then(res => res.text())
+    .then(console.log)
+    .catch(console.error);
 };
 
 // Language switcher
@@ -14,13 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
     langSwitch.addEventListener('change', (e) => {
       i18n.setLanguage(e.target.value);
     });
-  }
-});
-
-// Listen for language changes from other components
-window.addEventListener('languageChanged', (e) => {
-  const langSwitch = document.getElementById('langSwitch');
-  if (langSwitch) {
-    langSwitch.value = e.detail.lang;
   }
 });

@@ -10,6 +10,20 @@ document.getElementById('langSwitch').addEventListener('change', (e) => {
 });
 
 // Listen for language changes
-window.addEventListener('languageChanged', (e) => {
-  document.getElementById('langSwitch').value = e.detail.lang;
+window.addEventListener('languageChanged', (e) => {  
+  const langSwitch = document.getElementById('langSwitch');
+  if (langSwitch) {
+    langSwitch.value = e.detail.lang;
+  }
+});
+
+// Language switcher
+document.addEventListener('DOMContentLoaded', () => {
+  const langSwitch = document.getElementById('langSwitch');
+  if (langSwitch) {
+    langSwitch.value = localStorage.getItem('lang') || 'zh';
+    langSwitch.addEventListener('change', (e) => {
+      i18n.setLanguage(e.target.value);
+    });
+  }
 });
