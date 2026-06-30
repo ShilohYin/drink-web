@@ -29,3 +29,28 @@ header {
     height: 2px;
     background: #804220;
 }
+.banner-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.banner-container .left-box {
+    position: absolute;
+    top: 72%;
+    left: 5%;
+    transform: translateY(-50%);
+    color: #2E2E2E;
+    line-height: 2;
+}
+.banner-container .order-button { 
+    background-color: #734426;
+    color: #fff; 
+    font-weight: bold;
+    padding: 6px 40px;
+    border-radius: 25px;
+    font-size: 16px; 
+    list-style: none;
+    text-decoration: none;
+    margin-top: 60px;
+    display: inline-block;
+}
