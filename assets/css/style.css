@@ -30,7 +30,20 @@ button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius
     transform: scale(0.5);
 }
 
-.social-link:hover {
+.social-link2.viber,
+.social-link2.telegram {
+    width: 80px;
+    height: 80px;
+    background: #fff url('../images/telegram.png') no-repeat;
+    background-size: 100% 100%;
+    transform: scale(0.5);
+}
+
+.social-link2.viber {
+    background-image: url('../images/viber.png');
+}
+.social-link:hover,
+.social-link2:hover {
     transform: scale(0.7);
 }
 
@@ -105,4 +118,11 @@ form .required {
 .submit-btn {
     padding: 16px 48px;
     font-size: 16px;
+}
+.footer-txt {
+    text-align: center;
+    font-size: 14px;
+    color: #5b3b2a;
+    margin-top: 40px;
+    padding-bottom: 40px;
 }
