@@ -1,11 +1,12 @@
 .teas-type-list {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
     max-width: 1200px;
     margin: 20px auto;
     overflow: hidden;
+    padding-left: 0;
 }
 
 .teas-type-list li {
@@ -33,25 +34,49 @@
 .best-sellers {
     max-width: 1200px;
     margin: 0 auto;
-    padding-left: 40px;
+    padding-bottom: 80px;
 }
 .best-sellers h2 {
     font-size: 24px;
     color: #442814;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .best-sellers .teas-type-list {
     list-style: none;
     padding: 10px 0;
-    margin-top: 5px;
+    margin-top: -20px;
+}
+.best-sellers .view-all-link {
+    text-decoration: none;
+    color: #82462f;
+    font-size: 14px;
 }
 .best-sellers .teas-type-list li {
     padding: 0;
+    border: 2px solid #f5eee9;
+    width: 14%;
+    gap: 0;
 }
 .best-sellers .teas-type-list div {
     background-color: #fdf8f3;
     width: 100%;
+    padding: 12px 8px 8px;
 }
 .best-sellers .teas-type-list span {
     height: 40px;
     display: block;
+    font-size: 16px;
+    text-align: left;
+    color: #35302e;
+    font-weight: bold;
+}
+.best-sellers .teas-type-list strong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    overflow: hidden;
+    font-size: 20px;
 }

@@ -11,27 +11,29 @@
     </head>
     <body>
         <header class="header-container">
-            <!-- <h1>KAOLA Bubble Tea</h1> -->
-            <a href="/index.html">
-                <img src="assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
-            </a>
-            <nav class="header-nav-links">
-                <a class="header-nav-links-active" href="#" data-i18n="home">Home</a>
-                <a href="/htm/menu.html" data-i18n="menu">Menu</a>
-                <a href="/htm/contact.html" data-i18n="contact">Contact</a>
-                <select id="langSwitch">
-                    <option value="zh">中文</option>
-                    <option value="en">English</option>
-                    <option value="sr">Srpski</option>
-                </select>
-            </nav>
+            <div class="header-box">
+                <!-- <h1>KAOLA Bubble Tea</h1> -->
+                <a href="/index.html">
+                    <img src="assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
+                </a>
+                <nav class="header-nav-links">
+                    <a class="header-nav-links-active" href="#" data-i18n="home">首页</a>
+                    <a href="/htm/menu.html" data-i18n="menu">菜单</a>
+                    <a href="/htm/contact.html" data-i18n="contact">联系我们</a>
+                    <select id="langSwitch" class="lang-switch" aria-label="Language Switcher">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                        <option value="sr">Srpski</option>
+                    </select>
+                </nav>
+            </div>
         </header>
         <div class="banner-container">
             <img src="assets/images/banner-pc4.jpg" alt="Bubble Tea Banner" class="banner-image">
             <div class="left-box">
                 <h3 data-i18n="banner_title">Fresh Bubble Tea</h3>
                 <p data-i18n="banner_sub">Made Fresh Every Day</p>
-                <a href="/htm/order.html" class="order-button" data-i18n="order_now">Order Now</a>
+                <a href="/htm/order.html" class="order-button" data-i18n="order_now">立即订购</a>
             </div>
         </div>
         
@@ -67,59 +69,92 @@
         </ul>
 
         <section class="best-sellers">
-            <h2 data-i18n="best_seller">Best Sellers</h2>
+            <h2>
+                <strong data-i18n="best_seller">🔥 畅销产品</strong>
+                <a href="/htm/menu.html" data-i18n="view_all" class="view-all-link">View All <i class="icons turn-right"></i></a>
+            </h2>
             
             <ul class="teas-type-list">
                 <li>
                     <img src="assets/images/drinks/c1.PNG" alt="Bubble Tea 1">
                     <div>
                         <span data-i18n="tea1">Classic Milk Tea</span>
-                        <strong>550din</strong>
+                        <strong>
+                            550din
+                            <i class="icons add"></i>
+                        </strong>
                     </div>
                 </li>
                 <li>
                     <img src="assets/images/drinks/c2.PNG" alt="Bubble Tea 2">
-                    <span data-i18n="tea2">Taro Milk Tea</span>
+                    <div>
+                        <span data-i18n="tea1">Classic Milk Tea</span>
+                        <strong>
+                            550din
+                            <i class="icons add"></i>
+                        </strong>
+                    </div>
                 </li>
                 <li>
                     <img src="assets/images/drinks/c3.PNG" alt="Bubble Tea 3">
-                    <span data-i18n="tea3">Strawberry Milk Tea</span>
+                    <div>
+                        <span data-i18n="tea1">Classic Milk Tea</span>
+                        <strong>
+                            550din
+                            <i class="icons add"></i>
+                        </strong>
+                    </div>
                 </li>
                 <li>
                     <img src="assets/images/drinks/c4.PNG" alt="Bubble Tea 4">
-                    <span data-i18n="tea4">Green Tea</span>
+                    <div>
+                        <span data-i18n="tea1">Classic Milk Tea</span>
+                        <strong>
+                            550din
+                            <i class="icons add"></i>
+                        </strong>
+                    </div>
                 </li>
                 <li>
                     <img src="assets/images/drinks/c5.PNG" alt="Bubble Tea 5">
-                    <span data-i18n="tea5">Black Tea</span>
+                    <div>
+                        <span data-i18n="tea1">Classic Milk Tea</span>
+                        <strong>
+                            550din
+                            <i class="icons add"></i>
+                        </strong>
+                    </div>
                 </li>
                 <li>
                     <img src="assets/images/drinks/c6.PNG" alt="Bubble Tea 6">
-                    <span data-i18n="tea6">Oolong Tea</span>
-                </li>
-                <li>
-                    <img src="assets/images/drinks/c7.PNG" alt="Bubble Tea 7">
-                    <span data-i18n="tea7">White Tea</span>
+                    <div>
+                        <span data-i18n="tea1">Classic Milk Tea</span>
+                        <strong>
+                            550din
+                            <i class="icons add"></i>
+                        </strong>
+                    </div>
                 </li>
             </ul>
-        </section>
-        <section class="hero">
-            <h2 data-i18n="hero_title">Fresh Bubble Tea</h2>
-            <p data-i18n="hero_sub">Made Fresh Every Day</p>
-            <button id="orderBtn" data-i18n="order_now">Order Now</button>
         </section>
 
         <footer class="footer-container">
             <div class="footer-box">
-                <img src="assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="footer-logo" style="width: auto; height: 50px;">
-            </div>
-            <div class="social-links" aria-label="Social media links">
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"></a>
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"></a>
-                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="TikTok"></a>
-                <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="WhatsApp"></a>
-                <a href="https://t.me/+38162389638" target="_blank" rel="noopener noreferrer" class="social-link2 telegram" aria-label="Telegram"></a>
-                <a href="https://t.me/+38162389638" target="_blank" rel="noopener noreferrer" class="social-link2 viber" aria-label="Viber"></a>
+                <img src="assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="footer-logo" style="width: auto; height: 120px;">
+                <div class="social-links" aria-label="Social media links">
+                    <a href="https://www.instagram.com/kaola_bubbletea?igsh=eWo4aW0yMDF4NHVq&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"></a>
+                    <a href="https://t.me/+38162389638" target="_blank" rel="noopener noreferrer" class="social-link2 telegram" aria-label="Telegram"></a>
+                    <a href="https://www.facebook.com/share/1eYa3f3ZNT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"></a>
+                    <a href="https://www.tiktok.com/@kaolabubbletea?_r=1&_t=ZS-97fzIjCoIbw" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="TikTok"></a>
+                    <a href="https://wa.me/message/E3PIYL2X2SPFN1" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="WhatsApp"></a>
+                    <a href="https://invite.viber.com/?g2=AQASZejnvCaReVay22AlJNkH965hZ67J2LVqYAL73SnJddt9aaEtZOX9dOJsNAfz" target="_blank" rel="noopener noreferrer" class="social-link2 viber" aria-label="Viber"></a>
+                </div>
+                <div class="contant-txt">
+                    <p data-i18n="contact_us" class="title">Contact us</p>
+                    <p>+381 62 389 638</p>
+                    <!-- <p><a href="mailto:chayindrink@gmail.com" target="_blank" rel="noopener noreferrer">chayindrink@gmail.com</a></p> -->
+                    <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
+                </div>
             </div>
             <p class="footer-txt">&copy; <span id="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
         </footer>

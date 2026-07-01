@@ -1,7 +1,9 @@
 body{
     margin:0; padding:0; 
     font-family:Arial,sans-serif;
-    color:#3a2b20
+    color:#3a2b20;
+    background-color: #fcf7f4;
+    font-size: 14px;
 }
 
 * {
@@ -17,9 +19,8 @@ button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius
     justify-content: center;
     flex-wrap: wrap;
     gap: 4px;
-    margin: 16px 0 8px;
 }
-
+.icons,
 .social-link {
     display: inline-block;
     width: 80px;
@@ -27,7 +28,27 @@ button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius
     background-image: url('../images/icon3.png');
     background-repeat: no-repeat;
     background-size: 1536px 1024px;
+    margin-left: -20px;
     transform: scale(0.5);
+}
+.icons.turn-right {
+    background-position: -200px -550px;
+    margin-right: -30px;
+    transform: scale(0.25);
+}
+.icons.add {
+    background-position: -950px -550px;
+    margin-right: -25px;
+    transform: scale(0.4);
+}
+.view-all-link {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.social-link {
+    margin-left: -20px;
 }
 
 .social-link2.viber,
@@ -37,6 +58,7 @@ button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius
     background: #fff url('../images/telegram.png') no-repeat;
     background-size: 100% 100%;
     transform: scale(0.5);
+    margin-left: -20px;
 }
 
 .social-link2.viber {
@@ -52,7 +74,7 @@ button{padding:12px 24px;border:none;background:#5b3b2a;color:#fff;border-radius
 }
 
 .social-link.facebook {
-    background-position: -1100px -380px;
+    background-position: -1090px -380px;
 }
 
 .social-link.tiktok {
@@ -119,10 +141,30 @@ form .required {
     padding: 16px 48px;
     font-size: 16px;
 }
+.footer-container {
+    padding-top: 40px;
+    background-color: #fff;
+}
 .footer-txt {
     text-align: center;
     font-size: 14px;
     color: #5b3b2a;
     margin-top: 40px;
     padding-bottom: 40px;
+}
+.footer-box {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    align-items: center;
+}
+.contant-txt {
+    line-height: 1.8;
+    border-left: 3px solid #f0e6de;
+    padding-left: 32px;
+}
+.contant-txt .title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
