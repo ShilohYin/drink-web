@@ -1,0 +1,86 @@
+.about-us-section {
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 80px;
+}
+.about-us-section h1,
+.about-us-section p {
+    font-family: "PingFang SC", "Lantinghei SC", "Hiragino Sans GB", 
+                /* 备用手写/圆体 */
+                "Microsoft YaHei", "微软雅黑", "Heiti SC", "Apple LiGothic", 
+                /* 通用降级备用 */
+                sans-serif;
+}
+.about-us-section .sub-title {
+    font-size: 14px;
+    margin-top: -30px;
+    letter-spacing: 5px;
+}
+.about-us-image {
+    background: #fff url('../images/about.png') no-repeat;
+    display: block;
+    margin: 0 auto;
+    transform: scale(0.6);
+}
+.about-us-image.logo {
+    width: 420px;
+    height: 230px;
+    background-position: 0px -120px;
+}
+
+.about-us-image.line {
+    width: 420px;
+    height: 60px;
+    background-position: -500px -750px;
+}
+.about-us-image.us {
+    width: 318px;
+    height: 318px;
+    background-position: -400px -50px;
+}
+
+.about-us-image.lucy {
+    width: 318px;
+    height: 318px;
+    background-position: -770px -50px;
+    padding-right: 40px;
+}
+.about-us-image.thanks {
+    width: 318px;
+    height: 318px;
+    background-position: -1100px -50px;
+}
+.about-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+}
+.about-us-text {
+    width: 520px;
+    text-align: left;
+    margin-left: -60px;
+    padding-top: 40px;
+}
+.about-us-text .sub-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.about-us-text p {
+    line-height: 28px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.about-us-text.lucy-text {
+    text-align: center;
+    padding-left: 200px;
+}
+.bg-line {
+    height: 1px; 
+    width: 1000px; 
+    background-color: #decbb6; 
+    margin: 50px auto 0;
+}

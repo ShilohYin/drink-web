@@ -21,6 +21,17 @@
   "send": "Send",
   "contact_us": "Contact Us",
   "about_us": "About Us",
+  "language": "Language",
+  "banner_title": "Fresh ingredients, unique flavors",
+  "banner_sub": "A cup of happiness made just for you",
+  "best_seller": "Best Sellers",
   "address_info": "A123, MILEVE MARIĆ AJNŠTAJN 114, BELGRADE, SERBIA",
-  "language": "Language"
+  "view_all": "View All",
+  "tea1": "Classic Milk Tea",
+  "tea2": "Taro Milk Tea",
+  "tea3": "Strawberry Milk Tea",
+  "tea4": "Green Tea",
+  "tea5": "Black Tea",
+  "tea6": "Oolong Tea",
+  "tea7": "White Tea"
 }
