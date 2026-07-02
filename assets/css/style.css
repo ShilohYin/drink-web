@@ -113,15 +113,14 @@ form {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 24px;
     width: 580px;
     margin: 50px auto;
 }
 
 form label {
     width: 100%;
-    line-height: 40px;
     display: flex;
+    align-items: center;
     justify-content: end;
 }
 form input,
@@ -132,14 +131,18 @@ form textarea {
     margin-left: 16px;
     width: 400px;
     padding-left: 8px;
+    height: 45px;
 }
 form .required {
     color: red;
     margin-left: 4px;
 }
 .submit-btn {
-    padding: 16px 48px;
+    padding: 0 48px;
     font-size: 16px;
+    height: 40px;
+    margin-top: 20px;
+    cursor: pointer;
 }
 .footer-container {
     padding-top: 40px;
