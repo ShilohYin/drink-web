@@ -6,5 +6,6 @@ const contacts = {
     whatsapp: "https://wa.me/message/E3PIYL2X2SPFN1",
     instagram: "https://www.instagram.com/kaola_bubbletea?igsh=eWo4aW0yMDF4NHVq&utm_source=qr",
     facebook: "https://www.facebook.com/share/1eYa3f3ZNT/?mibextid=wwXIfr",
-    tiktok: "https://www.tiktok.com/@kaolabubbletea?_r=1&_t=ZS-97fzIjCoIbw"
+    tiktok: "https://www.tiktok.com/@kaolabubbletea?_r=1&_t=ZS-97fzIjCoIbw",
+    email: "mailto:kaolabubbletea@outlook.com"
 }
