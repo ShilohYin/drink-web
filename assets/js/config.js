@@ -1,5 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbx9jRY5_gZLCksvr79mvvD4BptYaQAD-FbTVJ_roS6kgss3YXj5VBfVOoLwZMZMF6sSaw/exec"
-
+const API_URL = "https://script.google.com/macros/s/AKfycbzQtpZNVI3xRe60nimcaIL2hzcGUaiNr85qU81FqOIiPf9TNWCRAbnAD5WZcEEitrxtGg/exec";
 const contacts = {
     telegram: "https://t.me/+38162389638",
     viber: "https://invite.viber.com/?g2=AQASZejnvCaReVay22AlJNkH965hZ67J2LVqYAL73SnJddt9aaEtZOX9dOJsNAfz",

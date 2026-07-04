@@ -133,6 +133,9 @@ form textarea {
     padding-left: 8px;
     height: 45px;
 }
+form textarea {
+    height: 80px;
+}
 form .required {
     color: red;
     margin-left: 4px;

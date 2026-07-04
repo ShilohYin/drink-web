@@ -20,6 +20,7 @@ document.getElementById('dailyForm').onsubmit = async e => {
     const wolt = document.getElementById("wolt").value.trim();
     const material = document.getElementById("material").value.trim();
     const remark = document.getElementById("remark").value.trim();
+    const other = document.getElementById("other").value.trim();
 
     if (!votes) {
         alert('请输入票额');
@@ -64,9 +65,10 @@ document.getElementById('dailyForm').onsubmit = async e => {
     form.append("submitType", "daily");
     form.append("votes", votes);
     form.append("cash", cash);
-    form.append("rmb", rmb || 0);
-    form.append("addconsumeress", consume || 0);
     form.append("wolt", wolt || 0);
+    form.append("consume", consume || 0);
+    form.append("rmb", rmb || 0);
+    form.append("other", other || 0);
     form.append("material", material || "");
     form.append("remark", remark || "");
 
