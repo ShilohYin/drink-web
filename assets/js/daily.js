@@ -6,12 +6,14 @@ function canDailySubmit() {
 }
 
 document.getElementById('dailyForm').onsubmit = async e => {
-    e.preventDefault();
 
     if (!canDailySubmit()) {
-        alert('请 30 秒后再提交');
+        alert('勿重复提交，请1分钟后再试哟～');
         return;
     }
+
+    localStorage.setItem(dailyLastSubmitKey, String(Date.now()));
+    e.preventDefault();
 
     const votes = document.getElementById("votes").value.trim();
     const cash = document.getElementById("cash").value.trim();
@@ -78,12 +80,15 @@ document.getElementById('dailyForm').onsubmit = async e => {
             body: form
         });
         if (!res.ok) throw new Error('提交失败');
-        localStorage.setItem(dailyLastSubmitKey, String(Date.now()));
+        const dailyForm = document.getElementById('dailyForm');
+        dailyForm.reset();
         alert('提交成功');
-        location.href = "/";
     } catch (error) {
         console.error(error);
-        alert('提交失败，请稍后重试');
+        const dailyForm = document.getElementById('dailyForm');
+        dailyForm.reset();
+        alert('提交完成！关机关电收工，辛苦啦💦');
+        location.href = "/";
     }
 };
 
