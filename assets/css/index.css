@@ -46,7 +46,7 @@
 .best-sellers .teas-type-list {
     list-style: none;
     padding: 10px 0;
-    margin-top: -20px;
+    margin-top: 0;
 }
 .best-sellers .view-all-link {
     text-decoration: none;
