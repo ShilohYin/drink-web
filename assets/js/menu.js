@@ -107,6 +107,14 @@ function add(categoryKey, itemKey, selectedToppings = []) {
   update();
 }
 
+function removeItem(id) {
+  const index = cart.findIndex((x) => x.id === id);
+  if (index !== -1) {
+    cart.splice(index, 1);
+    update();
+  }
+}
+
 function update() {
   let total = 0;
   const c = document.getElementById('cartItems');
@@ -117,9 +125,23 @@ function update() {
     total += i.qty * i.price;
     const itemRow = document.createElement('div');
     itemRow.className = 'cart-item';
+
+    const itemHeader = document.createElement('div');
+    itemHeader.className = 'cart-item-header';
+
     const mainLine = document.createElement('div');
     mainLine.textContent = `${i.name} x${i.qty}  ${i.price} RSD`;
-    itemRow.appendChild(mainLine);
+    itemHeader.appendChild(mainLine);
+
+    const removeButton = document.createElement('button');
+    removeButton.className = 'cart-remove-btn';
+    removeButton.textContent = '删除';
+    removeButton.addEventListener('click', () => {
+      removeItem(i.id);
+    });
+    itemHeader.appendChild(removeButton);
+
+    itemRow.appendChild(itemHeader);
 
     if (i.toppings && i.toppings.length > 0) {
       const toppingsDiv = document.createElement('div');
@@ -137,8 +159,48 @@ function update() {
     c.appendChild(itemRow);
   });
 
-  document.getElementById('total').textContent = `Total: ${total} RSD, Count: ${count}`;
+  document.getElementById('total').textContent = `Count: ${count}, Total: ${total} RSD`;
   localStorage.cart = JSON.stringify(cart);
+}
+
+function openCheckoutModal() {
+  const modal = document.getElementById('checkoutModal');
+  if (!modal) return;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeCheckoutModal() {
+  const modal = document.getElementById('checkoutModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+function initCheckoutModal() {
+  const openBtn = document.getElementById('openCheckout');
+  const closeBtn = document.getElementById('closeCheckoutModal');
+  const overlay = document.getElementById('checkoutOverlay');
+
+  if (openBtn) {
+    openBtn.addEventListener('click', () => {
+      openCheckoutModal();
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeCheckoutModal);
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', closeCheckoutModal);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeCheckoutModal();
+    }
+  });
 }
 
 // Language switcher
@@ -151,6 +213,7 @@ window.addEventListener('DOMContentLoaded', () => {
       render();
     });
   }
+  initCheckoutModal();
   render();
 });
 

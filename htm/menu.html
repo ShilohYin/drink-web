@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Menu</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/menu.css" />
   </head>
   <body>
@@ -21,10 +22,39 @@
         <h2 data-i18n="cart">Cart</h2>
         <div id="cartItems"></div>
         <p id="total"></p>
-        <a href="../htm/checkout.html" data-i18n="checkout">Checkout</a>
+        <button id="openCheckout" class="checkout-button" type="button" data-i18n="checkout">Checkout</button>
       </aside>
     </main>
+
+    <div class="checkout-modal" id="checkoutModal" aria-hidden="true">
+      <div class="checkout-modal-overlay" id="checkoutOverlay"></div>
+      <div class="checkout-modal-content">
+        <button class="modal-close-btn" id="closeCheckoutModal" aria-label="Close checkout form">×</button>
+        <h2 data-i18n="checkout">Checkout</h2>
+        <form id="checkoutForm">
+          <label>
+            <strong data-i18n="name">姓名</strong><em class="required">*</em>
+            <input placeholder="请输入您的姓名" id="name" required>
+          </label>
+          <label>
+            <strong data-i18n="phone">电话</strong><em class="required">*</em>
+            <input placeholder="请输入您的电话" id="phone" required>
+          </label>
+          <label>
+            <strong>地址<em class="required">*</em></strong>
+            <input placeholder="请输入您的地址" id="address" required>
+          </label>
+          <label>
+            <strong data-i18n="remark">备注 </strong>
+            <textarea placeholder="请输入备注信息" id="remark"></textarea>
+          </label>
+          <button class="submit-btn" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
     <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/checkout.js"></script>
     <script type="module" src="../assets/js/menu.js"></script>
   </body>
 </html>
