@@ -5,6 +5,7 @@ export const items = {
             price: 500,
             mPrice: 450,
             text: "黑糖珍珠奶茶",
+            toppings: "黑糖，珍珠",
             image: "assets/images/drinks/c1.PNG"
         },
         M2: {
@@ -12,6 +13,7 @@ export const items = {
             price: 550,
             mPrice: 500,
             text: "芋泥啵啵",
+            toppings: "芋泥，珍珠",
             image: "assets/images/drinks/c2.PNG"
         },
         M3: {
@@ -19,18 +21,21 @@ export const items = {
             price: 550,
             mPrice: 500,
             text: "芋泥麻薯",
+            toppings: "芋泥，麻薯",
             image: "assets/images/drinks/c3.PNG"
         },
         M4: {
             name: "tea4",
             price: 550,
             text: "豆香白玉",
+            toppings: "寒天",
             image: "assets/images/drinks/c4.PNG"
         },
         M5: {
             name: "tea5",
             price: 550,
             text: "豆乳米麻薯",
+            toppings: "血糯米，麻薯，寒天",
             image: "assets/images/drinks/c5.PNG"
         },
         M6: {
@@ -38,12 +43,14 @@ export const items = {
             price: 550,
             mPrice: 500,
             text: "奥利奥麻薯",
+            toppings: "奥利奥碎，麻薯",
             image: "assets/images/drinks/c6.PNG"
         },
         M7: {
             name: "tea7",
             price: 550,
             text: "奶茶全家福",
+            toppings: "仙草，布丁，珍珠，红豆",
             image: "assets/images/drinks/c7.PNG"
         },
         M8: {
@@ -57,6 +64,7 @@ export const items = {
             name: "tea9",
             price: 500,
             text: "草莓米麻薯",
+            toppings: "草莓酱，麻薯",
             image: "assets/images/drinks/c9.PNG"
         },
         M10: {
@@ -71,6 +79,7 @@ export const items = {
             price: 500,
             mPrice: 450,
             text: "红豆血糯米",
+            toppings: "红豆，血糯米",
             image: "assets/images/drinks/c11.PNG"
         },
         M12: {
@@ -91,30 +100,35 @@ export const items = {
             name: "tea8",
             price: 550,
             text: "百香橙橙",
+            toppings: "冻冻或者爆爆珠",
             image: "assets/images/drinks/c8.PNG"
         },
         F3: {
             name: "tea9",
             price: 450,
             text: "葡萄闪爆茶",
+            toppings: "葡萄果肉",
             image: "assets/images/drinks/c9.PNG"
         },
         F4: {
             name: "tea10",
             price: 550,
             text: "黑爆柠",
+            toppings: "冻冻或爆爆珠",
             image: "assets/images/drinks/c10.PNG"
         },
         F5: {
             name: "tea11",
             price: 550,
             text: "百果荟萃",
+            toppings: "冻冻或爆爆珠",
             image: "assets/images/drinks/c11.PNG"
         },
         F6: {
             name: "tea12",
             price: 550,
             text: "凤梨百香果",
+            toppings: "冻冻或爆爆珠",
             image: "assets/images/drinks/c12.PNG"
         },
         F7: {
@@ -147,6 +161,7 @@ export const items = {
             name: "tea10",
             price: 600,
             text: "海盐抹茶",
+            toppings: "奶盖",
             image: "assets/images/drinks/c10.PNG"
         },
         G4: {
@@ -165,6 +180,7 @@ export const items = {
             name: "tea13",
             price: 550,
             text: "红豆抹茶麻薯",
+            toppings: "红豆，麻薯",
             image: "assets/images/drinks/c13.PNG"
         },
         G7: {
@@ -179,12 +195,14 @@ export const items = {
             name: "tea10",
             price: 550,
             text: "草莓甘露",
+            toppings: "西米",
             image: "assets/images/drinks/c10.PNG"
         },
         S2: {
             name: "tea11",
             price: 600,
             text: "杨枝甘露",
+            toppings: "西米，西柚果肉",
             image: "assets/images/drinks/c11.PNG"
         },
         S3: {
@@ -197,12 +215,14 @@ export const items = {
             name: "tea13",
             price: 500,
             text: "焦糖摩卡星冰乐",
+            text: "珍珠",
             image: "assets/images/drinks/c13.PNG"
         },
         S5: {
             name: "tea14",
             price: 500,
             text: "巧克力星冰乐",
+            text: "珍珠",
             image: "assets/images/drinks/c14.PNG"
         },
         S6: {
@@ -210,6 +230,7 @@ export const items = {
             price: 500,
             mPrice: 450,
             text: "超级奶茶沙冰",
+            text: "珍珠",
             image: "assets/images/drinks/c15.PNG"
         }
     },
@@ -244,12 +265,14 @@ export const items = {
             name: "tea12",
             price: 500,
             text: "可可冰奶",
+            text: "珍珠",
             image: "assets/images/drinks/c12.PNG"
         },
         K2: {
             name: "tea13",
             price: 600,
             text: "奥利奥冰可可",
+            text: "奥利奥碎，珍珠",
             image: "assets/images/drinks/c13.PNG"
         },
         K3: {
@@ -288,24 +311,28 @@ export const items = {
             name: "tea17",
             price: 600,
             text: "茉莉仙子",
+            text: "雪顶",
             image: "assets/images/drinks/c17.PNG"
         },
         T6: {
             name: "tea18",
             price: 600,
             text: "春日桃桃",
+            text: "雪顶",
             image: "assets/images/drinks/c18.PNG"
         },
         T7: {
             name: "tea19",
             price: 600,
             text: "桂子飘飘",
+            text: "雪顶",
             image: "assets/images/drinks/c19.PNG"
         },
         T8: {
             name: "tea20",
             price: 600,
             text: "千山雪",
+            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         }
     }     
@@ -313,93 +340,120 @@ export const items = {
 
 export const toppings = [
     {
-        name: "珍珠",
+        name: "milk foam",
         price: 100,
         text: "奶盖",
         image: "assets/images/toppings/pearl.png"
     },
     {
-        name: "珍珠",
+        name: "buting",
         price: 100,
         text: "布丁",
         image: "assets/images/toppings/pearl.png"
     },
     {
-        name: "珍珠",
+        name: "taro",
         price: 100,
         text: "芋泥",
         image: "assets/images/toppings/pearl.png"
     },
     {
-        name: "珍珠",
+        name: "mochi",
         price: 100,
         text: "麻薯",
         image: "assets/images/toppings/pearl.png"
     },
     {
-        name: "珍珠",
+        name: "hante",
         price: 80,
         text: "寒天",
         image: "assets/images/toppings/pearl.png"
     },
     {
-        name: "珍珠",
+        name: "oreo",
         price: 80,
         text: "奥利奥",
         image: "assets/images/toppings/pearl.png"
     },
     {
-        name: "椰果",
+        name: "jelly",
         price: 50,
         text: "仙草",
         image: "assets/images/toppings/coconut.png"
     },
     {
-        name: "布丁",
+        name: "sago",
         price: 50,
         text: "西米",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "jelly tea",
         price: 50,
         text: "冻冻",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "coconut",
         price: 50,
         text: "椰果",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "black rice",
         price: 50,
         text: "血糯米",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "red beans",
         price: 50,
         text: "红豆",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "chestnut",
         price: 50,
         text: "马蹄",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "popping",
         price: 50,
         text: "爆爆珠",
         image: "assets/images/toppings/pudding.png"
     },
     {
-        name: "布丁",
+        name: "boba",
         price: 50,
         text: "珍珠",
         image: "assets/images/toppings/pudding.png"
     }
 ]
+
+export const ices = {
+    noIce: {
+        value: 0,
+        text: "去冰"
+    },
+    lessIce: {
+        value: 'less',
+        text: "少冰"
+    },
+    normalIce: {
+        value: 'normal',
+        text: "正常冰"
+    },
+    moreIce: {
+        value: 'more',
+        text: "多冰"
+    },
+    warm: {
+        value: 'warm',
+        text: "温"
+    },
+    hot: {
+        value: 'hot',
+        text: "热"
+    }
+}
