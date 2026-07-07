@@ -80,10 +80,13 @@ function render() {
       const card = document.createElement('div');
       card.className = 'card';
 
-      // const image = document.createElement('img');
-      // image.src = item.image.startsWith('assets/') ? `../${item.image}` : item.image;
-      // image.alt = item.text;
-      // card.appendChild(image);
+      const image = document.createElement('img');
+      if (item.image) {
+        image.src = item.image.startsWith('assets/') ? `../${item.image}` : item.image;
+        image.alt = item.text;
+        image.className = 'product-img';
+        card.appendChild(image);
+      }
 
       const name = document.createElement('h3');
       name.textContent = itemKey + ' ' + item.text;
@@ -110,6 +113,7 @@ function render() {
       card.appendChild(controlWrap);
 
       const button = document.createElement('button');
+      button.className = 'add-btn';
       button.textContent = '+';
       button.addEventListener('click', () => {
         const selected = Array.from(toppingSelect.selectedOptions).map(o => o.value);
