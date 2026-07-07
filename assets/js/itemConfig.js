@@ -142,6 +142,24 @@ export const items = {
             price: 450,
             text: "桃桃乌龙",
             image: "assets/images/drinks/c14.PNG"
+        },
+        F9: {
+            name: "tea14",
+            price: 450,
+            text: "荔枝粉西柚",
+            image: "assets/images/drinks/c14.PNG"
+        },
+        F10: {
+            name: "tea14",
+            price: 500,
+            text: "长安的荔枝",
+            image: "assets/images/drinks/c14.PNG"
+        },
+        F11: {
+            name: "tea14",
+            price: 550,
+            text: "西瓜椰椰啵",
+            image: "assets/images/drinks/c14.PNG"
         }
     },
     matchaTea: {
@@ -188,7 +206,19 @@ export const items = {
             price: 500,
             text: "绿野仙踪",
             image: "assets/images/drinks/c14.PNG"
-        }
+        },
+        G8: {
+            name: "tea16",
+            price: 550,
+            text: "芝士草莓森林",
+            image: "assets/images/drinks/c16.PNG"
+        },
+        G9: {
+            name: "tea16",
+            price: 550,
+            text: "芝芝抹茶",
+            image: "assets/images/drinks/c16.PNG"
+        },
     },
     sogaTea: {
         S1: {
@@ -258,24 +288,22 @@ export const items = {
             price: 500,
             text: "焦糖拿铁",
             image: "assets/images/drinks/c14.PNG"
-        }
-    },
-    cocoa: {
-        K1: {
+        },
+        C5: {
             name: "tea12",
             price: 500,
             text: "可可冰奶",
             text: "珍珠",
             image: "assets/images/drinks/c12.PNG"
         },
-        K2: {
+        C6: {
             name: "tea13",
             price: 600,
             text: "奥利奥冰可可",
             text: "奥利奥碎，珍珠",
             image: "assets/images/drinks/c13.PNG"
         },
-        K3: {
+        C7: {
             name: "tea14",
             price: 550,
             text: "生椰可可",
@@ -310,7 +338,7 @@ export const items = {
         T5: {
             name: "tea17",
             price: 600,
-            text: "茉莉仙子",
+            text: "茉上云间",
             text: "雪顶",
             image: "assets/images/drinks/c17.PNG"
         },
@@ -324,18 +352,215 @@ export const items = {
         T7: {
             name: "tea19",
             price: 600,
-            text: "桂子飘飘",
+            text: "月桂清欢",
             text: "雪顶",
             image: "assets/images/drinks/c19.PNG"
         },
         T8: {
             name: "tea20",
             price: 600,
-            text: "千山雪",
+            text: "山月听雪",
             text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         }
-    }     
+    },
+    cheese: {
+        Z1: {
+            name: "tea13",
+            price: 550,
+            text: "芝士葡萄牛乳",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        Z2: {
+            name: "tea14",
+            price: 550,
+            text: "芝芝葡萄",
+            image: "assets/images/drinks/c14.PNG"
+        },
+        Z3: {
+            name: "tea15",
+            price: 550,
+            text: "芝士多肉荔枝",
+            image: "assets/images/drinks/c15.PNG"
+        },
+        Z4: {
+            name: "tea16",
+            price: 550,
+            text: "芝芝凤梨",
+            image: "assets/images/drinks/c16.PNG"
+        },
+        Z5: {
+            name: "tea17",
+            price: 550,
+            text: "芝芝桑葚",
+            text: "雪顶",
+            image: "assets/images/drinks/c17.PNG"
+        },
+        Z6: {
+            name: "tea18",
+            price: 550,
+            text: "芝芝桃桃",
+            text: "雪顶",
+            image: "assets/images/drinks/c18.PNG"
+        },
+        Z7: {
+            name: "tea19",
+            price: 550,
+            text: "芝士莓莓",
+            text: "雪顶",
+            image: "assets/images/drinks/c19.PNG"
+        },
+        Z8: {
+            name: "tea20",
+            price: 550,
+            text: "芝士芒芒",
+            text: "雪顶",
+            image: "assets/images/drinks/c20.PNG"
+        },
+        Z9: {
+            name: "tea20",
+            price: 450,
+            text: "云顶茉香",
+            text: "雪顶",
+            image: "assets/images/drinks/c20.PNG"
+        },
+        Z10: {
+            name: "tea20",
+            price: 450,
+            text: "云顶山红",
+            text: "雪顶",
+            image: "assets/images/drinks/c20.PNG"
+        },
+        Z11: {
+            name: "tea20",
+            price: 450,
+            text: "云顶桂香",
+            text: "雪顶",
+            image: "assets/images/drinks/c20.PNG"
+        },
+        Z12: {
+            name: "tea20",
+            price: 450,
+            text: "云顶乌龙",
+            text: "雪顶",
+            image: "assets/images/drinks/c20.PNG"
+        }
+    }
+}
+
+export const otherItems = {
+    sushi: {
+        X1: {
+            name: "sushi1",
+            price: 600,
+            text: "招牌寿司",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X2: {
+            name: "sushi1",
+            price: 550,
+            text: "火腿寿司",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X3: {
+            name: "sushi1",
+            price: 600,
+            text: "鸡排寿司",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X4: {
+            name: "sushi1",
+            price: 700,
+            text: "鱼香海草卷",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X5: {
+            name: "sushi1",
+            price: 600,
+            text: "金枪鱼寿司",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X6: {
+            name: "sushi1",
+            price: 700,
+            text: "牛油果蟹柳寿司",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X7: {
+            name: "sushi1",
+            price: 700,
+            text: "火炙天妇罗虾卷",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X8: {
+            name: "sushi1",
+            price: 500,
+            text: "牛油果卷",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        X9: {
+            name: "sushi1",
+            price: 400,
+            text: "青瓜卷",
+            image: "assets/images/drinks/c13.PNG"
+        }
+    },
+    dessert: {
+        D1: {
+            name: "sushi1",
+            price: 600,
+            text: "鸡蛋仔",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D2: {
+            name: "sushi1",
+            price: 250,
+            text: "双皮奶",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D3: {
+            name: "sushi1",
+            price: 350,
+            text: "一朵奶可珠",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D4: {
+            name: "sushi1",
+            price: 400,
+            text: "一碗清凉",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D5: {
+            name: "sushi1",
+            price: 400,
+            text: "雪梅娘",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D6: {
+            name: "sushi1",
+            price: 400,
+            text: "方盒蛋糕",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D7: {
+            name: "sushi1",
+            price: 400,
+            text: "长盒蛋糕",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D8: {
+            name: "sushi1",
+            price: 550,
+            text: "肉松麻薯奶方",
+            image: "assets/images/drinks/c13.PNG"
+        },
+        D9: {
+            name: "sushi1",
+            price: 450,
+            text: "豆乳盒子",
+            image: "assets/images/drinks/c13.PNG"
+        }
+    },
 }
 
 export const toppings = [
@@ -455,5 +680,24 @@ export const ices = {
     hot: {
         value: 'hot',
         text: "热"
+    }
+}
+
+export const sugar = {
+    noSugar: {
+        value: 0,
+        text: "无糖"
+    },
+    lessSugar: {
+        value: 'less',
+        text: "30%糖"
+    },
+    halfSugar: {
+        value: 'warm',
+        text: "半糖"
+    },
+    normalIce: {
+        value: 'normal',
+        text: "正常糖"
     }
 }
