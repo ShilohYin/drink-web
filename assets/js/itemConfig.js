@@ -6,7 +6,7 @@ export const items = {
             mPrice: 450,
             text: "黑糖珍珠奶茶",
             toppings: "黑糖，珍珠",
-            image: "assets/images/drinks/c1.PNG"
+            image: "assets/images/drinks/m1.PNG"
         },
         M2: {
             name: "tea2",
@@ -14,7 +14,7 @@ export const items = {
             mPrice: 500,
             text: "芋泥啵啵",
             toppings: "芋泥，珍珠",
-            image: "assets/images/drinks/c2.PNG"
+            image: "assets/images/drinks/m2.PNG"
         },
         M3: {
             name: "tea3",
@@ -22,21 +22,21 @@ export const items = {
             mPrice: 500,
             text: "芋泥麻薯",
             toppings: "芋泥，麻薯",
-            image: "assets/images/drinks/c3.PNG"
+            image: "assets/images/drinks/m3.PNG"
         },
         M4: {
             name: "tea4",
             price: 550,
             text: "豆香白玉",
             toppings: "寒天",
-            image: "assets/images/drinks/c4.PNG"
+            image: "assets/images/drinks/m4.PNG"
         },
         M5: {
             name: "tea5",
             price: 550,
             text: "豆乳米麻薯",
             toppings: "血糯米，麻薯，寒天",
-            image: "assets/images/drinks/c5.PNG"
+            image: "assets/images/drinks/m5.PNG"
         },
         M6: {
             name: "tea6",
@@ -44,35 +44,35 @@ export const items = {
             mPrice: 500,
             text: "奥利奥麻薯",
             toppings: "奥利奥碎，麻薯",
-            image: "assets/images/drinks/c6.PNG"
+            image: "assets/images/drinks/m6.PNG"
         },
         M7: {
             name: "tea7",
             price: 550,
             text: "奶茶全家福",
             toppings: "仙草，布丁，珍珠，红豆",
-            image: "assets/images/drinks/c7.PNG"
+            image: "assets/images/drinks/m7.PNG"
         },
         M8: {
             name: "tea8",
             price: 400,
             mPrice: 350,
             text: "茉香奶绿",
-            image: "assets/images/drinks/c8.PNG"
+            image: "assets/images/drinks/m8.PNG"
         },
         M9: {
             name: "tea9",
             price: 500,
             text: "草莓米麻薯",
             toppings: "草莓酱，麻薯",
-            image: "assets/images/drinks/c9.PNG"
+            image: "assets/images/drinks/m9.PNG"
         },
         M10: {
             name: "tea10",
             price: 400,
             mPrice: 350,
             text: "原味奶茶",
-            image: "assets/images/drinks/c10.PNG"
+            image: "assets/images/drinks/m10.PNG"
         },
         M11: {
             name: "tea11",
