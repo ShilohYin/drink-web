@@ -101,25 +101,11 @@ function render() {
       price.textContent = item.mPrice ? `L: ${item.price}, M: ${item.mPrice} RSD` : `L: ${item.price} RSD`;
       card.appendChild(price);
 
-      const toppingSelect = createToppingsSelect(item);
-      const iceSelect = createIcesSelect();
-      const sugarSelect = createSugarSelect();
-
-      const controlWrap = document.createElement('div');
-      controlWrap.className = 'topping-controls';
-      controlWrap.appendChild(toppingSelect);
-      controlWrap.appendChild(iceSelect);
-      controlWrap.appendChild(sugarSelect);
-      card.appendChild(controlWrap);
-
       const button = document.createElement('button');
       button.className = 'add-btn';
       button.textContent = '+';
       button.addEventListener('click', () => {
-        const selected = Array.from(toppingSelect.selectedOptions).map(o => o.value);
-        const iceVal = iceSelect ? iceSelect.value : null;
-        const sugarVal = sugarSelect ? sugarSelect.value : null;
-        add(categoryKey, itemKey, selected, iceVal, sugarVal);
+        openSelectionModal(categoryKey, itemKey);
       });
       card.appendChild(button);
       grid.appendChild(card);
@@ -130,6 +116,99 @@ function render() {
   });
 
   update();
+}
+
+function openSelectionModal(categoryKey, itemKey) {
+  const item = items[categoryKey]?.[itemKey];
+  if (!item) return;
+
+  const modal = document.getElementById('selectionModal');
+  const title = document.getElementById('selectionTitle');
+  const priceLabel = document.getElementById('selectionPrice');
+  const toppingSelect = document.getElementById('selectionTopping');
+  const iceSelect = document.getElementById('selectionIce');
+  const sugarSelect = document.getElementById('selectionSugar');
+
+  title.textContent = `${itemKey} ${item.text}`;
+  priceLabel.textContent = item.mPrice ? `L: ${item.price} RSD, M: ${item.mPrice} RSD` : `${item.price} RSD`;
+
+  toppingSelect.innerHTML = '';
+  const noneOption = document.createElement('option');
+  noneOption.value = '';
+  noneOption.textContent = '无';
+  toppingSelect.appendChild(noneOption);
+  toppings.forEach((t) => {
+    const option = document.createElement('option');
+    option.value = t.name;
+    option.textContent = `${t.text}  +${t.price} RSD`;
+    toppingSelect.appendChild(option);
+  });
+
+  iceSelect.innerHTML = '';
+  Object.entries(ices).forEach(([key, obj]) => {
+    const option = document.createElement('option');
+    option.value = key;
+    option.textContent = obj.text || key;
+    if (key === 'normalIce') option.selected = true;
+    iceSelect.appendChild(option);
+  });
+
+  sugarSelect.innerHTML = '';
+  Object.entries(sugar).forEach(([key, obj]) => {
+    const option = document.createElement('option');
+    option.value = key;
+    option.textContent = obj.text || key;
+    if (key === 'normalIce' || key === 'normal') option.selected = true;
+    sugarSelect.appendChild(option);
+  });
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  modal.dataset.currentItem = `${categoryKey}||${itemKey}`;
+}
+
+function closeSelectionModal() {
+  const modal = document.getElementById('selectionModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  delete modal.dataset.currentItem;
+}
+
+function initSelectionModal() {
+  const modal = document.getElementById('selectionModal');
+  const closeBtn = document.getElementById('closeSelectionModal');
+  const overlay = document.getElementById('selectionOverlay');
+  const cancelBtn = document.getElementById('cancelSelection');
+  const form = document.getElementById('selectionForm');
+
+  if (closeBtn) closeBtn.addEventListener('click', closeSelectionModal);
+  if (overlay) overlay.addEventListener('click', closeSelectionModal);
+  if (cancelBtn) cancelBtn.addEventListener('click', closeSelectionModal);
+
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const modal = document.getElementById('selectionModal');
+      const current = modal.dataset.currentItem;
+      if (!current) return;
+      const [categoryKey, itemKey] = current.split('||');
+      const toppingSelect = document.getElementById('selectionTopping');
+      const iceSelect = document.getElementById('selectionIce');
+      const sugarSelect = document.getElementById('selectionSugar');
+      const selected = toppingSelect.value ? [toppingSelect.value] : [];
+      const iceVal = iceSelect ? iceSelect.value : null;
+      const sugarVal = sugarSelect ? sugarSelect.value : null;
+      add(categoryKey, itemKey, selected, iceVal, sugarVal);
+      closeSelectionModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSelectionModal();
+    }
+  });
 }
 
 function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null) {
@@ -216,6 +295,7 @@ function update() {
   });
 
   document.getElementById('total').textContent = `Count: ${count}, Total: ${total} RSD`;
+  document.getElementById('cartCount').textContent = count;
   localStorage.cart = JSON.stringify(cart);
 }
 
@@ -269,7 +349,18 @@ window.addEventListener('DOMContentLoaded', () => {
       render();
     });
   }
+  
+  // Cart toggle button
+  const cartToggle = document.getElementById('cartToggle');
+  const cartPanel = document.getElementById('cart');
+  if (cartToggle && cartPanel) {
+    cartToggle.addEventListener('click', () => {
+      cartPanel.classList.toggle('visible');
+    });
+  }
+  
   initCheckoutModal();
+  initSelectionModal();
   render();
 });
 

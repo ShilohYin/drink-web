@@ -9,22 +9,65 @@
   </head>
   <body>
     <header>
-      <h1 data-i18n="menu">KAOLA Menu</h1>
-      <select id="langSwitch">
-        <option value="zh">中文</option>
-        <option value="en">English</option>
-        <option value="sr">Srpski</option>
-      </select>
+      <div class="logo">菜单</div>
+      <nav class="nav-menu">
+        <a href="#">首页</a>
+        <a href="#" class="active">菜单</a>
+        <a href="#">关于我们</a>
+        <a href="#">联系</a>
+      </nav>
+      <div class="header-right">
+        <select id="langSwitch" class="lang-switch">
+          <option value="zh">CN</option>
+          <option value="en">EN</option>
+          <option value="sr">SR</option>
+        </select>
+        <button id="cartToggle" class="cart-icon" aria-label="Shopping cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span id="cartCount" class="cart-badge">0</span>
+        </button>
+      </div>
     </header>
     <main>
-      <div id="products" class="grid"></div>
-      <aside id="cart">
-        <h2 data-i18n="cart">Cart</h2>
+      <div id="products" class="products-container"></div>
+      <aside id="cart" class="cart-panel">
+        <h2 data-i18n="cart">购物车</h2>
         <div id="cartItems"></div>
         <p id="total"></p>
-        <button id="openCheckout" class="checkout-button" type="button" data-i18n="checkout">Checkout</button>
+        <button id="openCheckout" class="checkout-button" type="button" data-i18n="checkout">结账</button>
       </aside>
     </main>
+
+    <div class="selection-modal" id="selectionModal" aria-hidden="true">
+      <div class="selection-modal-overlay" id="selectionOverlay"></div>
+      <div class="selection-modal-content">
+        <button class="modal-close-btn" id="closeSelectionModal" aria-label="Close selection">×</button>
+        <h2 id="selectionTitle">选择配置</h2>
+        <p class="selection-price" id="selectionPrice"></p>
+        <form id="selectionForm">
+          <label>
+            小料
+            <select id="selectionTopping"></select>
+          </label>
+          <label>
+            冰度
+            <select id="selectionIce"></select>
+          </label>
+          <label>
+            甜度
+            <select id="selectionSugar"></select>
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" id="cancelSelection">取消</button>
+            <button type="submit" class="submit-btn">加入购物车</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <div class="checkout-modal" id="checkoutModal" aria-hidden="true">
       <div class="checkout-modal-overlay" id="checkoutOverlay"></div>
