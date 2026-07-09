@@ -46,6 +46,14 @@ function getToppingOption(name) {
   return toppings.find(t => t.text === name || t.name === name) || { text: name, price: 0 };
 }
 
+function getBasePrice(product, sizeChoice = 'L') {
+  return sizeChoice === 'M' && product.mPrice ? product.mPrice : product.price;
+}
+
+function getSizeOptionLabel(product, sizeChoice = 'L') {
+  return `${sizeChoice} ${getBasePrice(product, sizeChoice)} RSD`;
+}
+
 function createToppingsSelect(item) {
   const select = document.createElement('select');
   const placeholder = document.createElement('option');
@@ -89,8 +97,25 @@ function createSugarSelect() {
   return select;
 }
 
-
+const cartStorageKey = 'kaolaCart';
 const cart = [];
+
+function saveCart() {
+  sessionStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function loadCart() {
+  const savedCart = sessionStorage.getItem(cartStorageKey);
+  if (!savedCart) return;
+
+  try {
+    const parsedCart = JSON.parse(savedCart);
+    if (!Array.isArray(parsedCart)) return;
+    cart.splice(0, cart.length, ...parsedCart.filter(item => item && item.id));
+  } catch (error) {
+    sessionStorage.removeItem(cartStorageKey);
+  }
+}
 
 function render() {
   const lang = localStorage.lang || 'zh';
@@ -121,7 +146,7 @@ function render() {
     if (categoryKey === 'milkTea') {
       const note = document.createElement('div');
       note.className = 'category-note';
-      note.textContent = '✓ 可选冷热饮 / 默认推荐冰饮';
+      note.textContent = '✓ 奶茶可选冷热，默认推荐冰饮';
       categoryHeader.appendChild(note);
     }
 
@@ -162,12 +187,13 @@ function render() {
       content.appendChild(name);
 
       const toppingsInfo = document.createElement('small');
-      toppingsInfo.textContent = item.toppings || '经典原味';
+      toppingsInfo.className = 'included-toppings';
+      toppingsInfo.textContent = item.toppings ? `已含：${item.toppings}` : '已含：无';
       content.appendChild(toppingsInfo);
 
       const price = document.createElement('p');
       price.className = 'price';
-      price.textContent = item.mPrice ? `${item.price} RSD` : `${item.price} RSD`;
+      price.textContent = item.mPrice ? `L ${item.price} / M ${item.mPrice} RSD` : `${item.price} RSD`;
       content.appendChild(price);
 
       card.appendChild(content);
@@ -198,12 +224,24 @@ function openSelectionModal(categoryKey, itemKey) {
   const modal = document.getElementById('selectionModal');
   const title = document.getElementById('selectionTitle');
   const priceLabel = document.getElementById('selectionPrice');
+  const sizeSelector = document.getElementById('sizeSelector');
   const toppingSelect = document.getElementById('selectionTopping');
   const iceSelect = document.getElementById('selectionIce');
   const sugarSelect = document.getElementById('selectionSugar');
 
   title.textContent = `${itemKey} ${item.text}`;
-  priceLabel.textContent = item.mPrice ? `L: ${item.price} RSD, M: ${item.mPrice} RSD` : `${item.price} RSD`;
+  modal.dataset.selectedSize = 'L';
+  priceLabel.hidden = !!item.mPrice;
+  priceLabel.textContent = item.mPrice ? '' : `${item.price} RSD`;
+
+  if (sizeSelector) {
+    sizeSelector.hidden = !item.mPrice;
+    sizeSelector.querySelectorAll('.size-option').forEach((button) => {
+      const size = button.dataset.size || 'L';
+      button.textContent = getSizeOptionLabel(item, size);
+      button.classList.toggle('active', size === 'L');
+    });
+  }
 
   toppingSelect.innerHTML = '';
   const noneOption = document.createElement('option');
@@ -246,6 +284,7 @@ function closeSelectionModal() {
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
   delete modal.dataset.currentItem;
+  delete modal.dataset.selectedSize;
 }
 
 function initSelectionModal() {
@@ -258,6 +297,22 @@ function initSelectionModal() {
   if (closeBtn) closeBtn.addEventListener('click', closeSelectionModal);
   if (overlay) overlay.addEventListener('click', closeSelectionModal);
   if (cancelBtn) cancelBtn.addEventListener('click', closeSelectionModal);
+
+  modal.addEventListener('click', (event) => {
+    const sizeButton = event.target.closest('.size-option');
+    if (!sizeButton) return;
+    const current = modal.dataset.currentItem;
+    if (!current) return;
+    const [categoryKey, itemKey] = current.split('||');
+    const item = items[categoryKey]?.[itemKey];
+    if (!item || !item.mPrice) return;
+
+    const selectedSize = sizeButton.dataset.size || 'L';
+    modal.dataset.selectedSize = selectedSize;
+    modal.querySelectorAll('.size-option').forEach((button) => {
+      button.classList.toggle('active', button === sizeButton);
+    });
+  });
 
   if (form) {
     form.addEventListener('submit', (event) => {
@@ -272,7 +327,8 @@ function initSelectionModal() {
       const selected = toppingSelect.value ? [toppingSelect.value] : [];
       const iceVal = iceSelect ? iceSelect.value : null;
       const sugarVal = sugarSelect ? sugarSelect.value : null;
-      add(categoryKey, itemKey, selected, iceVal, sugarVal);
+      const sizeVal = modal.dataset.selectedSize || 'L';
+      add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal);
       closeSelectionModal();
     });
   }
@@ -284,17 +340,18 @@ function initSelectionModal() {
   });
 }
 
-function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null) {
+function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L') {
   const product = items[categoryKey][itemKey];
   const toppingObjs = (selectedToppings || []).map(name => getToppingOption(name));
   const toppingCost = toppingObjs.reduce((s, t) => s + (t.price || 0), 0);
-  const unitPrice = product.price + toppingCost;
-  const id = `${categoryKey}-${itemKey}-${(selectedToppings || []).slice().sort().join('|')}-${iceChoice||''}-${sugarChoice||''}`;
+  const normalizedSize = product.mPrice ? sizeChoice : 'L';
+  const unitPrice = getBasePrice(product, normalizedSize) + toppingCost;
+  const id = `${categoryKey}-${itemKey}-${normalizedSize}-${(selectedToppings || []).slice().sort().join('|')}-${iceChoice||''}-${sugarChoice||''}`;
   const existing = cart.find((x) => x.id === id);
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id, qty: 1, price: unitPrice, name: product.text, toppings: selectedToppings, toppingCost, ice: iceChoice, sugar: sugarChoice });
+    cart.push({ id, qty: 1, price: unitPrice, name: product.text, size: normalizedSize, toppings: selectedToppings, toppingCost, ice: iceChoice, sugar: sugarChoice });
   }
   update();
 }
@@ -322,7 +379,7 @@ function update() {
     itemHeader.className = 'cart-item-header';
 
     const mainLine = document.createElement('div');
-    mainLine.textContent = `${idx + 1}. ${i.name} x${i.qty}  ${i.price} RSD`;
+    mainLine.textContent = `${idx + 1}. ${i.name} ${i.size || 'L'} x${i.qty}  ${i.price} RSD`;
     itemHeader.appendChild(mainLine);
 
     const removeButton = document.createElement('button');
@@ -369,10 +426,16 @@ function update() {
 
   document.getElementById('total').textContent = `Count: ${count}, Total: ${total} RSD`;
   document.getElementById('cartCount').textContent = count;
-  localStorage.cart = JSON.stringify(cart);
+  const checkoutButton = document.getElementById('openCheckout');
+  if (checkoutButton) {
+    checkoutButton.disabled = count === 0;
+  }
+  saveCart();
 }
 
 function openCheckoutModal() {
+  if (cart.reduce((sum, item) => sum + (item.qty || 0), 0) === 0) return;
+
   const modal = document.getElementById('checkoutModal');
   if (!modal) return;
   modal.classList.add('open');
@@ -434,6 +497,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
   initCheckoutModal();
   initSelectionModal();
+  loadCart();
   render();
 });
 

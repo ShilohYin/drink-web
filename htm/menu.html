@@ -13,10 +13,10 @@
         <img src="/assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
       </a>
       <nav class="nav-menu">
-        <a href="#">首页</a>
-        <a href="#" class="active">菜单</a>
-        <a href="#">关于我们</a>
-        <a href="#">联系我们</a>
+        <a href="/">首页</a>
+        <a class="active">菜单</a>
+        <a href="/htm/about">关于我们</a>
+        <a href="/">联系我们</a>
       </nav>
       <div class="header-right">
         <select id="langSwitch" class="lang-switch">
@@ -41,6 +41,7 @@
         <div id="cartItems"></div>
         <p id="total"></p>
         <button id="openCheckout" class="checkout-button" type="button" data-i18n="checkout">结账</button>
+        <p class="cart-image-note">图片仅供参考</p>
       </aside>
     </main>
 
@@ -50,6 +51,10 @@
         <button class="modal-close-btn" id="closeSelectionModal" aria-label="Close selection">×</button>
         <h2 id="selectionTitle">选择配置</h2>
         <p class="selection-price" id="selectionPrice"></p>
+        <div class="size-selector" id="sizeSelector" aria-label="选择杯型" hidden>
+          <button type="button" class="size-option active" data-size="L">L</button>
+          <button type="button" class="size-option" data-size="M">M</button>
+        </div>
         <form id="selectionForm">
           <label>
             小料
@@ -78,22 +83,37 @@
         <h2 data-i18n="checkout">Checkout</h2>
         <form id="checkoutForm">
           <label>
-            <strong data-i18n="name">姓名</strong><em class="required">*</em>
+            <strong><span data-i18n="name">姓名</span><em class="required">*</em></strong>
             <input placeholder="请输入您的姓名" id="name" required>
           </label>
           <label>
-            <strong data-i18n="phone">电话</strong><em class="required">*</em>
+            <strong><span data-i18n="phone">电话</span><em class="required">*</em></strong>
             <input placeholder="请输入您的电话" id="phone" required>
           </label>
+          <div class="checkout-choice-row">
+            <strong>取餐方式</strong>
+            <div class="checkout-radio-group" role="radiogroup" aria-label="取餐方式">
+              <label class="checkout-radio-option">
+                <input type="radio" name="deliveryType" value="自取" checked>
+                <span>自取</span>
+              </label>
+              <label class="checkout-radio-option">
+                <input type="radio" name="deliveryType" value="配送">
+                <span>配送</span>
+              </label>
+            </div>
+          </div>
           <label>
-            <strong>地址<em class="required">*</em></strong>
-            <input placeholder="请输入您的地址" id="address" required>
+            <strong>地址</strong>
+            <input placeholder="配送仅支持欧亚" id="address">
           </label>
           <label>
             <strong data-i18n="remark">备注 </strong>
             <textarea placeholder="请输入备注信息" id="remark"></textarea>
           </label>
-          <button class="submit-btn" type="submit">Submit</button>
+          <div class="modal-actions">
+            <button class="submit-btn" type="submit">Submit</button>
+          </div>
         </form>
       </div>
     </div>

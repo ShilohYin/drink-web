@@ -1,11 +1,31 @@
+:root {
+    --site-header-height: 80px;
+}
+
+html {
+    scroll-padding-top: var(--site-header-height);
+}
+
+body {
+    padding-top: var(--site-header-height);
+}
+
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    min-height: var(--site-header-height);
     background-color: #fff;
+    box-shadow: 0 2px 12px rgba(91, 59, 42, 0.08);
 }
 header .header-box {
     display: flex; 
     align-items: center; 
     justify-content: space-between;
     max-width: 1200px;
+    min-height: var(--site-header-height);
     margin: 0 auto;
 }
 .lang-switch {

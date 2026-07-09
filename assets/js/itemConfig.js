@@ -207,13 +207,13 @@ export const items = {
             text: "绿野仙踪",
             image: "assets/images/drinks/c14.PNG"
         },
+        // G8: {
+        //     name: "tea16",
+        //     price: 550,
+        //     text: "芝士草莓森林",
+        //     image: "assets/images/drinks/c16.PNG"
+        // },
         G8: {
-            name: "tea16",
-            price: 550,
-            text: "芝士草莓森林",
-            image: "assets/images/drinks/c16.PNG"
-        },
-        G9: {
             name: "tea16",
             price: 550,
             text: "芝芝抹茶",
@@ -245,14 +245,12 @@ export const items = {
             name: "tea13",
             price: 500,
             text: "焦糖摩卡星冰乐",
-            text: "珍珠",
             image: "assets/images/drinks/c13.PNG"
         },
         S5: {
             name: "tea14",
             price: 500,
             text: "巧克力星冰乐",
-            text: "珍珠",
             image: "assets/images/drinks/c14.PNG"
         },
         S6: {
@@ -675,11 +673,11 @@ export const ices = {
     },
     warm: {
         value: 'warm',
-        text: "温"
+        text: "常温"
     },
     hot: {
         value: 'hot',
-        text: "热"
+        text: "热饮"
     }
 }
 
@@ -695,6 +693,10 @@ export const sugar = {
     halfSugar: {
         value: 'warm',
         text: "半糖"
+    },
+    lSugar: {
+        value: 'warm',
+        text: "70%糖"
     },
     normalIce: {
         value: 'normal',

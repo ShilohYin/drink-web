@@ -5,6 +5,26 @@ body {
 
 body {
   background: #fff8f1;
+  padding-top: 0;
+}
+
+.daily-report-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+  padding: 0;
+  box-shadow: 0 2px 12px rgba(91, 59, 42, 0.08);
+}
+
+.daily-report-header .header-box {
+  height: 80px;
+}
+
+.daily-report-header .header-nav-links {
+  align-items: center;
 }
 
 .daily-box {
@@ -237,7 +257,7 @@ body {
   .daily-box {
     flex-direction: column;
     width: auto !important;
-    padding: 28px 18px 44px !important;
+    padding: 128px 18px 44px !important;
     gap: 24px;
   }
 

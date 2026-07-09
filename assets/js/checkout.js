@@ -16,6 +16,7 @@ document.getElementById('checkoutForm').onsubmit = async e => {
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const address = document.getElementById("address").value.trim();
+    const deliveryType = document.querySelector('input[name="deliveryType"]:checked')?.value || '配送';
     const remark = document.getElementById("remark").value.trim();
 
     if (!name) {
@@ -37,7 +38,7 @@ document.getElementById('checkoutForm').onsubmit = async e => {
         return;
     }
 
-    if (!address) {
+    if (deliveryType === '配送' && !address) {
         alert('请输入地址');
         document.getElementById('address').focus();
         return;
@@ -47,6 +48,7 @@ document.getElementById('checkoutForm').onsubmit = async e => {
     form.append("name", name);
     form.append("phone", phone);
     form.append("address", address);
+    form.append("deliveryType", deliveryType);
     form.append("remark", remark);
 
     try {

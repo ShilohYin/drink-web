@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="../assets/css/menu.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/daily-report.css">
     <title>日盈利汇总</title>
     <style>
       .daily-box {
-        padding-top: 80px;
+        padding-top: 160px;
         display: flex;
         width: 1200px;
         margin: 0 auto;
@@ -21,6 +22,24 @@
     </style>
   </head>
   <body>
+    <header class="header-container daily-report-header">
+      <div class="header-box">
+        <a href="/">
+          <img src="../assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
+        </a>
+        <nav class="header-nav-links">
+          <a href="/" data-i18n="home">首页</a>
+          <a href="/htm/menu.html" data-i18n="menu">菜单</a>
+          <a href="/htm/about">关于我们</a>
+          <a href="/#contact" data-i18n="contact">联系我们</a>
+          <select id="langSwitch" class="lang-switch" aria-label="Language Switcher">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="sr">Srpski</option>
+          </select>
+        </nav>
+      </div>
+    </header>
     <div class="daily-box">
       <a href="/">
         <img src="../assets/images/daily.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: 504px;">
