@@ -9,6 +9,39 @@ const categoryLabels = {
   cocoa: { zh: '可可类', en: 'Cocoa', sr: 'Kakao' }
 };
 
+const categorySubtitles = {
+  milkTea: { zh: '香浓丝滑 · 口口满足', en: 'Silky, rich, and satisfying', sr: 'Svilenkasto, bogato i puno ukusa' },
+  fruitTea: { zh: '清爽果香 · 鲜活解腻', en: 'Fresh fruit tea, bright and crisp', sr: 'Svež voćni čaj' },
+  matchaTea: { zh: '茶香清雅 · 奶感绵密', en: 'Clean matcha aroma with creamy texture', sr: 'Nežna matcha aroma' },
+  sogaTea: { zh: '冰爽细腻 · 甜蜜降温', en: 'Cool, smooth, and sweet', sr: 'Hladno i osvežavajuće' },
+  coffee: { zh: '醇香提神 · 奶咖平衡', en: 'Balanced coffee and cream', sr: 'Uravnotežena kafa' },
+  cocoa: { zh: '浓郁可可 · 温柔甜感', en: 'Deep cocoa with soft sweetness', sr: 'Bogati kakao' }
+};
+
+const productImageExtensions = ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'webp'];
+
+function getImageCandidates(categoryKey, itemKey, item) {
+  const generated = productImageExtensions.map(ext => `/assets/images/drinks/${categoryKey}/${itemKey}.${ext}`);
+  const configured = item.image ? [`/${item.image.replace(/^\/+/, '')}`] : [];
+  return [...new Set([...generated, ...configured])];
+}
+
+function setProductImage(image, categoryKey, itemKey, item) {
+  const candidates = getImageCandidates(categoryKey, itemKey, item);
+  let index = 0;
+
+  image.src = candidates[index];
+  image.onerror = () => {
+    index += 1;
+    if (index < candidates.length) {
+      image.src = candidates[index];
+      return;
+    }
+    image.classList.add('is-missing');
+    image.removeAttribute('src');
+  };
+}
+
 function getToppingOption(name) {
   return toppings.find(t => t.text === name || t.name === name) || { text: name, price: 0 };
 }
@@ -69,9 +102,30 @@ function render() {
     const section = document.createElement('section');
     section.className = 'category';
 
+    const categoryHeader = document.createElement('div');
+    categoryHeader.className = 'category-header';
+
+    const headingGroup = document.createElement('div');
+
     const title = document.createElement('h2');
     title.textContent = categoryLabels[categoryKey]?.[lang] || categoryKey;
-    section.appendChild(title);
+    headingGroup.appendChild(title);
+
+    const subtitle = document.createElement('p');
+    subtitle.className = 'category-subtitle';
+    subtitle.textContent = categorySubtitles[categoryKey]?.[lang] || '';
+    headingGroup.appendChild(subtitle);
+
+    categoryHeader.appendChild(headingGroup);
+
+    if (categoryKey === 'milkTea') {
+      const note = document.createElement('div');
+      note.className = 'category-note';
+      note.textContent = '✓ 可选冷热饮 / 默认推荐冰饮';
+      categoryHeader.appendChild(note);
+    }
+
+    section.appendChild(categoryHeader);
 
     const grid = document.createElement('div');
     grid.className = 'grid';
@@ -80,29 +134,48 @@ function render() {
       const card = document.createElement('div');
       card.className = 'card';
 
-      const image = document.createElement('img');
+      const imageWrap = document.createElement('div');
+      imageWrap.className = 'product-media';
+
       if (item.image) {
-        image.src = item.image.startsWith('assets/') ? `../${item.image}` : item.image;
+        const image = document.createElement('img');
+        setProductImage(image, categoryKey, itemKey, item);
         image.alt = item.text;
         image.className = 'product-img';
-        card.appendChild(image);
+        imageWrap.appendChild(image);
       }
+
+      if ((categoryKey === 'milkTea' && (itemKey === 'M1' || itemKey === 'M9'))) {
+        const badge = document.createElement('span');
+        badge.className = 'product-badge';
+        badge.textContent = 'NEW';
+        imageWrap.appendChild(badge);
+      }
+
+      card.appendChild(imageWrap);
+
+      const content = document.createElement('div');
+      content.className = 'product-content';
 
       const name = document.createElement('h3');
       name.textContent = itemKey + ' ' + item.text;
-      card.appendChild(name);
+      content.appendChild(name);
 
-      
-      const toppings = document.createElement('small');
-      toppings.textContent = item.toppings ? `小料：${item.toppings}` : '小料：无';
-      card.appendChild(toppings);
+      const toppingsInfo = document.createElement('small');
+      toppingsInfo.textContent = item.toppings || '经典原味';
+      content.appendChild(toppingsInfo);
 
       const price = document.createElement('p');
-      price.textContent = item.mPrice ? `L: ${item.price}, M: ${item.mPrice} RSD` : `L: ${item.price} RSD`;
-      card.appendChild(price);
+      price.className = 'price';
+      price.textContent = item.mPrice ? `${item.price} RSD` : `${item.price} RSD`;
+      content.appendChild(price);
+
+      card.appendChild(content);
 
       const button = document.createElement('button');
       button.className = 'add-btn';
+      button.type = 'button';
+      button.setAttribute('aria-label', `添加 ${item.text}`);
       button.textContent = '+';
       button.addEventListener('click', () => {
         openSelectionModal(categoryKey, itemKey);

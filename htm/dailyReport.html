@@ -8,11 +8,8 @@
     <link rel="stylesheet" href="../assets/css/daily-report.css">
     <title>日盈利汇总</title>
     <style>
-      body{
-        background-color: #fefbf8;
-      }
       .daily-box {
-        padding-top: 50px;
+        padding-top: 80px;
         display: flex;
         width: 1200px;
         margin: 0 auto;
@@ -25,43 +22,74 @@
   </head>
   <body>
     <div class="daily-box">
-      <img src="../assets/images/daily.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: 504px;">
+      <a href="/">
+        <img src="../assets/images/daily.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: 504px;">
+      </a>
       <form id="dailyForm" class="daily-form">
         <label>
           <strong><em class="required">*</em> 票  额:</strong>
-          <input placeholder="票额" id="votes" required>
+          <span class="currency-input">
+            <input placeholder="当日总票额（包含wolt）" id="votes" required>
+            <em>DIN</em>
+          </span>
         </label>
         <label>
           <strong><em class="required">*</em> 现  金:</strong>
-          <input placeholder="现金" id="cash" required>
+          <span class="currency-input">
+            <input placeholder="包含欧元或美金" id="cash" required>
+            <em>DIN</em>
+          </span>
         </label>
         <label>
           <strong>Wolt外卖:</strong>
-          <input placeholder="Wolt外卖" id="wolt" >
+          <span class="currency-input">
+            <input placeholder="实际金额（非平台金额）" id="wolt" >
+            <em>DIN</em>
+          </span>
         </label>
         <label>
           <strong>消费支出:</strong>
-          <input placeholder="消费支出" id="consume" >
+          <span class="currency-input">
+            <input placeholder="餐补和物料采购等" id="consume" >
+            <em>DIN</em>
+          </span>
         </label>
         <label>
           <strong>扫码支付:</strong>
-          <input placeholder="扫码支付（如微信，支付宝等人民币）" id="rmb" >
+          <span class="currency-input">
+            <input placeholder="微信或支付宝" id="rmb" >
+            <em class="currency-rmb">RMB</em>
+          </span>
         </label>
         <label>
           <strong>其它支付:</strong>
-          <input placeholder="其它din支付（如退款，本地币转账等）" id="other" >
+          <span class="currency-input">
+            <input placeholder="退款，本地币转账等" id="other" >
+            <em>DIN</em>
+          </span>
         </label>
         <label>
           <strong>物料购入:</strong>
-          <input placeholder="物料购入" id="material" >
+          <span class="currency-input">
+            <input placeholder="请输入物料购入" id="material" >
+          </span>
         </label>
         <label>
           <strong>备注:</strong>
-          <textarea placeholder="备注" id="remark"></textarea>
+          <textarea placeholder="请输入备注" id="remark"></textarea>
         </label>
-        <button class="submit-btn">计算</button>
-        <button class="submit-btn">提交</button>
+        <div class="daily-actions">
+          <button class="submit-btn calculate-btn" id="calculateDaily" type="button">计算</button>
+          <button class="submit-btn submit-daily-btn" type="submit">提交</button>
+        </div>
+        <p class="daily-result" id="dailyResult" aria-live="polite"></p>
       </form>
+    </div>
+    <div class="daily-loading" id="dailyLoading" aria-hidden="true">
+      <div class="daily-loading-box">
+        <span class="daily-spinner"></span>
+        <p>提交中，请稍候...</p>
+      </div>
     </div>
 
     <script src="../assets/js/config.js"></script>
