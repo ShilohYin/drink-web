@@ -217,7 +217,7 @@ function render() {
   update();
 }
 
-function openSelectionModal(categoryKey, itemKey) {
+function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}) {
   const item = items[categoryKey]?.[itemKey];
   if (!item) return;
 
@@ -228,18 +228,28 @@ function openSelectionModal(categoryKey, itemKey) {
   const toppingSelect = document.getElementById('selectionTopping');
   const iceSelect = document.getElementById('selectionIce');
   const sugarSelect = document.getElementById('selectionSugar');
+  const submitButton = document.querySelector('#selectionForm .submit-btn');
+  const selectedSize = item.mPrice ? (preset.size || 'L') : 'L';
 
   title.textContent = `${itemKey} ${item.text}`;
-  modal.dataset.selectedSize = 'L';
+  modal.dataset.selectedSize = selectedSize;
   priceLabel.hidden = !!item.mPrice;
   priceLabel.textContent = item.mPrice ? '' : `${item.price} RSD`;
+  if (editCartId) {
+    modal.dataset.editingCartId = editCartId;
+  } else {
+    delete modal.dataset.editingCartId;
+  }
+  if (submitButton) {
+    submitButton.textContent = editCartId ? '保存修改' : '加入购物车';
+  }
 
   if (sizeSelector) {
     sizeSelector.hidden = !item.mPrice;
     sizeSelector.querySelectorAll('.size-option').forEach((button) => {
       const size = button.dataset.size || 'L';
       button.textContent = getSizeOptionLabel(item, size);
-      button.classList.toggle('active', size === 'L');
+      button.classList.toggle('active', size === selectedSize);
     });
   }
 
@@ -254,6 +264,7 @@ function openSelectionModal(categoryKey, itemKey) {
     option.textContent = `${t.text}  +${t.price} RSD`;
     toppingSelect.appendChild(option);
   });
+  toppingSelect.value = preset.toppings?.[0] || '';
 
   iceSelect.innerHTML = '';
   Object.entries(ices).forEach(([key, obj]) => {
@@ -263,6 +274,7 @@ function openSelectionModal(categoryKey, itemKey) {
     if (key === 'normalIce') option.selected = true;
     iceSelect.appendChild(option);
   });
+  if (preset.ice) iceSelect.value = preset.ice;
 
   sugarSelect.innerHTML = '';
   Object.entries(sugar).forEach(([key, obj]) => {
@@ -272,6 +284,7 @@ function openSelectionModal(categoryKey, itemKey) {
     if (key === 'normalIce' || key === 'normal') option.selected = true;
     sugarSelect.appendChild(option);
   });
+  if (preset.sugar) sugarSelect.value = preset.sugar;
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
@@ -285,6 +298,7 @@ function closeSelectionModal() {
   modal.setAttribute('aria-hidden', 'true');
   delete modal.dataset.currentItem;
   delete modal.dataset.selectedSize;
+  delete modal.dataset.editingCartId;
 }
 
 function initSelectionModal() {
@@ -328,7 +342,11 @@ function initSelectionModal() {
       const iceVal = iceSelect ? iceSelect.value : null;
       const sugarVal = sugarSelect ? sugarSelect.value : null;
       const sizeVal = modal.dataset.selectedSize || 'L';
-      add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal);
+      if (modal.dataset.editingCartId) {
+        updateCartItem(modal.dataset.editingCartId, categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal);
+      } else {
+        add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal);
+      }
       closeSelectionModal();
     });
   }
@@ -340,20 +358,64 @@ function initSelectionModal() {
   });
 }
 
-function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L') {
+function createCartItem(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', qty = 1) {
   const product = items[categoryKey][itemKey];
   const toppingObjs = (selectedToppings || []).map(name => getToppingOption(name));
   const toppingCost = toppingObjs.reduce((s, t) => s + (t.price || 0), 0);
   const normalizedSize = product.mPrice ? sizeChoice : 'L';
   const unitPrice = getBasePrice(product, normalizedSize) + toppingCost;
   const id = `${categoryKey}-${itemKey}-${normalizedSize}-${(selectedToppings || []).slice().sort().join('|')}-${iceChoice||''}-${sugarChoice||''}`;
-  const existing = cart.find((x) => x.id === id);
+  return {
+    id,
+    qty,
+    price: unitPrice,
+    name: product.text,
+    categoryKey,
+    itemKey,
+    size: normalizedSize,
+    toppings: selectedToppings,
+    toppingCost,
+    ice: iceChoice,
+    sugar: sugarChoice
+  };
+}
+
+function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L') {
+  const cartItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice);
+  const existing = cart.find((x) => x.id === cartItem.id);
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id, qty: 1, price: unitPrice, name: product.text, size: normalizedSize, toppings: selectedToppings, toppingCost, ice: iceChoice, sugar: sugarChoice });
+    cart.push(cartItem);
   }
   update();
+}
+
+function updateCartItem(id, categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L') {
+  const index = cart.findIndex((x) => x.id === id);
+  if (index === -1) return;
+
+  const currentQty = cart[index].qty || 1;
+  const updatedItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, currentQty);
+  cart.splice(index, 1);
+
+  const existing = cart.find((x) => x.id === updatedItem.id);
+  if (existing) {
+    existing.qty += updatedItem.qty;
+  } else {
+    cart.splice(index, 0, updatedItem);
+  }
+
+  update();
+}
+
+function getCartItemProductKeys(item) {
+  if (item.categoryKey && item.itemKey) {
+    return { categoryKey: item.categoryKey, itemKey: item.itemKey };
+  }
+
+  const [categoryKey, itemKey] = (item.id || '').split('-');
+  return { categoryKey, itemKey };
 }
 
 function removeItem(id) {
@@ -382,13 +444,27 @@ function update() {
     mainLine.textContent = `${idx + 1}. ${i.name} ${i.size || 'L'} x${i.qty}  ${i.price} RSD`;
     itemHeader.appendChild(mainLine);
 
+    const actions = document.createElement('div');
+    actions.className = 'cart-item-actions';
+
+    const editButton = document.createElement('button');
+    editButton.className = 'cart-edit-btn';
+    editButton.textContent = '修改';
+    editButton.addEventListener('click', () => {
+      const { categoryKey, itemKey } = getCartItemProductKeys(i);
+      if (!items[categoryKey]?.[itemKey]) return;
+      openSelectionModal(categoryKey, itemKey, i.id, i);
+    });
+    actions.appendChild(editButton);
+
     const removeButton = document.createElement('button');
     removeButton.className = 'cart-remove-btn';
     removeButton.textContent = '删除';
     removeButton.addEventListener('click', () => {
       removeItem(i.id);
     });
-    itemHeader.appendChild(removeButton);
+    actions.appendChild(removeButton);
+    itemHeader.appendChild(actions);
 
     itemRow.appendChild(itemHeader);
 

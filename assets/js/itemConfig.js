@@ -655,10 +655,6 @@ export const toppings = [
 ]
 
 export const ices = {
-    noIce: {
-        value: 0,
-        text: "去冰"
-    },
     lessIce: {
         value: 'less',
         text: "少冰"
@@ -683,23 +679,23 @@ export const ices = {
 
 export const sugar = {
     noSugar: {
-        value: 0,
+        value: 'No Sugar',
         text: "无糖"
     },
-    lessSugar: {
-        value: 'less',
+    lightSugar: {
+        value: 'Light Sugar',
         text: "30%糖"
     },
     halfSugar: {
-        value: 'warm',
+        value: 'Half Sugar',
         text: "半糖"
     },
-    lSugar: {
-        value: 'warm',
+    lessSugar: {
+        value: 'Less Sugar',
         text: "70%糖"
     },
-    normalIce: {
-        value: 'normal',
+    normalSugar: {
+        value: 'Normal Sugar',
         text: "正常糖"
     }
 }

@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbz6c6e5ORbMHDk0K7em8etlhdAu5hHjYMA2MALfKov-NobVzoR6tXv1blGi7j1z8fiZLw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxE_a2i6bQExMOCqGLcMucFtmrz2S73NWXm6KUDFFpGkq6RGhxLOkHQO_XX4xnJvvQTKQ/exec";
 
 const contacts = {
     telegram: "https://t.me/+38162389638",
