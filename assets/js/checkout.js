@@ -1,5 +1,6 @@
 const checkoutLastSubmitKey = 'checkoutLastSubmitTime';
 const checkoutMinLoadingTime = 700;
+const checkoutT = key => i18n.t(key);
 
 function canCheckoutSubmit() {
     const last = Number(localStorage.getItem(checkoutLastSubmitKey) || 0);
@@ -62,55 +63,74 @@ function formatCheckoutItems(cart) {
     }).join('\n');
 }
 
+function syncAddressField() {
+    const addressField = document.getElementById('addressField');
+    const addressInput = document.getElementById('address');
+    const isDelivery = document.querySelector('input[name="deliveryType"]:checked')?.value === '配送';
+
+    if (!addressField || !addressInput) return;
+
+    addressField.hidden = !isDelivery;
+    addressInput.disabled = !isDelivery;
+}
+
+document.querySelectorAll('input[name="deliveryType"]').forEach(input => {
+    input.addEventListener('change', syncAddressField);
+});
+
+syncAddressField();
+
 document.getElementById('checkoutForm').onsubmit = async e => {
     e.preventDefault();
 
     if (!canCheckoutSubmit()) {
-        alert('请 30 秒后再提交');
+        alert(checkoutT('wait_to_submit'));
         return;
     }
 
     const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
+    const contactMethod = document.getElementById('contactMethod').value;
+    const account = document.getElementById("account").value.trim();
     const address = document.getElementById("address").value.trim();
     const deliveryType = document.querySelector('input[name="deliveryType"]:checked')?.value || '配送';
     const remark = document.getElementById("remark").value.trim();
     const cart = getCheckoutCart();
 
     if (!name) {
-        alert('请输入姓名');
+        alert(checkoutT('enter_name'));
         document.getElementById('name').focus();
         return;
     }
 
-    if (!phone) {
-        alert('请输入电话');
-        document.getElementById('phone').focus();
+    if (!account) {
+        alert(checkoutT('enter_contact_account'));
+        document.getElementById('account').focus();
         return;
     }
 
     const phonePattern = /^[0-9\s+\-()]{6,20}$/;
-    if (!phonePattern.test(phone) && !('A123' === phone || 'a123' === phone)) {
-        alert('请输入有效的电话号码');
-        document.getElementById('phone').focus();
+    if (contactMethod === 'Phone' && !phonePattern.test(account)) {
+        alert(checkoutT('invalid_phone'));
+        document.getElementById('account').focus();
         return;
     }
 
     if (deliveryType === '配送' && !address) {
-        alert('请输入地址');
+        alert(checkoutT('enter_address'));
         document.getElementById('address').focus();
         return;
     }
 
     if (cart.length === 0) {
-        alert('购物车为空');
+        alert(checkoutT('empty_cart'));
         return;
     }
 
     const form = new FormData();
     form.append("submitType", "order");
     form.append("name", name);
-    form.append("phone", phone);
+    form.append("contactMethod", contactMethod);
+    form.append("account", account);
     form.append("address", address);
     form.append("type", deliveryType);
     form.append("items", formatCheckoutItems(cart));
@@ -132,13 +152,13 @@ document.getElementById('checkoutForm').onsubmit = async e => {
             body: form
         });
         await waitForMinimumLoading(loadingStartTime);
-        alert('提交成功, 请稍等');
+        alert(checkoutT('submit_success'));
         sessionStorage.removeItem('kaolaCart')
         location.reload();
     } catch (error) {
         console.error(error);
         await waitForMinimumLoading(loadingStartTime);
-        alert('提交失败，请稍后重试');
+        alert(checkoutT('submit_failed'));
     } finally {
         hideCheckoutLoading();
         setCheckoutFormDisabled(false);

@@ -6,7 +6,9 @@ const categoryLabels = {
   matchaTea: { zh: '抹茶类', en: 'Matcha Tea', sr: 'Matcha čaj' },
   sogaTea: { zh: '沙冰类', en: 'Soga Tea', sr: 'Soga čaj' },
   coffee: { zh: '咖啡类', en: 'Coffee', sr: 'Kafa' },
-  cocoa: { zh: '可可类', en: 'Cocoa', sr: 'Kakao' }
+  cocoa: { zh: '可可类', en: 'Cocoa', sr: 'Kakao' },
+  chinessTea: { zh: '新中式', en: 'ChineseTea', sr: '' },
+  cheese: { zh: '芝士类', en: 'Cheese', sr: 'Kakao' },
 };
 
 const categorySubtitles = {
@@ -17,6 +19,14 @@ const categorySubtitles = {
   coffee: { zh: '醇香提神 · 奶咖平衡', en: 'Balanced coffee and cream', sr: 'Uravnotežena kafa' },
   cocoa: { zh: '浓郁可可 · 温柔甜感', en: 'Deep cocoa with soft sweetness', sr: 'Bogati kakao' }
 };
+
+const categoryToggleLabels = {
+  zh: { collapse: '收起', expand: '展开' },
+  en: { collapse: 'Collapse', expand: 'Expand' },
+  sr: { collapse: 'Skupi', expand: 'Proširi' }
+};
+
+const collapsedCategories = new Set();
 
 const productImageExtensions = ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'webp'];
 
@@ -46,6 +56,18 @@ function getToppingOption(name) {
   return toppings.find(t => t.text === name || t.name === name) || { text: name, price: 0 };
 }
 
+function getSugarOption(value) {
+  return sugar[value]
+    || Object.values(sugar).find(option => option.text === value || option.value === value)
+    || { text: value };
+}
+
+function getIceOption(value) {
+  return ices[value]
+    || Object.values(ices).find(option => option.text === value || option.value === value)
+    || { text: value };
+}
+
 function getBasePrice(product, sizeChoice = 'L') {
   return sizeChoice === 'M' && product.mPrice ? product.mPrice : product.price;
 }
@@ -63,7 +85,7 @@ function createToppingsSelect(item) {
 
   toppings.forEach((t) => {
     const option = document.createElement('option');
-    option.value = t.name;
+    option.value = t.text;
     option.textContent = `${t.text}  +${t.price} RSD`;
     select.appendChild(option);
   });
@@ -76,7 +98,7 @@ function createIcesSelect() {
   select.className = 'ice-select';
   Object.entries(ices).forEach(([key, obj]) => {
     const option = document.createElement('option');
-    option.value = key;
+    option.value = obj.text || key;
     option.textContent = obj.text || key;
     if (key === 'normalIce') option.selected = true;
     select.appendChild(option);
@@ -89,9 +111,9 @@ function createSugarSelect() {
   select.className = 'sugar-select';
   Object.entries(sugar).forEach(([key, obj]) => {
     const option = document.createElement('option');
-    option.value = key;
+    option.value = obj.text || key;
     option.textContent = obj.text || key;
-    if (key === 'normalIce' || key === 'normal') option.selected = true;
+    if (key === 'normalSugar') option.selected = true;
     select.appendChild(option);
   });
   return select;
@@ -126,6 +148,7 @@ function render() {
     const category = items[categoryKey];
     const section = document.createElement('section');
     section.className = 'category';
+    section.classList.toggle('is-collapsed', collapsedCategories.has(categoryKey));
 
     const categoryHeader = document.createElement('div');
     categoryHeader.className = 'category-header';
@@ -143,12 +166,42 @@ function render() {
 
     categoryHeader.appendChild(headingGroup);
 
+    const headerActions = document.createElement('div');
+    headerActions.className = 'category-header-actions';
+
     if (categoryKey === 'milkTea') {
       const note = document.createElement('div');
       note.className = 'category-note';
       note.textContent = '✓ 奶茶可选冷热，默认推荐冰饮';
-      categoryHeader.appendChild(note);
+      headerActions.appendChild(note);
     }
+
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'category-toggle';
+    toggleButton.type = 'button';
+
+    const updateToggleButton = () => {
+      const isCollapsed = collapsedCategories.has(categoryKey);
+      const labels = categoryToggleLabels[lang] || categoryToggleLabels.zh;
+      const action = isCollapsed ? labels.expand : labels.collapse;
+      section.classList.toggle('is-collapsed', isCollapsed);
+      toggleButton.setAttribute('aria-expanded', String(!isCollapsed));
+      toggleButton.setAttribute('aria-label', `${action} ${title.textContent}`);
+      toggleButton.innerHTML = `<span>${action}</span><span class="category-toggle-icon" aria-hidden="true">${isCollapsed ? '⌄' : '⌃'}</span>`;
+    };
+
+    toggleButton.addEventListener('click', () => {
+      if (collapsedCategories.has(categoryKey)) {
+        collapsedCategories.delete(categoryKey);
+      } else {
+        collapsedCategories.add(categoryKey);
+      }
+      updateToggleButton();
+    });
+
+    updateToggleButton();
+    headerActions.appendChild(toggleButton);
+    categoryHeader.appendChild(headerActions);
 
     section.appendChild(categoryHeader);
 
@@ -233,6 +286,7 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
 
   title.textContent = `${itemKey} ${item.text}`;
   modal.dataset.selectedSize = selectedSize;
+  setSelectionQuantity(modal, editCartId ? preset.qty : 1);
   priceLabel.hidden = !!item.mPrice;
   priceLabel.textContent = item.mPrice ? '' : `${item.price} RSD`;
   if (editCartId) {
@@ -260,31 +314,32 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
   toppingSelect.appendChild(noneOption);
   toppings.forEach((t) => {
     const option = document.createElement('option');
-    option.value = t.name;
+    option.value = t.text;
     option.textContent = `${t.text}  +${t.price} RSD`;
     toppingSelect.appendChild(option);
   });
-  toppingSelect.value = preset.toppings?.[0] || '';
+  const selectedTopping = preset.toppings?.[0];
+  toppingSelect.value = selectedTopping ? getToppingOption(selectedTopping).text : '';
 
   iceSelect.innerHTML = '';
   Object.entries(ices).forEach(([key, obj]) => {
     const option = document.createElement('option');
-    option.value = key;
+    option.value = obj.text || key;
     option.textContent = obj.text || key;
     if (key === 'normalIce') option.selected = true;
     iceSelect.appendChild(option);
   });
-  if (preset.ice) iceSelect.value = preset.ice;
+  iceSelect.value = getIceOption(preset.ice || 'normalIce').text;
 
   sugarSelect.innerHTML = '';
   Object.entries(sugar).forEach(([key, obj]) => {
     const option = document.createElement('option');
-    option.value = key;
+    option.value = obj.text || key;
     option.textContent = obj.text || key;
-    if (key === 'normalIce' || key === 'normal') option.selected = true;
+    if (key === 'normalSugar') option.selected = true;
     sugarSelect.appendChild(option);
   });
-  if (preset.sugar) sugarSelect.value = preset.sugar;
+  sugarSelect.value = getSugarOption(preset.sugar || 'normalSugar').text;
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
@@ -298,7 +353,18 @@ function closeSelectionModal() {
   modal.setAttribute('aria-hidden', 'true');
   delete modal.dataset.currentItem;
   delete modal.dataset.selectedSize;
+  delete modal.dataset.selectedQuantity;
   delete modal.dataset.editingCartId;
+}
+
+function setSelectionQuantity(modal, quantity) {
+  const normalizedQuantity = Math.max(1, Number.parseInt(quantity, 10) || 1);
+  const quantityOutput = modal.querySelector('#selectionQuantity');
+  const decreaseButton = modal.querySelector('[data-quantity-change="-1"]');
+
+  modal.dataset.selectedQuantity = String(normalizedQuantity);
+  if (quantityOutput) quantityOutput.textContent = String(normalizedQuantity);
+  if (decreaseButton) decreaseButton.disabled = normalizedQuantity === 1;
 }
 
 function initSelectionModal() {
@@ -313,6 +379,14 @@ function initSelectionModal() {
   if (cancelBtn) cancelBtn.addEventListener('click', closeSelectionModal);
 
   modal.addEventListener('click', (event) => {
+    const quantityButton = event.target.closest('[data-quantity-change]');
+    if (quantityButton) {
+      const quantityChange = Number(quantityButton.dataset.quantityChange) || 0;
+      const quantity = Number(modal.dataset.selectedQuantity || 1) + quantityChange;
+      setSelectionQuantity(modal, quantity);
+      return;
+    }
+
     const sizeButton = event.target.closest('.size-option');
     if (!sizeButton) return;
     const current = modal.dataset.currentItem;
@@ -342,10 +416,11 @@ function initSelectionModal() {
       const iceVal = iceSelect ? iceSelect.value : null;
       const sugarVal = sugarSelect ? sugarSelect.value : null;
       const sizeVal = modal.dataset.selectedSize || 'L';
+      const quantity = Number(modal.dataset.selectedQuantity || 1);
       if (modal.dataset.editingCartId) {
-        updateCartItem(modal.dataset.editingCartId, categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal);
+        updateCartItem(modal.dataset.editingCartId, categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal, quantity);
       } else {
-        add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal);
+        add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal, quantity);
       }
       closeSelectionModal();
     });
@@ -380,23 +455,22 @@ function createCartItem(categoryKey, itemKey, selectedToppings = [], iceChoice =
   };
 }
 
-function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L') {
-  const cartItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice);
+function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', quantity = 1) {
+  const cartItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, quantity);
   const existing = cart.find((x) => x.id === cartItem.id);
   if (existing) {
-    existing.qty += 1;
+    existing.qty += cartItem.qty;
   } else {
     cart.push(cartItem);
   }
   update();
 }
 
-function updateCartItem(id, categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L') {
+function updateCartItem(id, categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', quantity = 1) {
   const index = cart.findIndex((x) => x.id === id);
   if (index === -1) return;
 
-  const currentQty = cart[index].qty || 1;
-  const updatedItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, currentQty);
+  const updatedItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, quantity);
   cart.splice(index, 1);
 
   const existing = cart.find((x) => x.id === updatedItem.id);
@@ -482,18 +556,18 @@ function update() {
     }
     // show ice selection
     if (i.ice) {
-      const iceObj = (ices && ices[i.ice]) ? ices[i.ice] : null;
+      const iceObj = getIceOption(i.ice);
       const iceLine = document.createElement('div');
       iceLine.className = 'cart-ice';
-      iceLine.textContent = ` 冰度: ${iceObj ? iceObj.text : i.ice}`;
+      iceLine.textContent = ` 冰度: ${iceObj.text || i.ice}`;
       itemRow.appendChild(iceLine);
     }
     // show sugar selection
     if (i.sugar) {
-      const sugarObj = (sugar && sugar[i.sugar]) ? sugar[i.sugar] : null;
+      const sugarObj = getSugarOption(i.sugar);
       const sugarLine = document.createElement('div');
       sugarLine.className = 'cart-sugar';
-      sugarLine.textContent = ` 甜度: ${sugarObj ? sugarObj.text : i.sugar}`;
+      sugarLine.textContent = ` 甜度: ${sugarObj.text || i.sugar}`;
       itemRow.appendChild(sugarLine);
     }
     count += i.qty;

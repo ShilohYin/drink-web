@@ -13,10 +13,10 @@
         <img src="/assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
       </a>
       <nav class="nav-menu">
-        <a href="/">首页</a>
-        <a class="active">菜单</a>
-        <a href="/htm/about">关于我们</a>
-        <a href="/">联系我们</a>
+        <a href="/" data-i18n="home">首页</a>
+        <a class="active" data-i18n="menu">菜单</a>
+        <a href="/htm/about" data-i18n="about">关于我们</a>
+        <a href="/" data-i18n="contact">联系我们</a>
       </nav>
       <div class="header-right">
         <select id="langSwitch" class="lang-switch">
@@ -41,7 +41,7 @@
         <div id="cartItems"></div>
         <p id="total"></p>
         <button id="openCheckout" class="checkout-button" type="button" data-i18n="checkout">结账</button>
-        <p class="cart-image-note">图片仅供参考</p>
+        <p class="cart-image-note" data-i18n="cart_image_note">图片仅供参考</p>
       </aside>
     </main>
 
@@ -49,7 +49,7 @@
       <div class="selection-modal-overlay" id="selectionOverlay"></div>
       <div class="selection-modal-content">
         <button class="modal-close-btn" id="closeSelectionModal" aria-label="Close selection">×</button>
-        <h2 id="selectionTitle">选择配置</h2>
+        <h2 id="selectionTitle" data-i18n="selection_config">选择配置</h2>
         <p class="selection-price" id="selectionPrice"></p>
         <div class="size-selector" id="sizeSelector" aria-label="选择杯型" hidden>
           <button type="button" class="size-option active" data-size="L">L</button>
@@ -57,20 +57,28 @@
         </div>
         <form id="selectionForm">
           <label>
-            小料
+            <span data-i18n="toppings">小料</span>
             <select id="selectionTopping"></select>
           </label>
           <label>
-            冰度
+            <span data-i18n="ice">冰度</span>
             <select id="selectionIce"></select>
           </label>
           <label>
-            甜度
+            <span data-i18n="sugar">甜度</span>
             <select id="selectionSugar"></select>
           </label>
+          <div class="selection-quantity-row">
+            <span data-i18n="quantity">数量</span>
+            <div class="quantity-stepper" aria-label="数量">
+              <button type="button" data-quantity-change="-1" aria-label="减少数量">−</button>
+              <output id="selectionQuantity" aria-live="polite">1</output>
+              <button type="button" data-quantity-change="1" aria-label="增加数量">+</button>
+            </div>
+          </div>
           <div class="modal-actions">
-            <button type="button" class="secondary-btn" id="cancelSelection">取消</button>
-            <button type="submit" class="submit-btn">加入购物车</button>
+            <button type="button" class="secondary-btn" id="cancelSelection" data-i18n="cancel">取消</button>
+            <button type="submit" class="submit-btn" data-i18n="add_to_cart">加入购物车</button>
           </div>
         </form>
       </div>
@@ -84,35 +92,48 @@
         <form id="checkoutForm">
           <label>
             <strong><span data-i18n="name">姓名</span><em class="required">*</em></strong>
-            <input placeholder="请输入您的姓名" id="name" required>
+            <input data-i18n-placeholder="name_placeholder" placeholder="请输入您的姓名" id="name" required>
           </label>
-          <label>
+          <!-- <label>
             <strong><span data-i18n="phone">电话</span><em class="required">*</em></strong>
             <input placeholder="请输入您的电话" id="phone" required>
+          </label> -->
+          <div class="checkout-choice-row">
+            <strong><span data-i18n="contact_method">联系方式</span><em class="required">*</em></strong>
+            <select id="contactMethod" aria-label="联系方式">
+              <option value="Phone" data-i18n="contact_phone">手机号码</option>
+              <option value="WhatsApp" data-i18n="contact_whatsapp">WhatsApp</option>
+              <option value="Viber" data-i18n="contact_viber">Viber</option>
+              <option value="Wechat" data-i18n="contact_wechat">微信</option>
+            </select>
+          </div>
+          <label>
+            <strong><span data-i18n="contact_account">联系账号</span><em class="required">*</em></strong>
+            <input data-i18n-placeholder="contact_account_placeholder" placeholder="请输入您的联系账号" id="account" required>
           </label>
           <div class="checkout-choice-row">
-            <strong>取餐方式</strong>
+            <strong data-i18n="pickup_method">取餐方式</strong>
             <div class="checkout-radio-group" role="radiogroup" aria-label="取餐方式">
               <label class="checkout-radio-option">
                 <input type="radio" name="deliveryType" value="自取" checked>
-                <span>自取</span>
+                <span data-i18n="pickup">自取</span>
               </label>
               <label class="checkout-radio-option">
                 <input type="radio" name="deliveryType" value="配送">
-                <span>配送</span>
+                <span data-i18n="delivery">配送</span>
               </label>
             </div>
           </div>
-          <label>
-            <strong>地址</strong>
-            <input placeholder="配送仅支持欧亚" id="address">
+          <label id="addressField" hidden>
+            <strong data-i18n="address_number">地址（门牌号）</strong>
+            <input data-i18n-placeholder="address_placeholder" placeholder="仅支持欧亚配送" id="address">
           </label>
           <label>
             <strong data-i18n="remark">备注 </strong>
-            <textarea placeholder="请输入备注信息" id="remark"></textarea>
+            <textarea data-i18n-placeholder="remark_placeholder" placeholder="请输入备注信息" id="remark"></textarea>
           </label>
           <div class="modal-actions">
-            <button class="submit-btn" type="submit">Submit</button>
+            <button class="submit-btn" type="submit" data-i18n="submit">提交</button>
           </div>
         </form>
       </div>
@@ -120,7 +141,7 @@
     <div class="checkout-loading" id="checkoutLoading" aria-hidden="true">
       <div class="checkout-loading-box">
         <span class="checkout-spinner"></span>
-        <p>提交中，请稍候...</p>
+        <p data-i18n="submitting">提交中，请稍候...</p>
       </div>
     </div>
 

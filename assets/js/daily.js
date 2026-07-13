@@ -11,7 +11,7 @@ function getDailyFormValues() {
     return {
         votes: document.getElementById("votes").value.trim(),
         cash: document.getElementById("cash").value.trim(),
-        rmb: document.getElementById("rmb").value.trim(),
+        // rmb: document.getElementById("rmb").value.trim(),
         consume: document.getElementById("consume").value.trim(),
         wolt: document.getElementById("wolt").value.trim(),
         material: document.getElementById("material").value.trim(),
@@ -46,7 +46,7 @@ function validateDailyValues(values) {
     }
 
     const optionalFields = [
-        { id: 'rmb', value: values.rmb, label: '扫码支付' },
+        // { id: 'rmb', value: values.rmb, label: '扫码支付' },
         { id: 'consume', value: values.consume, label: '消费支出' },
         { id: 'wolt', value: values.wolt, label: 'Wolt外卖' },
         { id: 'other', value: values.other, label: '其它支付' }
@@ -71,7 +71,7 @@ function calculateDailyResult(values) {
     return toDailyNumber(values.votes)
         - toDailyNumber(values.cash)
         - toDailyNumber(values.consume)
-        - toDailyNumber(values.rmb) * 15
+        // - toDailyNumber(values.rmb) * 15
         - toDailyNumber(values.other);
 }
 
@@ -149,7 +149,7 @@ document.getElementById('dailyForm').onsubmit = async e => {
     form.append("cash", values.cash);
     form.append("wolt", values.wolt || 0);
     form.append("consume", values.consume || 0);
-    form.append("rmb", values.rmb || 0);
+    // form.append("rmb", (values.other || 0) / 15);
     form.append("other", values.other || 0);
     form.append("material", values.material || "");
     form.append("remark", values.remark || "");

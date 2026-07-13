@@ -43,6 +43,7 @@ body {
 
 .daily-box .daily-form {
   width: 560px;
+  min-height: 645px;
   padding: 34px 38px 30px;
   border: 1px solid rgba(205, 163, 126, 0.28);
   border-radius: 18px;
@@ -52,8 +53,8 @@ body {
 
 .daily-box .daily-form label {
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 16px;
+  gap: 16px;
+  margin-bottom: 8px;
 }
 
 .daily-box .daily-form strong {
