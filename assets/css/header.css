@@ -60,10 +60,12 @@ header .header-box {
     position: relative;
     width: 100%;
     overflow: hidden;
+    padding-top: 83px;
+    min-width: 1200px;
 }
 .banner-container .left-box {
     position: absolute;
-    top: 72%;
+    top: 75%;
     left: 5%;
     transform: translateY(-50%);
     color: #2E2E2E;

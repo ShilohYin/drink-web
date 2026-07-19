@@ -12,8 +12,9 @@
       .daily-box {
         padding-top: 160px;
         display: flex;
-        width: 1200px;
+        min-width: 1200px;
         margin: 0 auto;
+        width: 92%;
       }
 
       .daily-box form {
@@ -31,7 +32,7 @@
           <a href="/" data-i18n="home">首页</a>
           <a href="/htm/menu.html" data-i18n="menu">菜单</a>
           <a href="/htm/about" data-i18n="about">关于我们</a>
-          <a href="/#contact" data-i18n="contact">联系我们</a>
+          <a href="#contact" data-i18n="contact">联系我们</a>
           <select id="langSwitch" class="lang-switch" aria-label="Language Switcher">
             <option value="zh">中文</option>
             <option value="en">English</option>
@@ -42,7 +43,7 @@
     </header>
     <div class="daily-box">
       <a href="/">
-        <img src="../assets/images/daily.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: 504px;">
+        <img src="../assets/images/daily.png" alt="KAOLA Bubble Tea Logo" class="logo">
       </a>
       <form id="dailyForm" class="daily-form">
         <label>
@@ -67,6 +68,13 @@
           </span>
         </label>
         <label>
+          <strong>扫码支付:</strong>
+          <span class="currency-input">
+            <input placeholder="微信或支付宝" id="rmb" >
+            <em class="currency-rmb">RMB</em>
+          </span>
+        </label>
+        <label>
           <strong>其它支付:</strong>
           <span class="currency-input">
             <input placeholder="扫码或本地币转账等" id="other" >
@@ -80,13 +88,6 @@
             <em>DIN</em>
           </span>
         </label>
-        <!-- <label>
-          <strong>扫码支付:</strong>
-          <span class="currency-input">
-            <input placeholder="微信或支付宝" id="rmb" >
-            <em class="currency-rmb">RMB</em>
-          </span>
-        </label> -->
         <label>
           <strong>物料购入:</strong>
           <span class="currency-input">
@@ -101,7 +102,7 @@
           <button class="submit-btn calculate-btn" id="calculateDaily" type="button">计算</button>
           <button class="submit-btn submit-daily-btn" type="submit">提交</button>
         </div>
-        <p class="daily-result" id="dailyResult" aria-live="polite"></p>
+        <p class="daily-result" id="dailyResult" aria-live="polite">输入【票额】和【现金】开始计算</p>
       </form>
     </div>
     <div class="daily-loading" id="dailyLoading" aria-hidden="true">
@@ -111,8 +112,33 @@
       </div>
     </div>
 
+    <footer class="footer-container" id="contact">
+      <div class="footer-box">
+        <img src="../assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="footer-logo" style="width: auto; height: 120px;">
+        <div class="social-links" aria-label="Social media links">
+          <a href="https://www.instagram.com/kaola_bubbletea?igsh=eWo4aW0yMDF4NHVq&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"></a>
+          <a href="https://t.me/+38162389638" target="_blank" rel="noopener noreferrer" class="social-link2 telegram" aria-label="Telegram"></a>
+          <a href="https://www.facebook.com/share/1eYa3f3ZNT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"></a>
+          <a href="https://www.tiktok.com/@kaolabubbletea?_r=1&_t=ZS-97fzIjCoIbw" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="TikTok"></a>
+          <a href="https://wa.me/message/E3PIYL2X2SPFN1" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="WhatsApp"></a>
+          <a href="https://invite.viber.com/?g2=AQASZejnvCaReVay22AlJNkH965hZ67J2LVqYAL73SnJddt9aaEtZOX9dOJsNAfz" target="_blank" rel="noopener noreferrer" class="social-link2 viber" aria-label="Viber"></a>
+        </div>
+        <div class="contant-txt">
+          <p data-i18n="contact_us" class="title">Contact us</p>
+          <p>+381 62 389 638</p>
+          <p><a href="mailto:kaolabubbletea@outlook.com" target="_blank" rel="noopener noreferrer">kaolabubbletea@outlook.com</a></p>
+          <p>09:00 - 17:00</p>
+          <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
+        </div>
+      </div>
+      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
+    </footer>
+
     <script src="../assets/js/config.js"></script>
     <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/daily.js"></script>
+    <script>
+      document.querySelector('.current-year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

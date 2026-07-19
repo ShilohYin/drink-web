@@ -15,7 +15,7 @@
         <img src="/assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
       </a>
       <nav class="header-nav-links">
-          <a href="#" data-i18n="home">首页</a>
+          <a href="/" data-i18n="home">首页</a>
           <a href="/htm/menu" data-i18n="menu">菜单</a>
           <a class="header-nav-links-active" href="/htm/about" data-i18n="about">关于我们</a>
           <a href="#contact" data-i18n="contact">联系我们</a>
@@ -37,10 +37,7 @@
         <i class="about-us-image us"></i>
         <div class="about-us-text">
           <p class="sub-title">关于我们</p>
-          <p>KAOLA考拉奶茶，诞生于一份简单的热爱。</p>
-          <p>KAOLA考拉奶茶，诞生于一份简单的热爱。</p>
-          <p>KAOLA考拉奶茶，诞生于一份简单的热爱。</p>
-          <p>KAOLA考拉奶茶，诞生于一份简单的热爱。</p>
+          <p data-i18n="about_us">KAOLA Bubble Tea 创立于 2023 年，致力于将高品质手作奶茶与甜品带给贝尔格莱德的每一位顾客。</p>
         </div>
       </div>
       <i class="about-us-image line"></i>
@@ -71,8 +68,33 @@
       </div>
     </section>
 
+    <footer class="footer-container" id="contact">
+      <div class="footer-box">
+        <img src="../assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="footer-logo" style="width: auto; height: 120px;">
+        <div class="social-links" aria-label="Social media links">
+          <a href="https://www.instagram.com/kaola_bubbletea?igsh=eWo4aW0yMDF4NHVq&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"></a>
+          <a href="https://t.me/+38162389638" target="_blank" rel="noopener noreferrer" class="social-link2 telegram" aria-label="Telegram"></a>
+          <a href="https://www.facebook.com/share/1eYa3f3ZNT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"></a>
+          <a href="https://www.tiktok.com/@kaolabubbletea?_r=1&_t=ZS-97fzIjCoIbw" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="TikTok"></a>
+          <a href="https://wa.me/message/E3PIYL2X2SPFN1" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="WhatsApp"></a>
+          <a href="https://invite.viber.com/?g2=AQASZejnvCaReVay22AlJNkH965hZ67J2LVqYAL73SnJddt9aaEtZOX9dOJsNAfz" target="_blank" rel="noopener noreferrer" class="social-link2 viber" aria-label="Viber"></a>
+        </div>
+        <div class="contant-txt">
+          <p data-i18n="contact_us" class="title">Contact us</p>
+          <p>+381 62 389 638</p>
+          <p><a href="mailto:kaolabubbletea@outlook.com" target="_blank" rel="noopener noreferrer">kaolabubbletea@outlook.com</a></p>
+          <p>09:00 - 17:00</p>
+          <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
+        </div>
+      </div>
+      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
+    </footer>
+
     <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/checkout.js"></script>
+    <script>
+      document.querySelector('.current-year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

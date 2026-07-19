@@ -16,7 +16,7 @@
         <a href="/" data-i18n="home">首页</a>
         <a class="active" data-i18n="menu">菜单</a>
         <a href="/htm/about" data-i18n="about">关于我们</a>
-        <a href="/" data-i18n="contact">联系我们</a>
+        <a href="#contact" data-i18n="contact">联系我们</a>
       </nav>
       <div class="header-right">
         <select id="langSwitch" class="lang-switch">
@@ -145,9 +145,34 @@
       </div>
     </div>
 
+    <footer class="footer-container" id="contact">
+      <div class="footer-box">
+        <img src="../assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="footer-logo" style="width: auto; height: 120px;">
+        <div class="social-links" aria-label="Social media links">
+          <a href="https://www.instagram.com/kaola_bubbletea?igsh=eWo4aW0yMDF4NHVq&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"></a>
+          <a href="https://t.me/+38162389638" target="_blank" rel="noopener noreferrer" class="social-link2 telegram" aria-label="Telegram"></a>
+          <a href="https://www.facebook.com/share/1eYa3f3ZNT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"></a>
+          <a href="https://www.tiktok.com/@kaolabubbletea?_r=1&_t=ZS-97fzIjCoIbw" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="TikTok"></a>
+          <a href="https://wa.me/message/E3PIYL2X2SPFN1" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="WhatsApp"></a>
+          <a href="https://invite.viber.com/?g2=AQASZejnvCaReVay22AlJNkH965hZ67J2LVqYAL73SnJddt9aaEtZOX9dOJsNAfz" target="_blank" rel="noopener noreferrer" class="social-link2 viber" aria-label="Viber"></a>
+        </div>
+        <div class="contant-txt">
+          <p data-i18n="contact_us" class="title">Contact us</p>
+          <p>+381 62 389 638</p>
+          <p><a href="mailto:kaolabubbletea@outlook.com" target="_blank" rel="noopener noreferrer">kaolabubbletea@outlook.com</a></p>
+          <p>09:00 - 17:00</p>
+          <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
+        </div>
+      </div>
+      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
+    </footer>
+
     <script src="../assets/js/config.js"></script>
     <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/checkout.js"></script>
     <script type="module" src="../assets/js/menu.js"></script>
+    <script>
+      document.querySelector('.current-year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

@@ -150,6 +150,7 @@ form .required {
 .footer-container {
     padding-top: 40px;
     background-color: #fff;
+    box-shadow: 0 -2px 12px rgba(91, 59, 42, 0.08);
 }
 .footer-txt {
     text-align: center;

@@ -928,7 +928,7 @@ main {
   }
   .card h3,
   .card .price {
-    font-size: 15px;
+    font-size: 14px;
   }
   #cart {
     order: -1;

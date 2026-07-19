@@ -35,20 +35,29 @@ body {
   box-sizing: border-box;
   background: #fff8f1;
 }
-
+.daily-box > a {
+  flex: 1;
+}
 .daily-box .logo {
   flex: 0 0 auto;
   filter: drop-shadow(0 18px 28px rgba(91, 59, 42, 0.12));
+  width: 100%;
 }
 
 .daily-box .daily-form {
-  width: 560px;
+  min-width: 560px;
   min-height: 645px;
+  width: auto;
+  height: 54vw;
   padding: 34px 38px 30px;
   border: 1px solid rgba(205, 163, 126, 0.28);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 18px 48px rgba(91, 59, 42, 0.1);
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
 }
 
 .daily-box .daily-form label {
@@ -198,11 +207,6 @@ body {
   font-size: 18px;
   font-weight: 700;
   text-align: center;
-  display: none;
-}
-
-.daily-result.visible {
-  display: block;
 }
 
 .daily-loading {

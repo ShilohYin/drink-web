@@ -1,7 +1,7 @@
 {
   "home": "首页",
   "menu": "菜单",
-  "about": "关于",
+  "about": "关于我们",
   "contact": "联系我们",
   "hero_title": "新鲜奶茶",
   "hero_sub": "每天现做",
@@ -75,5 +75,6 @@
   "enter_address": "请输入地址",
   "empty_cart": "购物车为空",
   "submit_success": "提交成功，请稍等",
-  "submit_failed": "提交失败，请稍后重试"
+  "submit_failed": "提交失败，请稍后重试",
+  "about_us": "KAOLA Bubble Tea 创立于 2023 年，致力于将高品质手作奶茶与甜品带给贝尔格莱德的每一位顾客。"
 }

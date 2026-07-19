@@ -258,7 +258,6 @@ export const items = {
             price: 500,
             mPrice: 450,
             text: "超级奶茶沙冰",
-            text: "珍珠",
             image: "assets/images/drinks/c15.PNG"
         }
     },
@@ -291,14 +290,12 @@ export const items = {
             name: "tea12",
             price: 500,
             text: "可可冰奶",
-            text: "珍珠",
             image: "assets/images/drinks/c12.PNG"
         },
         C6: {
             name: "tea13",
             price: 600,
             text: "奥利奥冰可可",
-            text: "奥利奥碎，珍珠",
             image: "assets/images/drinks/c13.PNG"
         },
         C7: {
@@ -337,28 +334,24 @@ export const items = {
             name: "tea17",
             price: 600,
             text: "茉上云间",
-            text: "雪顶",
             image: "assets/images/drinks/c17.PNG"
         },
         T6: {
             name: "tea18",
             price: 600,
             text: "春日桃桃",
-            text: "雪顶",
             image: "assets/images/drinks/c18.PNG"
         },
         T7: {
             name: "tea19",
             price: 600,
             text: "月桂清欢",
-            text: "雪顶",
             image: "assets/images/drinks/c19.PNG"
         },
         T8: {
             name: "tea20",
             price: 600,
             text: "山月听雪",
-            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         }
     },
@@ -391,56 +384,48 @@ export const items = {
             name: "tea17",
             price: 550,
             text: "芝芝桑葚",
-            text: "雪顶",
             image: "assets/images/drinks/c17.PNG"
         },
         Z6: {
             name: "tea18",
             price: 550,
             text: "芝芝桃桃",
-            text: "雪顶",
             image: "assets/images/drinks/c18.PNG"
         },
         Z7: {
             name: "tea19",
             price: 550,
             text: "芝士莓莓",
-            text: "雪顶",
             image: "assets/images/drinks/c19.PNG"
         },
         Z8: {
             name: "tea20",
             price: 550,
             text: "芝士芒芒",
-            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         },
         Z9: {
             name: "tea20",
             price: 450,
             text: "云顶茉香",
-            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         },
         Z10: {
             name: "tea20",
             price: 450,
             text: "云顶山红",
-            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         },
         Z11: {
             name: "tea20",
             price: 450,
             text: "云顶桂香",
-            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         },
         Z12: {
             name: "tea20",
             price: 450,
             text: "云顶乌龙",
-            text: "雪顶",
             image: "assets/images/drinks/c20.PNG"
         }
     }
@@ -531,7 +516,7 @@ export const otherItems = {
         D5: {
             name: "sushi1",
             price: 400,
-            text: "雪梅娘",
+            text: "雪媚娘",
             image: "assets/images/drinks/c13.PNG"
         },
         D6: {

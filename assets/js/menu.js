@@ -246,7 +246,7 @@ function render() {
 
       const price = document.createElement('p');
       price.className = 'price';
-      price.textContent = item.mPrice ? `L ${item.price} / M ${item.mPrice} RSD` : `${item.price} RSD`;
+      price.textContent = item.mPrice ? `L ${item.price} RSD / M ${item.mPrice} RSD` : `${item.price} RSD`;
       content.appendChild(price);
 
       card.appendChild(content);
