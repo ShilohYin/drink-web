@@ -26,4 +26,25 @@ document.addEventListener('DOMContentLoaded', () => {
       i18n.setLanguage(e.target.value);
     });
   }
+
+  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+  const navigationId = mobileNavToggle?.getAttribute('aria-controls');
+  const homeNavigation = navigationId ? document.getElementById(navigationId) : null;
+  if (mobileNavToggle && homeNavigation) {
+    mobileNavToggle.addEventListener('click', () => {
+      const isOpen = homeNavigation.classList.toggle('is-open');
+      mobileNavToggle.classList.toggle('is-open', isOpen);
+      mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileNavToggle.setAttribute('aria-label', isOpen ? '关闭导航菜单' : '打开导航菜单');
+    });
+
+    homeNavigation.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        homeNavigation.classList.remove('is-open');
+        mobileNavToggle.classList.remove('is-open');
+        mobileNavToggle.setAttribute('aria-expanded', 'false');
+        mobileNavToggle.setAttribute('aria-label', '打开导航菜单');
+      });
+    });
+  }
 });

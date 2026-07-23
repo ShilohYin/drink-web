@@ -9,14 +9,19 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/index.css">
     </head>
-    <body>
+    <body class="home-page">
         <header class="header-container">
             <div class="header-box">
                 <!-- <h1>KAOLA Bubble Tea</h1> -->
                 <a href="/htm/menu.html">
                     <img src="assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
                 </a>
-                <nav class="header-nav-links">
+                <button class="mobile-nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="homeNavigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="header-nav-links" id="homeNavigation">
                     <a class="header-nav-links-active" href="#" data-i18n="home">首页</a>
                     <a href="/htm/menu" data-i18n="menu">菜单</a>
                     <a href="/htm/about" data-i18n="about">关于我们</a>
@@ -30,7 +35,10 @@
             </div>
         </header>
         <div class="banner-container">
-            <img src="assets/images/banner-pc4.png" alt="Bubble Tea Banner" class="banner-image">
+            <picture>
+                <source media="(max-width: 720px)" srcset="assets/images/banner-h5.png">
+                <img src="assets/images/banner-pc4.png" alt="Bubble Tea Banner" class="banner-image">
+            </picture>
             <div class="left-box">
                 <!-- <h3 data-i18n="banner_title">Fresh Bubble Tea</h3>
                 <p data-i18n="banner_sub">Made Fresh Every Day</p> -->

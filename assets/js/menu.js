@@ -1,5 +1,25 @@
 import { items, toppings, ices, sugar } from './itemConfig.js';
 
+const menuNavToggle = document.querySelector('.menu-nav-toggle');
+const menuNavigation = document.getElementById('menuNavigation');
+
+if (menuNavToggle && menuNavigation) {
+  menuNavToggle.addEventListener('click', () => {
+    const isOpen = menuNavigation.classList.toggle('is-open');
+    menuNavToggle.classList.toggle('is-open', isOpen);
+    menuNavToggle.setAttribute('aria-expanded', String(isOpen));
+    menuNavToggle.setAttribute('aria-label', isOpen ? '关闭导航菜单' : '打开导航菜单');
+  });
+
+  menuNavigation.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuNavigation.classList.remove('is-open');
+      menuNavToggle.classList.remove('is-open');
+      menuNavToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 const categoryLabels = {
   milkTea: { zh: '奶茶类', en: 'Milk Tea', sr: 'Mlečni čaj' },
   fruitTea: { zh: '果茶类', en: 'Fruit Tea', sr: 'Voćni čaj' },

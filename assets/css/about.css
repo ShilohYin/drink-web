@@ -84,3 +84,273 @@
     background-color: #decbb6; 
     margin: 50px auto 0;
 }
+
+.about-header .header-box {
+    display: flex;
+    width: min(1200px, calc(100% - 40px));
+    min-height: 80px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-header .header-nav-links {
+    align-items: center;
+}
+
+.about-header .lang-switch {
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #e2d5cb;
+    border-radius: 7px;
+    color: #5d4232;
+    background: #fff;
+}
+
+.about-header .mobile-nav-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .about-page {
+        width: 100%;
+        max-width: 100%;
+        padding-top: 66px;
+        overflow-x: hidden;
+    }
+
+    .about-header {
+        width: 100%;
+        min-height: 66px;
+    }
+
+    .about-header .header-box {
+        position: relative;
+        width: calc(100% - 28px);
+        min-height: 66px;
+    }
+
+    .about-header .logo {
+        height: 58px !important;
+    }
+
+    .about-header .mobile-nav-toggle {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        padding: 9px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        border-radius: 50%;
+        background: #f8eee7;
+    }
+
+    .about-header .mobile-nav-toggle span {
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background: #68432f;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .about-header .mobile-nav-toggle.is-open span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .about-header .mobile-nav-toggle.is-open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .about-header .mobile-nav-toggle.is-open span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .about-header .header-nav-links {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        display: none;
+        width: min(280px, calc(100vw - 28px));
+        padding: 14px;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 4px;
+        border: 1px solid #eee1d7;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 18px 40px rgba(76, 48, 32, 0.16);
+    }
+
+    .about-header .header-nav-links.is-open {
+        display: flex;
+    }
+
+    .about-header .header-nav-links a {
+        padding: 11px 12px;
+        border-radius: 9px;
+        font-size: 15px;
+    }
+
+    .about-header .header-nav-links a:hover,
+    .about-header .header-nav-links-active {
+        background: #fbf1e9;
+    }
+
+    .about-header .header-nav-links-active::before {
+        display: none;
+    }
+
+    .about-header .lang-switch {
+        width: 100%;
+        height: 42px;
+        margin: 6px 0 0;
+    }
+
+    .about-us-section {
+        width: 100%;
+        padding: 12px 18px 48px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .about-us-image.logo {
+        position: relative;
+        left: 50%;
+        margin: -30px 0 -34px;
+        transform: translateX(-50%) scale(0.66);
+    }
+
+    .about-us-section > .sub-title {
+        margin-top: 0;
+        padding: 0 12px;
+        font-size: 15px;
+        line-height: 1.7;
+        letter-spacing: 2px;
+    }
+
+    .bg-line {
+        width: 72px;
+        height: 3px;
+        margin: 26px auto 30px;
+        border-radius: 3px;
+        background: #d6a87c;
+    }
+
+    .about-list {
+        width: 100%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .about-list.reverse-mobile {
+        flex-direction: column-reverse;
+    }
+
+    .about-us-image.us,
+    .about-us-image.lucy,
+    .about-us-image.thanks {
+        flex: 0 0 318px;
+        margin: -34px auto;
+        transform: scale(0.68);
+    }
+
+    .about-us-text,
+    .about-us-text.lucy-text {
+        width: 100%;
+        margin: 0;
+        padding: 18px 10px 24px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .about-us-text.lucy-text {
+        padding-left: 10px;
+    }
+
+    .about-us-text .sub-title {
+        margin: 0 0 12px;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .about-us-text p {
+        font-size: 14px;
+        line-height: 1.8;
+        letter-spacing: 0.5px;
+    }
+
+    .about-us-image.line {
+        position: relative;
+        left: 50%;
+        margin: -14px 0;
+        transform: translateX(-50%) scale(0.65);
+    }
+
+    .about-page .footer-container {
+        padding: 32px 18px 0;
+    }
+
+    .about-page .footer-box {
+        width: 100%;
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+    }
+
+    .about-page .footer-logo {
+        height: 78px !important;
+    }
+
+    .about-page .social-links {
+        display: grid;
+        grid-template-columns: repeat(6, 36px);
+        width: auto;
+        gap: 8px;
+    }
+
+    .about-page .social-link,
+    .about-page .social-link2.telegram,
+    .about-page .social-link2.viber {
+        width: 36px;
+        height: 36px;
+        margin: 0;
+        border-radius: 50%;
+        transform: none;
+    }
+
+    .about-page .social-link {
+        background-size: 691.2px 460.8px;
+    }
+
+    .about-page .social-link.instagram { background-position: -225px -171px; }
+    .about-page .social-link.facebook { background-position: -490.5px -171px; }
+    .about-page .social-link.tiktok { background-position: -292.5px -171px; }
+    .about-page .social-link.whatsapp { background-position: -360px -171px; }
+
+    .about-page .contant-txt {
+        width: min(360px, 100%);
+        padding: 18px 16px;
+        border: 1px solid #f0e3d9;
+        border-radius: 16px;
+        background: #fff8f2;
+        line-height: 1.75;
+    }
+
+    .about-page .contant-txt a {
+        color: #7c4b32;
+        overflow-wrap: anywhere;
+        text-decoration: none;
+    }
+
+    .about-page .footer-txt {
+        width: min(360px, 100%);
+        margin: 22px auto 0;
+        padding: 18px 0 22px;
+        border-top: 1px solid #eee2d9;
+        font-size: 12px;
+    }
+}

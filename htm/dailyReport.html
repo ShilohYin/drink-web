@@ -8,27 +8,19 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/daily-report.css">
     <title>日盈利汇总</title>
-    <style>
-      .daily-box {
-        padding-top: 160px;
-        display: flex;
-        min-width: 1200px;
-        margin: 0 auto;
-        width: 92%;
-      }
-
-      .daily-box form {
-        margin: 0;
-      }
-    </style>
   </head>
-  <body>
+  <body class="daily-report-page">
     <header class="header-container daily-report-header">
       <div class="header-box">
         <a href="/">
           <img src="../assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
         </a>
-        <nav class="header-nav-links">
+        <button class="mobile-nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="dailyNavigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="header-nav-links" id="dailyNavigation">
           <a href="/" data-i18n="home">首页</a>
           <a href="/htm/menu.html" data-i18n="menu">菜单</a>
           <a href="/htm/about" data-i18n="about">关于我们</a>
@@ -136,6 +128,7 @@
 
     <script src="../assets/js/config.js"></script>
     <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/app.js"></script>
     <script src="../assets/js/daily.js"></script>
     <script>
       document.querySelector('.current-year').textContent = new Date().getFullYear();

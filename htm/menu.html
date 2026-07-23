@@ -8,30 +8,37 @@
     <link rel="stylesheet" href="../assets/css/menu.css" />
   </head>
   <body>
-    <header>
-      <a class="logo" href="/">
-        <img src="/assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
-      </a>
-      <nav class="nav-menu">
-        <a href="/" data-i18n="home">首页</a>
-        <a class="active" data-i18n="menu">菜单</a>
-        <a href="/htm/about" data-i18n="about">关于我们</a>
-        <a href="#contact" data-i18n="contact">联系我们</a>
-      </nav>
-      <div class="header-right">
-        <select id="langSwitch" class="lang-switch">
-          <option value="zh">CN</option>
-          <option value="en">EN</option>
-          <option value="sr">SR</option>
-        </select>
-        <button id="cartToggle" class="cart-icon" aria-label="Shopping cart">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-          <span id="cartCount" class="cart-badge">0</span>
-        </button>
+    <header class="header-container menu-header">
+      <div class="header-box">
+        <a class="logo-link" href="/">
+          <img src="/assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
+        </a>
+        <nav class="header-nav-links nav-menu" id="menuNavigation">
+          <a href="/" data-i18n="home">首页</a>
+          <a class="header-nav-links-active active" href="/htm/menu.html" data-i18n="menu">菜单</a>
+          <a href="/htm/about" data-i18n="about">关于我们</a>
+          <a href="#contact" data-i18n="contact">联系我们</a>
+          <select id="langSwitch" class="lang-switch" aria-label="Language Switcher">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="sr">Srpski</option>
+          </select>
+        </nav>
+        <div class="header-right">
+          <button class="menu-nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="menuNavigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <button id="cartToggle" class="cart-icon" aria-label="Shopping cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cartCount" class="cart-badge">0</span>
+          </button>
+        </div>
       </div>
     </header>
     <main>
