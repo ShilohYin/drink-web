@@ -86,7 +86,8 @@
 }
 
 .about-header .header-box {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
     width: min(1200px, calc(100% - 40px));
     min-height: 80px;
     margin: 0 auto;
@@ -94,7 +95,19 @@
     justify-content: space-between;
 }
 
+.about-header {
+    border-bottom: 1px solid #f0e8e3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.about-header .header-box > a {
+    grid-column: 1;
+    justify-self: start;
+}
+
 .about-header .header-nav-links {
+    grid-column: 2;
+    justify-self: center;
     align-items: center;
 }
 
@@ -126,6 +139,7 @@
 
     .about-header .header-box {
         position: relative;
+        grid-template-columns: minmax(0, 1fr) auto;
         width: calc(100% - 28px);
         min-height: 66px;
     }
@@ -138,6 +152,8 @@
         position: relative;
         z-index: 3;
         display: flex;
+        grid-column: 2;
+        justify-self: end;
         width: 40px;
         height: 40px;
         padding: 9px;
