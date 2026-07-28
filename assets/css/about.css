@@ -5,11 +5,11 @@
 }
 .about-us-section h1,
 .about-us-section p {
-    font-family: "PingFang SC", "Lantinghei SC", "Hiragino Sans GB", 
-                /* 备用手写/圆体 */
-                "Microsoft YaHei", "微软雅黑", "Heiti SC", "Apple LiGothic", 
-                /* 通用降级备用 */
-                sans-serif;
+    font-family: var(--font-elegant);
+}
+.about-us-section h1,
+.about-us-section .sub-title {
+    font-family: var(--font-art);
 }
 .about-us-section .sub-title {
     font-size: 14px;

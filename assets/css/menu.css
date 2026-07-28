@@ -1,8 +1,8 @@
 .body-font {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-elegant);
 }
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-elegant);
   margin: 0;
   padding-top: 80px;
   background:
@@ -330,6 +330,8 @@ main {
   font-size: 17px;
   line-height: 1.25;
   font-weight: 800;
+  font-family: var(--font-art);
+  letter-spacing: 0.03em;
 }
 .card label {
   display: block;
@@ -1179,6 +1181,83 @@ main {
   }
   #checkoutForm .submit-btn {
     width: min(220px, 100%);
+  }
+  .menu-page .footer-container {
+    position: relative;
+    padding: 32px 18px 0;
+    border-top: 1px solid #eee0d5;
+    background:
+      radial-gradient(circle at 50% 0, rgba(226, 178, 136, 0.12), transparent 42%),
+      #fffdfb;
+    box-shadow: 0 -8px 30px rgba(91, 59, 42, 0.05);
+  }
+  .menu-page .footer-box {
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+  .menu-page .footer-logo {
+    height: 78px !important;
+  }
+  .menu-page .social-links {
+    display: grid;
+    grid-template-columns: repeat(6, 36px);
+    width: auto;
+    margin: 2px 0 4px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .menu-page .social-link,
+  .menu-page .social-link2.telegram,
+  .menu-page .social-link2.viber {
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    border-radius: 50%;
+    transform: none;
+  }
+  .menu-page .social-link {
+    background-size: 691.2px 460.8px;
+  }
+  .menu-page .social-link.instagram { background-position: -225px -171px; }
+  .menu-page .social-link.facebook { background-position: -490.5px -171px; }
+  .menu-page .social-link.tiktok { background-position: -292.5px -171px; }
+  .menu-page .social-link.whatsapp { background-position: -360px -171px; }
+  .menu-page .social-link2.telegram,
+  .menu-page .social-link2.viber {
+    background-color: transparent;
+  }
+  .menu-page .contant-txt {
+    width: min(360px, 100%);
+    padding: 18px 16px;
+    border: 1px solid #f0e3d9;
+    border-radius: 16px;
+    background: #fff8f2;
+    color: #6d4b39;
+    line-height: 1.75;
+    text-align: center;
+  }
+  .menu-page .contant-txt .title {
+    margin-bottom: 9px;
+    color: #4f301f;
+    font-size: 17px;
+  }
+  .menu-page .contant-txt a {
+    color: #7c4b32;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+  }
+  .menu-page .footer-txt {
+    width: min(360px, 100%);
+    margin: 22px auto 0;
+    padding: 18px 0 22px;
+    border-top: 1px solid #eee2d9;
+    color: #957b6c;
+    font-size: 12px;
+    line-height: 1.6;
   }
   #products {
     justify-content: center;

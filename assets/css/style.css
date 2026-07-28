@@ -1,9 +1,31 @@
+:root {
+    --font-art: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "FangSong", "STFangsong", serif;
+    --font-elegant: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "Microsoft YaHei", serif;
+}
+
 body{
     margin:0; padding:0; 
-    font-family:Arial,sans-serif;
+    font-family: var(--font-elegant);
     color:#3a2b20;
     background-color: #fcf7f4;
     font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+.sub-title,
+.title,
+nav a,
+button {
+    font-family: var(--font-art);
+    letter-spacing: 0.04em;
+}
+
+input,
+textarea,
+select {
+    font-family: var(--font-elegant);
 }
 
 * {
@@ -158,6 +180,13 @@ form .required {
     color: #5b3b2a;
     margin-top: 40px;
     padding-bottom: 40px;
+}
+.footer-since {
+    display: inline-block;
+    margin-top: 6px;
+    color: #9a7d6c;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 .footer-box {
     display: flex;

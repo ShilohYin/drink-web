@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/menu.css" />
   </head>
-  <body>
+  <body class="menu-page">
     <header class="header-container menu-header">
       <div class="header-box">
         <a class="logo-link" href="/">
@@ -25,7 +25,7 @@
           </select>
         </nav>
         <div class="header-right">
-          <button class="menu-nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="menuNavigation">
+          <button class="menu-nav-toggle" type="button" aria-label="打开导航菜单" data-i18n-aria-label="open_navigation" aria-expanded="false" aria-controls="menuNavigation">
             <span></span>
             <span></span>
             <span></span>
@@ -58,7 +58,7 @@
         <button class="modal-close-btn" id="closeSelectionModal" aria-label="Close selection">×</button>
         <h2 id="selectionTitle" data-i18n="selection_config">选择配置</h2>
         <p class="selection-price" id="selectionPrice"></p>
-        <div class="size-selector" id="sizeSelector" aria-label="选择杯型" hidden>
+        <div class="size-selector" id="sizeSelector" aria-label="选择杯型" data-i18n-aria-label="select_size" hidden>
           <button type="button" class="size-option active" data-size="L">L</button>
           <button type="button" class="size-option" data-size="M">M</button>
         </div>
@@ -77,10 +77,10 @@
           </label>
           <div class="selection-quantity-row">
             <span data-i18n="quantity">数量</span>
-            <div class="quantity-stepper" aria-label="数量">
-              <button type="button" data-quantity-change="-1" aria-label="减少数量">−</button>
+            <div class="quantity-stepper" aria-label="数量" data-i18n-aria-label="quantity">
+              <button type="button" data-quantity-change="-1" aria-label="减少数量" data-i18n-aria-label="decrease_quantity">−</button>
               <output id="selectionQuantity" aria-live="polite">1</output>
-              <button type="button" data-quantity-change="1" aria-label="增加数量">+</button>
+              <button type="button" data-quantity-change="1" aria-label="增加数量" data-i18n-aria-label="increase_quantity">+</button>
             </div>
           </div>
           <div class="modal-actions">
@@ -103,11 +103,11 @@
           </label>
           <!-- <label>
             <strong><span data-i18n="phone">电话</span><em class="required">*</em></strong>
-            <input placeholder="请输入您的电话" id="phone" required>
+            <input data-i18n-placeholder="phone_placeholder" placeholder="请输入您的电话" id="phone" required>
           </label> -->
           <div class="checkout-choice-row">
             <strong><span data-i18n="contact_method">联系方式</span><em class="required">*</em></strong>
-            <select id="contactMethod" aria-label="联系方式">
+            <select id="contactMethod" aria-label="联系方式" data-i18n-aria-label="contact_method">
               <option value="Phone" data-i18n="contact_phone">手机号码</option>
               <option value="WhatsApp" data-i18n="contact_whatsapp">WhatsApp</option>
               <option value="Viber" data-i18n="contact_viber">Viber</option>
@@ -120,7 +120,7 @@
           </label>
           <div class="checkout-choice-row">
             <strong data-i18n="pickup_method">取餐方式</strong>
-            <div class="checkout-radio-group" role="radiogroup" aria-label="取餐方式">
+            <div class="checkout-radio-group" role="radiogroup" aria-label="取餐方式" data-i18n-aria-label="pickup_method">
               <label class="checkout-radio-option">
                 <input type="radio" name="deliveryType" value="自取" checked>
                 <span data-i18n="pickup">自取</span>
@@ -171,7 +171,7 @@
           <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
         </div>
       </div>
-      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
+      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.<br><span class="footer-since">Since 2023</span></p>
     </footer>
 
     <script src="../assets/js/config.js"></script>

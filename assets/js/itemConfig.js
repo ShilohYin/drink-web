@@ -25,266 +25,167 @@ export const items = {
             image: "assets/images/drinks/m3.PNG"
         },
         M4: {
-            name: "tea4",
             price: 550,
-            text: "豆香白玉",
-            toppings: "寒天",
-            image: "assets/images/drinks/m4.PNG"
+            mPrice: 500,
+            text: "奥利奥麻薯",
+            toppings: "奥利奥碎，麻薯",
         },
         M5: {
             name: "tea5",
             price: 550,
             text: "豆乳米麻薯",
-            toppings: "血糯米，麻薯，寒天",
-            image: "assets/images/drinks/m5.PNG"
+            toppings: "血糯米，麻薯"
         },
         M6: {
             name: "tea6",
-            price: 550,
+            price: 450,
             mPrice: 500,
-            text: "奥利奥麻薯",
-            toppings: "奥利奥碎，麻薯",
-            image: "assets/images/drinks/m6.PNG"
+            text: "红豆血糯米",
+            toppings: "血糯米，红豆"
         },
         M7: {
             name: "tea7",
             price: 550,
             text: "奶茶全家福",
-            toppings: "仙草，布丁，珍珠，红豆",
-            image: "assets/images/drinks/m7.PNG"
+            toppings: "仙草，布丁，珍珠，红豆"
         },
         M8: {
             name: "tea8",
             price: 400,
             mPrice: 350,
-            text: "茉香奶绿",
-            image: "assets/images/drinks/m8.PNG"
+            text: "茉香奶绿"
         },
         M9: {
             name: "tea9",
             price: 500,
             text: "草莓米麻薯",
-            toppings: "草莓酱，麻薯",
-            image: "assets/images/drinks/m9.PNG"
+            toppings: "草莓酱，麻薯"
         },
         M10: {
-            name: "tea10",
-            price: 400,
-            mPrice: 350,
-            text: "原味奶茶",
-            image: "assets/images/drinks/m10.PNG"
+            price: 450,
+            text: "茉莉香椰"
         },
         M11: {
-            name: "tea11",
-            price: 500,
-            mPrice: 450,
-            text: "红豆血糯米",
-            toppings: "红豆，血糯米",
-            image: "assets/images/drinks/c11.PNG"
-        },
-        M12: {
-            name: "tea12",
-            price: 450,
-            text: "茉莉香椰",
-            image: "assets/images/drinks/c12.PNG"
+            price: 400,
+            mPrice: 350,
+            text: "原味奶茶"
         }
     },
     fruitTea: {
         F1: {
             name: "tea7",
             price: 450,
-            text: "暴打柠檬茶",
-            image: "assets/images/drinks/c7.PNG"
+            text: "暴打柠檬茶"
         },
         F2: {
             name: "tea8",
             price: 550,
             text: "百香橙橙",
-            toppings: "冻冻或者爆爆珠",
-            image: "assets/images/drinks/c8.PNG"
+            toppings: "冻冻或者爆爆珠"
         },
         F3: {
             name: "tea9",
             price: 450,
             text: "葡萄闪爆茶",
-            toppings: "葡萄果肉",
-            image: "assets/images/drinks/c9.PNG"
+            toppings: "葡萄果肉"
         },
         F4: {
             name: "tea10",
             price: 550,
             text: "黑爆柠",
-            toppings: "冻冻或爆爆珠",
-            image: "assets/images/drinks/c10.PNG"
+            toppings: "冻冻或爆爆珠"
         },
         F5: {
             name: "tea11",
             price: 550,
             text: "百果荟萃",
-            toppings: "冻冻或爆爆珠",
-            image: "assets/images/drinks/c11.PNG"
+            toppings: "冻冻或爆爆珠"
         },
         F6: {
             name: "tea12",
             price: 550,
             text: "凤梨百香果",
-            toppings: "冻冻或爆爆珠",
-            image: "assets/images/drinks/c12.PNG"
+            toppings: "冻冻或爆爆珠"
         },
         F7: {
             name: "tea13",
             price: 500,
-            text: "生打椰芒",
-            image: "assets/images/drinks/c13.PNG"
+            text: "生打椰芒"
         },
         F8: {
             name: "tea14",
             price: 450,
-            text: "桃桃乌龙",
-            image: "assets/images/drinks/c14.PNG"
+            text: "桃桃乌龙"
         },
         F9: {
             name: "tea14",
             price: 450,
-            text: "荔枝粉西柚",
-            image: "assets/images/drinks/c14.PNG"
+            text: "香柠紫露"
         },
         F10: {
             name: "tea14",
             price: 500,
-            text: "长安的荔枝",
-            image: "assets/images/drinks/c14.PNG"
+            text: "荔枝沁柠"
         },
         F11: {
             name: "tea14",
             price: 550,
-            text: "西瓜椰椰啵",
-            image: "assets/images/drinks/c14.PNG"
+            text: "牛油果燕麦酸奶"
+        },
+        F12: {
+            name: "tea14",
+            price: 550,
+            text: "西瓜椰椰啵"
         }
     },
     matchaTea: {
         G1: {
-            name: "tea8",
             price: 500,
-            text: "椰云抹茶",
-            image: "assets/images/drinks/c8.PNG"
+            text: "椰云抹茶"
         },
         G2: {
-            name: "tea9",
             price: 450,
-            text: "抹茶鲜奶",
-            image: "assets/images/drinks/c9.PNG"
+            text: "抹茶鲜奶"
         },
         G3: {
-            name: "tea10",
-            price: 600,
-            text: "海盐抹茶",
-            toppings: "奶盖",
-            image: "assets/images/drinks/c10.PNG"
+            price: 550,
+            text: "葡萄树下"
         },
         G4: {
-            name: "tea11",
             price: 550,
-            text: "葡萄树下",
-            image: "assets/images/drinks/c11.PNG"
+            text: "红豆抹茶麻薯",
+            toppings: "红豆，麻薯"
         },
         G5: {
             name: "tea12",
             price: 550,
-            text: "草莓森林",
-            image: "assets/images/drinks/c12.PNG"
+            text: "草莓森林"
         },
         G6: {
-            name: "tea13",
-            price: 550,
-            text: "红豆抹茶麻薯",
-            toppings: "红豆，麻薯",
-            image: "assets/images/drinks/c13.PNG"
-        },
-        G7: {
-            name: "tea14",
-            price: 500,
-            text: "绿野仙踪",
-            image: "assets/images/drinks/c14.PNG"
-        },
-        // G8: {
-        //     name: "tea16",
-        //     price: 550,
-        //     text: "芝士草莓森林",
-        //     image: "assets/images/drinks/c16.PNG"
-        // },
-        G8: {
-            name: "tea16",
-            price: 550,
-            text: "芝芝抹茶",
-            image: "assets/images/drinks/c16.PNG"
-        },
-    },
-    sogaTea: {
-        S1: {
-            name: "tea10",
-            price: 550,
-            text: "草莓甘露",
-            toppings: "西米",
-            image: "assets/images/drinks/c10.PNG"
-        },
-        S2: {
-            name: "tea11",
             price: 600,
-            text: "杨枝甘露",
-            toppings: "西米，西柚果肉",
-            image: "assets/images/drinks/c11.PNG"
-        },
-        S3: {
-            name: "tea12",
-            price: 500,
-            text: "抹茶星冰乐",
-            image: "assets/images/drinks/c12.PNG"
-        },
-        S4: {
-            name: "tea13",
-            price: 500,
-            text: "焦糖摩卡星冰乐",
-            image: "assets/images/drinks/c13.PNG"
-        },
-        S5: {
-            name: "tea14",
-            price: 500,
-            text: "巧克力星冰乐",
-            image: "assets/images/drinks/c14.PNG"
-        },
-        S6: {
-            name: "tea15",
-            price: 500,
-            mPrice: 450,
-            text: "超级奶茶沙冰",
-            image: "assets/images/drinks/c15.PNG"
+            text: "海盐冰抹"
         }
     },
     coffee: {
         C1: {
             name: "tea11",
             price: 500,
-            text: "生椰拿铁",
-            image: "assets/images/drinks/c11.PNG"
+            text: "生椰拿铁"
         },
         C2: {
             name: "tea12",
             price: 500,
-            text: "香草奶霜拿铁",
-            image: "assets/images/drinks/c12.PNG"
+            text: "香草奶霜拿铁"
         },
         C3: {
             name: "tea13",
             price: 500,
-            text: "提拉米苏拿铁",
-            image: "assets/images/drinks/c13.PNG"
+            text: "提拉米苏拿铁"
         },
         C4: {
             name: "tea14",
             price: 500,
-            text: "焦糖拿铁",
-            image: "assets/images/drinks/c14.PNG"
+            text: "焦糖拿铁"
         },
         C5: {
             name: "tea12",
@@ -295,139 +196,148 @@ export const items = {
         C6: {
             name: "tea13",
             price: 600,
-            text: "奥利奥冰可可",
-            image: "assets/images/drinks/c13.PNG"
+            text: "奥利奥冰可可"
         },
         C7: {
             name: "tea14",
             price: 550,
-            text: "生椰可可",
-            image: "assets/images/drinks/c14.PNG"
+            text: "生椰可可"
         }
     },
     chinessTea: {
-        T1: {
-            name: "tea13",
-            price: 500,
-            text: "伯牙绝弦",
-            image: "assets/images/drinks/c13.PNG"
-        },
-        T2: {
-            name: "tea14",
-            price: 500,
-            text: "花田乌龙",
-            image: "assets/images/drinks/c14.PNG"
-        },
-        T3: {
-            name: "tea15",
-            price: 500,
-            text: "桂馥兰香",
-            image: "assets/images/drinks/c15.PNG"
-        },
-        T4: {
-            name: "tea16",
-            price: 500,
-            text: "万山红",
-            image: "assets/images/drinks/c16.PNG"
-        },
-        T5: {
-            name: "tea17",
-            price: 600,
-            text: "茉上云间",
-            image: "assets/images/drinks/c17.PNG"
-        },
-        T6: {
-            name: "tea18",
-            price: 600,
-            text: "春日桃桃",
-            image: "assets/images/drinks/c18.PNG"
-        },
-        T7: {
-            name: "tea19",
-            price: 600,
-            text: "月桂清欢",
-            image: "assets/images/drinks/c19.PNG"
-        },
-        T8: {
-            name: "tea20",
-            price: 600,
-            text: "山月听雪",
-            image: "assets/images/drinks/c20.PNG"
-        }
-    },
-    cheese: {
         Z1: {
-            name: "tea13",
-            price: 550,
-            text: "芝士葡萄牛乳",
-            image: "assets/images/drinks/c13.PNG"
+            name: "伯牙绝弦",
+            price: 500,
+            text: "伯牙绝弦"
         },
         Z2: {
-            name: "tea14",
-            price: 550,
-            text: "芝芝葡萄",
-            image: "assets/images/drinks/c14.PNG"
+            name: "花田乌龙",
+            price: 500,
+            text: "花田乌龙"
         },
         Z3: {
-            name: "tea15",
-            price: 550,
-            text: "芝士多肉荔枝",
-            image: "assets/images/drinks/c15.PNG"
+            name: "桂馥兰香",
+            price: 500,
+            text: "桂馥兰香"
         },
         Z4: {
-            name: "tea16",
-            price: 550,
-            text: "芝芝凤梨",
-            image: "assets/images/drinks/c16.PNG"
+            name: "一盏山红",
+            price: 500,
+            text: "一盏山红"
         },
         Z5: {
-            name: "tea17",
-            price: 550,
-            text: "芝芝桑葚",
-            image: "assets/images/drinks/c17.PNG"
+            name: "茉上云间",
+            price: 600,
+            text: "茉上云间"
         },
         Z6: {
-            name: "tea18",
-            price: 550,
-            text: "芝芝桃桃",
-            image: "assets/images/drinks/c18.PNG"
+            name: "春日桃桃",
+            price: 600,
+            text: "春日桃桃"
         },
         Z7: {
-            name: "tea19",
-            price: 550,
-            text: "芝士莓莓",
-            image: "assets/images/drinks/c19.PNG"
+            name: "月桂清欢",
+            price: 600,
+            text: "月桂清欢"
         },
         Z8: {
+            name: "山月听雪",
+            price: 600,
+            text: "山月听雪"
+        }
+    },
+    sogaTea: {
+        S1: {
+            price: 550,
+            text: "草莓甘露",
+            toppings: "西米"
+        },
+        S2: {
+            price: 600,
+            text: "杨枝甘露",
+            toppings: "西米，西柚果肉"
+        },
+        S3: {
+            name: "tea12",
+            price: 500,
+            text: "抹茶星冰乐"
+        },
+        S4: {
+            name: "tea13",
+            price: 500,
+            text: "焦糖摩卡星冰乐"
+        },
+        S5: {
+            name: "tea14",
+            price: 500,
+            text: "巧克力星冰乐"
+        },
+        S6: {
+            name: "tea15",
+            price: 500,
+            mPrice: 450,
+            text: "超级奶茶沙冰"
+        },
+        S7: {
+            name: "芝芝葡萄",
+            price: 550,
+            text: "芝芝葡萄"
+        },
+        S8: {
+            name: "芝芝桑葚",
+            price: 550,
+            text: "芝芝桑葚"
+        },
+        S9: {
+            name: "芝芝凤梨",
+            price: 550,
+            text: "芝芝凤梨"
+        },
+        S10: {
+            name: "芝芝荔枝",
+            price: 550,
+            text: "芝芝荔枝"
+        },
+        S11: {
+            name: "tea18",
+            price: 550,
+            text: "芝芝桃桃"
+        },
+        S12: {
+            name: "芝芝抹茶",
+            price: 550,
+            text: "芝芝抹茶"
+        },
+        S13: {
+            name: "tea20",
+            price: 450,
+            text: "云顶茉香"
+        },
+        S14: {
             name: "tea20",
             price: 550,
-            text: "芝士芒芒",
-            image: "assets/images/drinks/c20.PNG"
+            text: "芝士芒芒"
         },
-        Z9: {
-            name: "tea20",
-            price: 450,
-            text: "云顶茉香",
-            image: "assets/images/drinks/c20.PNG"
+        S15: {
+            name: "tea19",
+            price: 550,
+            text: "芝士莓莓"
         },
-        Z10: {
-            name: "tea20",
-            price: 450,
-            text: "云顶山红",
-            image: "assets/images/drinks/c20.PNG"
-        },
-        Z11: {
-            name: "tea20",
-            price: 450,
-            text: "云顶桂香",
-            image: "assets/images/drinks/c20.PNG"
-        },
-        Z12: {
-            name: "tea20",
-            price: 450,
-            text: "云顶乌龙",
-            image: "assets/images/drinks/c20.PNG"
-        }
+        // S16: {
+        //     name: "tea20",
+        //     price: 450,
+        //     text: "云顶山红"
+        // },
+        // S17: {
+        //     name: "tea20",
+        //     price: 450,
+        //     text: "云顶桂香"
+        // },
+        // S18: {
+        //     name: "tea20",
+        //     price: 450,
+        //     text: "云顶乌龙"
+        // }
     }
 }
 

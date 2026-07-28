@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = homeNavigation.classList.toggle('is-open');
       mobileNavToggle.classList.toggle('is-open', isOpen);
       mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
-      mobileNavToggle.setAttribute('aria-label', isOpen ? '关闭导航菜单' : '打开导航菜单');
+      mobileNavToggle.setAttribute('aria-label', i18n.t(isOpen ? 'close_navigation' : 'open_navigation'));
     });
 
     homeNavigation.querySelectorAll('a').forEach(link => {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         homeNavigation.classList.remove('is-open');
         mobileNavToggle.classList.remove('is-open');
         mobileNavToggle.setAttribute('aria-expanded', 'false');
-        mobileNavToggle.setAttribute('aria-label', '打开导航菜单');
+        mobileNavToggle.setAttribute('aria-label', i18n.t('open_navigation'));
       });
     });
   }

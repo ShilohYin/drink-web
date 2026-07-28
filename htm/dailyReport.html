@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/menu.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/daily-report.css">
-    <title>日盈利汇总</title>
+    <title data-i18n="daily_page_title">日盈利汇总</title>
   </head>
   <body class="daily-report-page">
     <header class="header-container daily-report-header">
@@ -15,7 +15,7 @@
         <a href="/">
           <img src="../assets/images/logo.png" alt="KAOLA Bubble Tea Logo" class="logo" style="width: auto; height: 80px;">
         </a>
-        <button class="mobile-nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="dailyNavigation">
+        <button class="mobile-nav-toggle" type="button" aria-label="打开导航菜单" data-i18n-aria-label="open_navigation" aria-expanded="false" aria-controls="dailyNavigation">
           <span></span>
           <span></span>
           <span></span>
@@ -39,68 +39,68 @@
       </a>
       <form id="dailyForm" class="daily-form">
         <label>
-          <strong><em class="required">*</em> 票  额:</strong>
+          <strong><em class="required">*</em> <span data-i18n="daily_turnover">票额</span>:</strong>
           <span class="currency-input">
-            <input placeholder="当日总票额（包含wolt）" id="votes" required>
+            <input data-i18n-placeholder="daily_turnover_placeholder" placeholder="当日总票额（包含Wolt）" id="votes" required>
             <em>DIN</em>
           </span>
         </label>
         <label>
-          <strong><em class="required">*</em> 现  金:</strong>
+          <strong><em class="required">*</em> <span data-i18n="daily_cash">现金</span>:</strong>
           <span class="currency-input">
-            <input placeholder="包含欧元或美金" id="cash" required>
+            <input data-i18n-placeholder="daily_cash_placeholder" placeholder="包含欧元或美金" id="cash" required>
             <em>DIN</em>
           </span>
         </label>
         <label>
-          <strong>Wolt外卖:</strong>
+          <strong><span data-i18n="daily_wolt">Wolt外卖</span>:</strong>
           <span class="currency-input">
-            <input placeholder="实际金额（非平台金额）" id="wolt" >
+            <input data-i18n-placeholder="daily_wolt_placeholder" placeholder="实际金额（非平台金额）" id="wolt" >
             <em>DIN</em>
           </span>
         </label>
         <label>
-          <strong>扫码支付:</strong>
+          <strong><span data-i18n="daily_qr_payment">扫码支付</span>:</strong>
           <span class="currency-input">
-            <input placeholder="微信或支付宝" id="rmb" >
+            <input data-i18n-placeholder="daily_qr_placeholder" placeholder="微信或支付宝" id="rmb" >
             <em class="currency-rmb">RMB</em>
           </span>
         </label>
         <label>
-          <strong>其它支付:</strong>
+          <strong><span data-i18n="daily_other_payment">其它支付</span>:</strong>
           <span class="currency-input">
-            <input placeholder="扫码或本地币转账等" id="other" >
+            <input data-i18n-placeholder="daily_other_placeholder" placeholder="扫码或本地币转账等" id="other" >
             <em>DIN</em>
           </span>
         </label>
         <label>
-          <strong>消费支出:</strong>
+          <strong><span data-i18n="daily_expense">消费支出</span>:</strong>
           <span class="currency-input">
-            <input placeholder="餐补和物料采购等" id="consume" >
+            <input data-i18n-placeholder="daily_expense_placeholder" placeholder="餐补和物料采购等" id="consume" >
             <em>DIN</em>
           </span>
         </label>
         <label>
-          <strong>物料购入:</strong>
+          <strong><span data-i18n="daily_material">物料购入</span>:</strong>
           <span class="currency-input">
-            <input placeholder="请输入物料购入" id="material" >
+            <input data-i18n-placeholder="daily_material_placeholder" placeholder="请输入物料购入" id="material" >
           </span>
         </label>
         <label>
-          <strong>备注:</strong>
-          <textarea placeholder="请输入备注" id="remark"></textarea>
+          <strong><span data-i18n="remark">备注</span>:</strong>
+          <textarea data-i18n-placeholder="daily_remark_placeholder" placeholder="请输入备注" id="remark"></textarea>
         </label>
         <div class="daily-actions">
-          <button class="submit-btn calculate-btn" id="calculateDaily" type="button">计算</button>
-          <button class="submit-btn submit-daily-btn" type="submit">提交</button>
+          <button class="submit-btn calculate-btn" id="calculateDaily" type="button" data-i18n="calculate">计算</button>
+          <button class="submit-btn submit-daily-btn" type="submit" data-i18n="submit">提交</button>
         </div>
-        <p class="daily-result" id="dailyResult" aria-live="polite">输入【票额】和【现金】开始计算</p>
+        <p class="daily-result" id="dailyResult" aria-live="polite" data-i18n="daily_result_tip">输入【票额】和【现金】开始计算</p>
       </form>
     </div>
     <div class="daily-loading" id="dailyLoading" aria-hidden="true">
       <div class="daily-loading-box">
         <span class="daily-spinner"></span>
-        <p>提交中，请稍候...</p>
+        <p data-i18n="submitting">提交中，请稍候...</p>
       </div>
     </div>
 
@@ -123,7 +123,7 @@
           <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
         </div>
       </div>
-      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.</p>
+      <p class="footer-txt">&copy; <span class="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.<br><span class="footer-since">Since 2023</span></p>
     </footer>
 
     <script src="../assets/js/config.js"></script>

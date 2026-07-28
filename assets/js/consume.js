@@ -3,6 +3,10 @@ const consumeRecordsKey = 'consumeRecords';
 const consumeNumberPattern = /^[0-9]+(\.[0-9]{1,2})?$/;
 const consumeMinLoadingTime = 700;
 
+function consumeT(key) {
+    return i18n.t(key);
+}
+
 function getConsumeRecords() {
     try {
         const records = JSON.parse(localStorage.getItem(consumeRecordsKey) || '[]');
@@ -29,11 +33,11 @@ function renderConsumeSummary() {
     const todayTotal = todayRecords.reduce((total, record) => total + Number(record.amount || 0), 0);
 
     document.getElementById('todayConsumeCount').innerHTML =
-        `${todayRecords.length} <small>笔</small>`;
+        `${todayRecords.length} <small>${consumeT('unit_entries')}</small>`;
     document.getElementById('todayConsumeTotal').innerHTML =
         `${todayTotal.toLocaleString('en-US', { maximumFractionDigits: 2 })} <small>DIN</small>`;
     document.getElementById('monthConsumeCount').innerHTML =
-        `${monthRecords.length} <small>次</small>`;
+        `${monthRecords.length} <small>${consumeT('unit_times')}</small>`;
 }
 
 function setConsumeLoading(visible) {
@@ -61,21 +65,20 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
     const remark = remarkInput.value.trim();
 
     if (!consumeNumberPattern.test(amount) || Number(amount) <= 0) {
-        alert('请输入有效的消费金额');
+        alert(consumeT('consume_invalid_amount'));
         amountInput.focus();
         return;
     }
 
     if (!remark) {
-        alert('请输入消费备注');
+        alert(consumeT('consume_note_required'));
         remarkInput.focus();
         return;
     }
 
-    console.log(amount, "amountamount")
     const lastSubmitTime = Number(localStorage.getItem(consumeLastSubmitKey) || 0);
     if (Date.now() - lastSubmitTime < 10000) {
-        alert('请勿重复提交，请稍后再试');
+        alert(consumeT('duplicate_submit'));
         return;
     }
 
@@ -110,14 +113,15 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
         localStorage.setItem(consumeRecordsKey, JSON.stringify(records));
         renderConsumeSummary();
         document.getElementById('consumeForm').reset();
-        alert('消费记录提交成功');
+        alert(consumeT('consume_submit_success'));
     } catch (error) {
         console.error(error);
         localStorage.removeItem(consumeLastSubmitKey);
-        alert('提交失败，请检查网络后重试');
+        alert(consumeT('network_submit_failed'));
     } finally {
         setConsumeLoading(false);
     }
 });
 
 renderConsumeSummary();
+window.addEventListener('languageChanged', renderConsumeSummary);

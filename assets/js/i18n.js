@@ -9,6 +9,9 @@ const i18n = {
       const response = await fetch(`/lang/${this.currentLang}.json`);
       this.translations = await response.json();
       this.applyTranslations();
+      window.dispatchEvent(new CustomEvent('languageChanged', {
+        detail: { lang: this.currentLang }
+      }));
     } catch (error) {
       console.error('Failed to load language file:', error);
     }
@@ -45,6 +48,16 @@ const i18n = {
     document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
       const key = element.getAttribute('data-i18n-placeholder');
       element.placeholder = this.t(key);
+    });
+
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+      const key = element.getAttribute('data-i18n-aria-label');
+      element.setAttribute('aria-label', this.t(key));
+    });
+
+    document.querySelectorAll('[data-i18n-title]').forEach(element => {
+      const key = element.getAttribute('data-i18n-title');
+      element.title = this.t(key);
     });
   }
 };

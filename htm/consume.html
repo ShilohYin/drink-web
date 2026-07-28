@@ -7,20 +7,21 @@
     <link rel="stylesheet" href="../assets/css/menu.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/consume.css">
-    <title>本次消费</title>
+    <title data-i18n="consume_page_title">本次消费</title>
   </head>
   <body class="consume-page">
     <main class="consume-dashboard">
       <section class="consume-brand-panel">
-        <a class="consume-home-link" href="/" aria-label="返回主页" title="返回主页">
+        <a class="consume-home-link" href="/" aria-label="返回主页" title="返回主页"
+          data-i18n-aria-label="return_home" data-i18n-title="return_home">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5v-9.7Z"></path>
           </svg>
         </a>
         <p class="consume-brand-name">KAOLA</p>
-        <h1>记录每一杯茶的故事</h1>
+        <h1 data-i18n="consume_brand_title">记录每一杯茶的故事</h1>
         <span class="consume-brand-line"></span>
-        <p class="consume-brand-copy">每一次采购<br>每一次消费<br>都是品牌成长的一部分。</p>
+        <p class="consume-brand-copy" data-i18n="consume_brand_copy">每一次采购，每一次消费，都是品牌成长的一部分。</p>
         <div class="consume-product-display" aria-hidden="true">
           <img class="consume-product consume-product-main" src="../assets/images/drinks/milkTea/M6.png" alt="">
           <img class="consume-product consume-product-side" src="../assets/images/drinks/matchaTea/G2.png" alt="">
@@ -28,25 +29,25 @@
         </div>
       </section>
 
-      <aside class="consume-summary" aria-label="消费概览">
+      <aside class="consume-summary" aria-label="消费概览" data-i18n-aria-label="consume_overview">
         <div class="consume-summary-item">
           <span class="consume-summary-icon">▣</span>
           <div>
-            <p>今日记录</p>
+            <p data-i18n="consume_today_records">今日记录</p>
             <strong id="todayConsumeCount">0 <small>笔</small></strong>
           </div>
         </div>
         <div class="consume-summary-item">
           <span class="consume-summary-icon">◎</span>
           <div>
-            <p>今日支出</p>
+            <p data-i18n="consume_today_total">今日支出</p>
             <strong id="todayConsumeTotal">0 <small>DIN</small></strong>
           </div>
         </div>
         <div class="consume-summary-item">
           <span class="consume-summary-icon">▥</span>
           <div>
-            <p>本月消费</p>
+            <p data-i18n="consume_month_records">本月消费</p>
             <strong id="monthConsumeCount">0 <small>次</small></strong>
           </div>
         </div>
@@ -54,29 +55,29 @@
 
       <form id="consumeForm" class="consume-form">
         <div class="consume-form-heading">
-          <span>▣&nbsp;&nbsp;消费记录</span>
-          <h2>记录本次消费</h2>
-          <p>请确认金额无误后提交</p>
+          <span data-i18n="consume_record">消费记录</span>
+          <h2 data-i18n="consume_form_title">记录本次消费</h2>
+          <p data-i18n="consume_confirm_tip">请确认金额无误后提交</p>
         </div>
         <label class="consume-field">
-          <strong>消费金额</strong>
+          <strong data-i18n="consume_amount">消费金额</strong>
           <span class="currency-input">
-            <input type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="请输入本次消费金额" id="consume" required>
+            <input type="number" inputmode="decimal" min="0.01" step="0.01" data-i18n-placeholder="consume_amount_placeholder" placeholder="请输入本次消费金额" id="consume" required>
             <i>DIN</i>
           </span>
         </label>
         <label class="consume-field">
-          <strong>消费备注</strong>
-          <textarea placeholder="请输入消费用途或明细" id="remark" required></textarea>
+          <strong data-i18n="consume_note">消费备注</strong>
+          <textarea data-i18n-placeholder="consume_note_placeholder" placeholder="请输入消费用途或明细" id="remark" required></textarea>
         </label>
-        <button class="consume-submit-btn" type="submit">确认提交</button>
-        <p class="consume-safe-note">◆&nbsp;&nbsp;数据自动同步云端</p>
+        <button class="consume-submit-btn" type="submit" data-i18n="confirm_submit">确认提交</button>
+        <p class="consume-safe-note" data-i18n="cloud_sync_note">数据自动同步云端</p>
       </form>
     </main>
     <div class="daily-loading" id="dailyLoading" aria-hidden="true">
       <div class="daily-loading-box">
         <span class="daily-spinner"></span>
-        <p>提交中，请稍候...</p>
+        <p data-i18n="submitting">提交中，请稍候...</p>
       </div>
     </div>
 

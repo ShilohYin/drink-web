@@ -1,5 +1,9 @@
 import { items, toppings, ices, sugar } from './itemConfig.js';
 
+function menuT(key) {
+  return i18n.t(key);
+}
+
 const menuNavToggle = document.querySelector('.menu-nav-toggle');
 const menuNavigation = document.getElementById('menuNavigation');
 
@@ -8,7 +12,7 @@ if (menuNavToggle && menuNavigation) {
     const isOpen = menuNavigation.classList.toggle('is-open');
     menuNavToggle.classList.toggle('is-open', isOpen);
     menuNavToggle.setAttribute('aria-expanded', String(isOpen));
-    menuNavToggle.setAttribute('aria-label', isOpen ? '关闭导航菜单' : '打开导航菜单');
+    menuNavToggle.setAttribute('aria-label', menuT(isOpen ? 'close_navigation' : 'open_navigation'));
   });
 
   menuNavigation.querySelectorAll('a').forEach(link => {
@@ -27,8 +31,8 @@ const categoryLabels = {
   sogaTea: { zh: '沙冰类', en: 'Soga Tea', sr: 'Soga čaj' },
   coffee: { zh: '咖啡类', en: 'Coffee', sr: 'Kafa' },
   cocoa: { zh: '可可类', en: 'Cocoa', sr: 'Kakao' },
-  chinessTea: { zh: '新中式', en: 'ChineseTea', sr: '' },
-  cheese: { zh: '芝士类', en: 'Cheese', sr: 'Kakao' },
+  chinessTea: { zh: '新中式', en: 'Chinese Tea', sr: 'Kineski čaj' },
+  cheese: { zh: '芝士类', en: 'Cheese', sr: 'Sir' },
 };
 
 const categorySubtitles = {
@@ -100,7 +104,7 @@ function createToppingsSelect(item) {
   const select = document.createElement('select');
   const placeholder = document.createElement('option');
   placeholder.value = '';
-  placeholder.textContent = '请选择';
+  placeholder.textContent = menuT('select_option');
   select.appendChild(placeholder);
 
   toppings.forEach((t) => {
@@ -192,7 +196,7 @@ function render() {
     if (categoryKey === 'milkTea') {
       const note = document.createElement('div');
       note.className = 'category-note';
-      note.textContent = '✓ 奶茶可选冷热，默认推荐冰饮';
+      note.textContent = `✓ ${menuT('milk_tea_note')}`;
       headerActions.appendChild(note);
     }
 
@@ -235,15 +239,13 @@ function render() {
       const imageWrap = document.createElement('div');
       imageWrap.className = 'product-media';
 
-      if (item.image) {
-        const image = document.createElement('img');
-        setProductImage(image, categoryKey, itemKey, item);
-        image.alt = item.text;
-        image.className = 'product-img';
-        imageWrap.appendChild(image);
-      }
+      const image = document.createElement('img');
+      setProductImage(image, categoryKey, itemKey, item);
+      image.alt = item.text;
+      image.className = 'product-img';
+      imageWrap.appendChild(image);
 
-      if ((categoryKey === 'milkTea' && (itemKey === 'M1' || itemKey === 'M9'))) {
+      if ((categoryKey === 'milkTea' && (itemKey === 'M5'))) {
         const badge = document.createElement('span');
         badge.className = 'product-badge';
         badge.textContent = 'NEW';
@@ -261,7 +263,7 @@ function render() {
 
       const toppingsInfo = document.createElement('small');
       toppingsInfo.className = 'included-toppings';
-      toppingsInfo.textContent = item.toppings ? `已含：${item.toppings}` : '已含：无';
+      toppingsInfo.textContent = `${menuT('included')}: ${item.toppings || menuT('none')}`;
       content.appendChild(toppingsInfo);
 
       const price = document.createElement('p');
@@ -274,7 +276,7 @@ function render() {
       const button = document.createElement('button');
       button.className = 'add-btn';
       button.type = 'button';
-      button.setAttribute('aria-label', `添加 ${item.text}`);
+      button.setAttribute('aria-label', `${menuT('add')} ${item.text}`);
       button.textContent = '+';
       button.addEventListener('click', () => {
         openSelectionModal(categoryKey, itemKey);
@@ -315,7 +317,7 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
     delete modal.dataset.editingCartId;
   }
   if (submitButton) {
-    submitButton.textContent = editCartId ? '保存修改' : '加入购物车';
+    submitButton.textContent = menuT(editCartId ? 'save_changes' : 'add_to_cart');
   }
 
   if (sizeSelector) {
@@ -330,7 +332,7 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
   toppingSelect.innerHTML = '';
   const noneOption = document.createElement('option');
   noneOption.value = '';
-  noneOption.textContent = '无';
+  noneOption.textContent = menuT('none');
   toppingSelect.appendChild(noneOption);
   toppings.forEach((t) => {
     const option = document.createElement('option');
@@ -543,7 +545,7 @@ function update() {
 
     const editButton = document.createElement('button');
     editButton.className = 'cart-edit-btn';
-    editButton.textContent = '修改';
+    editButton.textContent = menuT('edit');
     editButton.addEventListener('click', () => {
       const { categoryKey, itemKey } = getCartItemProductKeys(i);
       if (!items[categoryKey]?.[itemKey]) return;
@@ -553,7 +555,7 @@ function update() {
 
     const removeButton = document.createElement('button');
     removeButton.className = 'cart-remove-btn';
-    removeButton.textContent = '删除';
+    removeButton.textContent = menuT('remove');
     removeButton.addEventListener('click', () => {
       removeItem(i.id);
     });
@@ -579,7 +581,7 @@ function update() {
       const iceObj = getIceOption(i.ice);
       const iceLine = document.createElement('div');
       iceLine.className = 'cart-ice';
-      iceLine.textContent = ` 冰度: ${iceObj.text || i.ice}`;
+      iceLine.textContent = ` ${menuT('ice')}: ${iceObj.text || i.ice}`;
       itemRow.appendChild(iceLine);
     }
     // show sugar selection
@@ -587,14 +589,15 @@ function update() {
       const sugarObj = getSugarOption(i.sugar);
       const sugarLine = document.createElement('div');
       sugarLine.className = 'cart-sugar';
-      sugarLine.textContent = ` 甜度: ${sugarObj.text || i.sugar}`;
+      sugarLine.textContent = ` ${menuT('sugar')}: ${sugarObj.text || i.sugar}`;
       itemRow.appendChild(sugarLine);
     }
     count += i.qty;
     c.appendChild(itemRow);
   });
 
-  document.getElementById('total').textContent = `Count: ${count}, Total: ${total} RSD`;
+  document.getElementById('total').textContent =
+    `${menuT('count')}: ${count}, ${menuT('total')}: ${total} RSD`;
   document.getElementById('cartCount').textContent = count;
   const checkoutButton = document.getElementById('openCheckout');
   if (checkoutButton) {
