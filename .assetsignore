@@ -1,0 +1,12 @@
+# Repository and local development metadata must not be uploaded as site assets.
+**/.git
+**/.git/**
+**/.DS_Store
+**/.vscode
+
+# Source-only files and folders that are not part of the public website.
+README.md
+google
+google/**
+tmp
+tmp/**
