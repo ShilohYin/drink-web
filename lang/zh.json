@@ -139,5 +139,8 @@
   "consume_overview": "消费概览",
   "select_size": "选择杯型",
   "decrease_quantity": "减少数量",
-  "increase_quantity": "增加数量"
+  "increase_quantity": "增加数量",
+  "view_menu": "前往菜单页面",
+  "product_remark": "备注",
+  "product_remark_placeholder": "选填，如少冰、分装等"
 }

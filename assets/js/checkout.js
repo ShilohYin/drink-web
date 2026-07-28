@@ -59,7 +59,8 @@ function formatCheckoutItems(cart) {
         const options = [item.size, ...(item.toppings || []), item.ice, item.sugar]
             .filter(Boolean)
             .join(', ');
-        return `${item.itemKey || ''} ${item.name || ''}${options ? ` (${options})` : ''} x${item.qty || 1}`.trim();
+        const remark = item.remark ? ` [${checkoutT('product_remark')}: ${item.remark}]` : '';
+        return `${item.itemKey || ''} ${item.name || ''}${options ? ` (${options})` : ''} x${item.qty || 1}${remark}`.trim();
     }).join('\n');
 }
 

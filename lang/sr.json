@@ -138,5 +138,8 @@
   "consume_overview": "Pregled troškova",
   "select_size": "Izaberite veličinu čaše",
   "decrease_quantity": "Smanji količinu",
-  "increase_quantity": "Povećaj količinu"
+  "increase_quantity": "Povećaj količinu",
+  "view_menu": "Idi na meni",
+  "product_remark": "Napomena",
+  "product_remark_placeholder": "Opciono, npr. manje leda ili odvojeno pakovanje"
 }

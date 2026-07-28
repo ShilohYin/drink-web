@@ -105,7 +105,7 @@
                     <p data-i18n="address_info">新贝尔格莱德-欧亚商贸A123</p>
                 </div>
             </div>
-            <p class="footer-txt">&copy; <span id="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.<br><span class="footer-since">Since 2023</span></p>
+            <p class="footer-txt">&copy; <span id="current-year">2026</span> KAOLA Bubble Tea. All rights reserved.<br><span class="footer-since">Since 2024</span></p>
         </footer>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -141,7 +141,10 @@
                         <span>${item.text || ''}</span>
                         <strong>
                             ${item.price || 0}din
-                            <i class="icons add"></i>
+                            <a href="/htm/menu.html"
+                               class="icons add"
+                               data-i18n-aria-label="view_menu"
+                               aria-label="${i18n.t('view_menu')}"></a>
                         </strong>
                     </div>
                 `;

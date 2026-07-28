@@ -636,15 +636,16 @@ main {
   justify-content: flex-start;
 }
 .quantity-stepper {
-  display: inline-flex;
   align-items: center;
-  width: fit-content;
   min-height: 48px;
   overflow: hidden;
   border: 1px solid rgba(205, 163, 126, 0.42);
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 8px 20px rgba(98, 64, 43, 0.06);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .quantity-stepper button {
   width: 48px;
@@ -711,6 +712,32 @@ main {
   border-color: rgba(201, 129, 56, 0.72);
   box-shadow: 0 0 0 3px rgba(221, 160, 89, 0.14), 0 8px 20px rgba(98, 64, 43, 0.06);
 }
+.selection-modal-content .selection-remark-field {
+  align-items: start;
+}
+.selection-modal-content .selection-remark-field span {
+  padding-top: 12px;
+}
+.selection-modal-content .selection-remark-field textarea {
+  width: 100%;
+  min-height: 76px;
+  padding: 12px 14px;
+  border: 1px solid rgba(205, 163, 126, 0.36);
+  border-radius: 12px;
+  background: #fff;
+  color: #382720;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1.5;
+  resize: vertical;
+  box-shadow: 0 8px 20px rgba(98, 64, 43, 0.06);
+  margin-left: 0;
+}
+.selection-modal-content .selection-remark-field textarea:focus {
+  outline: none;
+  border-color: rgba(201, 129, 56, 0.72);
+  box-shadow: 0 0 0 3px rgba(221, 160, 89, 0.14), 0 8px 20px rgba(98, 64, 43, 0.06);
+}
 #selectionForm .modal-actions {
   justify-content: center;
   gap: 12px;
@@ -763,22 +790,56 @@ main {
 }
 .modal-close-btn {
   position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(245, 240, 235, 0.9);
-  font-size: 25px;
-  line-height: 1;
-  color: #5c4036;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 42px;
+  overflow: hidden;
+  border: 1px solid rgba(205, 163, 126, 0.14);
+  border-radius: 999px;
+  background: rgba(248, 242, 236, 0.92);
+  color: transparent;
+  font-size: 0;
   cursor: pointer;
+  box-shadow: 0 6px 16px rgba(92, 64, 54, 0.06);
+  transition: background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.18s ease;
+}
+.modal-close-btn::before,
+.modal-close-btn::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 19px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: #68483b;
+  content: "";
   transition: background 0.18s ease, transform 0.18s ease;
 }
+.modal-close-btn::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.modal-close-btn::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
 .modal-close-btn:hover {
-  background: #eee0d0;
-  transform: rotate(90deg);
+  border-color: rgba(201, 129, 56, 0.28);
+  background: #f2e5d8;
+  box-shadow: 0 8px 20px rgba(92, 64, 54, 0.1);
+  transform: translateY(-1px);
+}
+.modal-close-btn:hover::before,
+.modal-close-btn:hover::after {
+  background: #9f6032;
+}
+.modal-close-btn:active {
+  box-shadow: 0 3px 10px rgba(92, 64, 54, 0.08);
+  transform: translateY(0) scale(0.96);
+}
+.modal-close-btn:focus-visible {
+  outline: 3px solid rgba(221, 160, 89, 0.25);
+  outline-offset: 2px;
 }
 .checkout-button {
   display: inline-flex;

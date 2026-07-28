@@ -303,6 +303,7 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
   const toppingSelect = document.getElementById('selectionTopping');
   const iceSelect = document.getElementById('selectionIce');
   const sugarSelect = document.getElementById('selectionSugar');
+  const remarkInput = document.getElementById('selectionRemark');
   const submitButton = document.querySelector('#selectionForm .submit-btn');
   const selectedSize = item.mPrice ? (preset.size || 'L') : 'L';
 
@@ -362,6 +363,7 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
     sugarSelect.appendChild(option);
   });
   sugarSelect.value = getSugarOption(preset.sugar || 'normalSugar').text;
+  if (remarkInput) remarkInput.value = preset.remark || '';
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
@@ -434,15 +436,17 @@ function initSelectionModal() {
       const toppingSelect = document.getElementById('selectionTopping');
       const iceSelect = document.getElementById('selectionIce');
       const sugarSelect = document.getElementById('selectionSugar');
+      const remarkInput = document.getElementById('selectionRemark');
       const selected = toppingSelect.value ? [toppingSelect.value] : [];
       const iceVal = iceSelect ? iceSelect.value : null;
       const sugarVal = sugarSelect ? sugarSelect.value : null;
       const sizeVal = modal.dataset.selectedSize || 'L';
       const quantity = Number(modal.dataset.selectedQuantity || 1);
+      const remark = remarkInput?.value.trim() || '';
       if (modal.dataset.editingCartId) {
-        updateCartItem(modal.dataset.editingCartId, categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal, quantity);
+        updateCartItem(modal.dataset.editingCartId, categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal, quantity, remark);
       } else {
-        add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal, quantity);
+        add(categoryKey, itemKey, selected, iceVal, sugarVal, sizeVal, quantity, remark);
       }
       closeSelectionModal();
     });
@@ -455,13 +459,14 @@ function initSelectionModal() {
   });
 }
 
-function createCartItem(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', qty = 1) {
+function createCartItem(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', qty = 1, remark = '') {
   const product = items[categoryKey][itemKey];
   const toppingObjs = (selectedToppings || []).map(name => getToppingOption(name));
   const toppingCost = toppingObjs.reduce((s, t) => s + (t.price || 0), 0);
   const normalizedSize = product.mPrice ? sizeChoice : 'L';
   const unitPrice = getBasePrice(product, normalizedSize) + toppingCost;
-  const id = `${categoryKey}-${itemKey}-${normalizedSize}-${(selectedToppings || []).slice().sort().join('|')}-${iceChoice||''}-${sugarChoice||''}`;
+  const normalizedRemark = String(remark || '').trim();
+  const id = `${categoryKey}-${itemKey}-${normalizedSize}-${(selectedToppings || []).slice().sort().join('|')}-${iceChoice||''}-${sugarChoice||''}-${normalizedRemark}`;
   return {
     id,
     qty,
@@ -473,12 +478,13 @@ function createCartItem(categoryKey, itemKey, selectedToppings = [], iceChoice =
     toppings: selectedToppings,
     toppingCost,
     ice: iceChoice,
-    sugar: sugarChoice
+    sugar: sugarChoice,
+    remark: normalizedRemark
   };
 }
 
-function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', quantity = 1) {
-  const cartItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, quantity);
+function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', quantity = 1, remark = '') {
+  const cartItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, quantity, remark);
   const existing = cart.find((x) => x.id === cartItem.id);
   if (existing) {
     existing.qty += cartItem.qty;
@@ -488,11 +494,11 @@ function add(categoryKey, itemKey, selectedToppings = [], iceChoice = null, suga
   update();
 }
 
-function updateCartItem(id, categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', quantity = 1) {
+function updateCartItem(id, categoryKey, itemKey, selectedToppings = [], iceChoice = null, sugarChoice = null, sizeChoice = 'L', quantity = 1, remark = '') {
   const index = cart.findIndex((x) => x.id === id);
   if (index === -1) return;
 
-  const updatedItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, quantity);
+  const updatedItem = createCartItem(categoryKey, itemKey, selectedToppings, iceChoice, sugarChoice, sizeChoice, quantity, remark);
   cart.splice(index, 1);
 
   const existing = cart.find((x) => x.id === updatedItem.id);
@@ -591,6 +597,12 @@ function update() {
       sugarLine.className = 'cart-sugar';
       sugarLine.textContent = ` ${menuT('sugar')}: ${sugarObj.text || i.sugar}`;
       itemRow.appendChild(sugarLine);
+    }
+    if (i.remark) {
+      const remarkLine = document.createElement('div');
+      remarkLine.className = 'cart-remark';
+      remarkLine.textContent = ` ${menuT('product_remark')}: ${i.remark}`;
+      itemRow.appendChild(remarkLine);
     }
     count += i.qty;
     c.appendChild(itemRow);

@@ -139,5 +139,8 @@
   "consume_overview": "Expense overview",
   "select_size": "Select cup size",
   "decrease_quantity": "Decrease quantity",
-  "increase_quantity": "Increase quantity"
+  "increase_quantity": "Increase quantity",
+  "view_menu": "Go to the menu",
+  "product_remark": "Note",
+  "product_remark_placeholder": "Optional, e.g. less ice or separate packing"
 }

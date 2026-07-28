@@ -575,7 +575,7 @@ export const ices = {
 export const sugar = {
     noSugar: {
         value: 'No Sugar',
-        text: "无糖"
+        text: "0糖"
     },
     lightSugar: {
         value: 'Light Sugar',
@@ -583,7 +583,7 @@ export const sugar = {
     },
     halfSugar: {
         value: 'Half Sugar',
-        text: "半糖"
+        text: "50%糖"
     },
     lessSugar: {
         value: 'Less Sugar',
@@ -591,6 +591,6 @@ export const sugar = {
     },
     normalSugar: {
         value: 'Normal Sugar',
-        text: "正常糖"
+        text: "100%糖"
     }
 }
