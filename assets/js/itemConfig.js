@@ -69,6 +69,18 @@ export const items = {
             price: 400,
             mPrice: 350,
             text: "原味奶茶"
+        },
+        M12: {
+            price: 550,
+            text: "茉莉奶白"
+        },
+        M13: {
+            price: 550,
+            text: "豆香白玉"
+        },
+        M14: {
+            price: 550,
+            text: "布雷脆脆奶芙"
         }
     },
     fruitTea: {
@@ -193,16 +205,16 @@ export const items = {
             text: "可可冰奶",
             image: "assets/images/drinks/c12.PNG"
         },
-        C6: {
-            name: "tea13",
-            price: 600,
-            text: "奥利奥冰可可"
-        },
-        C7: {
-            name: "tea14",
-            price: 550,
-            text: "生椰可可"
-        }
+        // C6: {
+        //     name: "tea13",
+        //     price: 600,
+        //     text: "奥利奥冰可可"
+        // },
+        // C7: {
+        //     name: "tea14",
+        //     price: 550,
+        //     text: "生椰可可"
+        // }
     },
     chinessTea: {
         Z1: {
@@ -322,6 +334,16 @@ export const items = {
             name: "tea19",
             price: 550,
             text: "芝士莓莓"
+        },
+        S16: {
+            name: "tea19",
+            price: 550,
+            text: "葡萄牛乳芝士"
+        },
+        S17: {
+            name: "tea19",
+            price: 450,
+            text: "云顶山红"
         },
         // S16: {
         //     name: "tea20",

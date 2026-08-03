@@ -1,4 +1,4 @@
-Kaola Bubble Tea - Phase 3
+KAOLA BUBBLE TEA - Phase 3
 
 Contents
 - Google Apps Script (Code.gs)

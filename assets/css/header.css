@@ -34,6 +34,7 @@ header .header-box {
 .header-nav-links {
     display: flex;
     gap: 40px;
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
 }
 
 .header-nav-links a {
