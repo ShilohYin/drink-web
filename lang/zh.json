@@ -94,7 +94,7 @@
   "cloud_sync_note": "数据自动同步云端",
   "daily_page_title": "日盈利汇总",
   "daily_turnover": "票额",
-  "daily_turnover_placeholder": "当日总票额（包含Wolt）",
+  "daily_turnover_placeholder": "当日总票额（不包含Wolt）",
   "daily_cash": "现金",
   "daily_cash_placeholder": "包含欧元或美金",
   "daily_wolt": "Wolt外卖",

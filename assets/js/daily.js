@@ -16,14 +16,14 @@ function canDailySubmit() {
 
 function getDailyFormValues() {
     return {
-        votes: document.getElementById("votes").value.trim(),
-        cash: document.getElementById("cash").value.trim(),
-        rmb: document.getElementById("rmb").value.trim(),
-        consume: document.getElementById("consume").value.trim(),
-        wolt: document.getElementById("wolt").value.trim(),
-        material: document.getElementById("material").value.trim(),
-        remark: document.getElementById("remark").value.trim(),
-        other: document.getElementById("other").value.trim()
+        votes: document.getElementById("votes").value.trim(), // 票额
+        cash: document.getElementById("cash").value.trim(), // 现金
+        wolt: document.getElementById("wolt").value.trim(), // WOLT
+        rmb: document.getElementById("rmb").value.trim(), // 扫码支付RMB
+        other: document.getElementById("other").value.trim(), // 其它支付
+        consume: document.getElementById("consume").value.trim(), // 消费支出
+        material: document.getElementById("material").value.trim(), // 物料购入
+        remark: document.getElementById("remark").value.trim() // 备注
     };
 }
 
@@ -157,9 +157,9 @@ document.getElementById('dailyForm').onsubmit = async e => {
     form.append("votes", values.votes);
     form.append("cash", values.cash);
     form.append("wolt", values.wolt || 0);
-    form.append("consume", values.consume || 0);
     form.append("rmb", values.rmb);
     form.append("other", values.other || 0);
+    form.append("consume", values.consume || 0);
     form.append("material", values.material || "");
     form.append("remark", values.remark || "");
 
