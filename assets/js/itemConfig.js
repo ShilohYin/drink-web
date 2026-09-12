@@ -1,28 +1,22 @@
 export const items = {
     milkTea: {
         M1: {
-            name: "tea1",
             price: 500,
             mPrice: 450,
             text: "黑糖珍珠奶茶",
-            toppings: "黑糖，珍珠",
-            image: "assets/images/drinks/m1.PNG"
+            toppings: "黑糖，珍珠"
         },
         M2: {
-            name: "tea2",
             price: 550,
             mPrice: 500,
             text: "芋泥啵啵",
-            toppings: "芋泥，珍珠",
-            image: "assets/images/drinks/m2.PNG"
+            toppings: "芋泥，珍珠"
         },
         M3: {
-            name: "tea3",
             price: 550,
             mPrice: 500,
             text: "芋泥麻薯",
-            toppings: "芋泥，麻薯",
-            image: "assets/images/drinks/m3.PNG"
+            toppings: "芋泥，麻薯"
         },
         M4: {
             price: 550,
@@ -31,32 +25,27 @@ export const items = {
             toppings: "奥利奥碎，麻薯",
         },
         M5: {
-            name: "tea5",
             price: 550,
             text: "豆乳米麻薯",
             toppings: "血糯米，麻薯"
         },
         M6: {
-            name: "tea6",
             price: 450,
             mPrice: 500,
             text: "红豆血糯米",
             toppings: "血糯米，红豆"
         },
         M7: {
-            name: "tea7",
             price: 550,
             text: "奶茶全家福",
             toppings: "仙草，布丁，珍珠，红豆"
         },
         M8: {
-            name: "tea8",
             price: 400,
             mPrice: 350,
             text: "茉香奶绿"
         },
         M9: {
-            name: "tea9",
             price: 500,
             text: "草莓米麻薯",
             toppings: "草莓酱，麻薯"
@@ -72,82 +61,96 @@ export const items = {
         },
         M12: {
             price: 550,
-            text: "茉莉奶白"
+            text: "茉莉奶白",
+            toppings: "椰果，寒天"
         },
         M13: {
             price: 550,
-            text: "豆香白玉"
+            text: "豆香白玉",
+            toppings: "寒天，芝士"
         },
         M14: {
             price: 550,
             text: "布雷脆脆奶芙"
+        },
+        M15: {
+            price: 500,
+            text: "桂花牛乳"
+        },
+        M16: {
+            price: 450,
+            text: "蓝柑啵啵"
+        },
+        M17: {
+            price: 500,
+            text: "桂花厚乳"
         }
     },
     fruitTea: {
         F1: {
-            name: "tea7",
             price: 450,
             text: "暴打柠檬茶"
         },
         F2: {
-            name: "tea8",
             price: 550,
             text: "百香橙橙",
             toppings: "冻冻或者爆爆珠"
         },
         F3: {
-            name: "tea9",
             price: 450,
             text: "葡萄闪爆茶",
             toppings: "葡萄果肉"
         },
         F4: {
-            name: "tea10",
             price: 550,
             text: "黑爆柠",
             toppings: "冻冻或爆爆珠"
         },
         F5: {
-            name: "tea11",
             price: 550,
             text: "百果荟萃",
             toppings: "冻冻或爆爆珠"
         },
         F6: {
-            name: "tea12",
             price: 550,
             text: "凤梨百香果",
             toppings: "冻冻或爆爆珠"
         },
         F7: {
-            name: "tea13",
             price: 500,
             text: "生打椰芒"
         },
         F8: {
-            name: "tea14",
             price: 450,
             text: "桃桃乌龙"
         },
         F9: {
-            name: "tea14",
             price: 450,
             text: "香柠紫露"
         },
         F10: {
-            name: "tea14",
             price: 500,
             text: "荔枝沁柠"
         },
         F11: {
-            name: "tea14",
             price: 550,
             text: "牛油果燕麦酸奶"
         },
         F12: {
-            name: "tea14",
+            price: 500,
+            text: "荔枝粉西柚"
+        },
+        F14: {
             price: 550,
-            text: "西瓜椰椰啵"
+            mPrice: 450,
+            text: "青梅山茶",
+            toppings: "大杯含寒天（脆啵啵）"
+        },
+        F12: {
+            price: 550,
+            mPrice: 450,
+            text: "青野奇遇",
+            toppings: "大杯含寒天（脆啵啵）"
         }
     },
     matchaTea: {
@@ -272,28 +275,33 @@ export const items = {
         S3: {
             name: "tea12",
             price: 500,
-            text: "抹茶星冰乐"
+            text: "抹茶星冰乐",
+            toppings: "珍珠"
         },
         S4: {
             name: "tea13",
             price: 500,
-            text: "焦糖摩卡星冰乐"
+            text: "焦糖摩卡星冰乐",
+            toppings: "珍珠"
         },
         S5: {
             name: "tea14",
             price: 500,
-            text: "巧克力星冰乐"
+            text: "巧克力星冰乐",
+            toppings: "珍珠"
         },
         S6: {
             name: "tea15",
             price: 500,
             mPrice: 450,
-            text: "超级奶茶沙冰"
+            text: "超级奶茶沙冰",
+            toppings: "珍珠，黑糖"
         },
         S7: {
             name: "芝芝葡萄",
             price: 550,
-            text: "芝芝葡萄"
+            text: "芝芝葡萄",
+            toppings: "葡萄果肉粒"
         },
         S8: {
             name: "芝芝桑葚",

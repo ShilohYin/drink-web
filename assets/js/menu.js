@@ -35,6 +35,21 @@ const categoryLabels = {
   cheese: { zh: '芝士类', en: 'Cheese', sr: 'Sir' },
 };
 
+const sidebarCategoryLabels = {
+  milkTea: { zh: '奶茶类', en: 'Milk Tea', sr: 'Mlečni čaj' },
+  fruitTea: { zh: '果茶类', en: 'Fruit Tea', sr: 'Voćni čaj' },
+  matchaTea: { zh: '奶盖类', en: 'Cheese Foam', sr: 'Sir pena' },
+  sogaTea: { zh: '特调系列', en: 'Specials', sr: 'Specijaliteti' },
+  coffee: { zh: '咖啡系列', en: 'Coffee', sr: 'Kafa' },
+  chinessTea: { zh: '小食甜点', en: 'Desserts', sr: 'Deserti' }
+};
+
+const emptyCartLabels = {
+  zh: ['还没有选择饮品', '快去选择喜欢的饮品吧～'],
+  en: ['No drinks selected yet', 'Pick something delicious～'],
+  sr: ['Još nema izabranih pića', 'Izaberite omiljeno piće～']
+};
+
 const categorySubtitles = {
   milkTea: { zh: '香浓丝滑 · 口口满足', en: 'Silky, rich, and satisfying', sr: 'Svilenkasto, bogato i puno ukusa' },
   fruitTea: { zh: '清爽果香 · 鲜活解腻', en: 'Fresh fruit tea, bright and crisp', sr: 'Svež voćni čaj' },
@@ -166,12 +181,15 @@ function loadCart() {
 function render() {
   const lang = localStorage.lang || 'zh';
   const wrap = document.getElementById('products');
+  const categoryNavigation = document.getElementById('categoryNavigation');
   wrap.innerHTML = '';
+  if (categoryNavigation) categoryNavigation.innerHTML = '';
 
   Object.keys(items).forEach((categoryKey) => {
     const category = items[categoryKey];
     const section = document.createElement('section');
     section.className = 'category';
+    section.id = `category-${categoryKey}`;
     section.classList.toggle('is-collapsed', collapsedCategories.has(categoryKey));
 
     const categoryHeader = document.createElement('div');
@@ -245,7 +263,7 @@ function render() {
       image.className = 'product-img';
       imageWrap.appendChild(image);
 
-      if ((categoryKey === 'milkTea' && (itemKey === 'M5'))) {
+      if ((categoryKey === 'milkTea' && ([ 'M16', 'M15', 'M13', 'M12'].includes(itemKey)))) {
         const badge = document.createElement('span');
         badge.className = 'product-badge';
         badge.textContent = 'NEW';
@@ -287,6 +305,19 @@ function render() {
 
     section.appendChild(grid);
     wrap.appendChild(section);
+
+    if (categoryNavigation) {
+      const categoryLink = document.createElement('a');
+      categoryLink.href = `#${section.id}`;
+      categoryLink.className = `category-nav-link category-nav-${categoryKey}`;
+      categoryLink.innerHTML = `<span class="category-nav-icon" aria-hidden="true"></span><span>${sidebarCategoryLabels[categoryKey]?.[lang] || categoryLabels[categoryKey]?.[lang] || categoryKey}</span>`;
+      categoryLink.classList.toggle('active', categoryKey === 'milkTea');
+      categoryLink.addEventListener('click', () => {
+        categoryNavigation.querySelectorAll('.category-nav-link').forEach(link => link.classList.remove('active'));
+        categoryLink.classList.add('active');
+      });
+      categoryNavigation.appendChild(categoryLink);
+    }
   });
 
   update();
@@ -608,6 +639,11 @@ function update() {
     c.appendChild(itemRow);
   });
 
+  if (count === 0) {
+    const emptyLabels = emptyCartLabels[localStorage.lang || 'zh'] || emptyCartLabels.zh;
+    c.innerHTML = `<div class="cart-empty" role="status"><span class="cart-empty-cup" aria-hidden="true">♧</span><strong>${emptyLabels[0]}</strong><small>${emptyLabels[1]}</small></div>`;
+  }
+
   document.getElementById('total').textContent =
     `${menuT('count')}: ${count}, ${menuT('total')}: ${total} RSD`;
   document.getElementById('cartCount').textContent = count;
@@ -674,9 +710,16 @@ window.addEventListener('DOMContentLoaded', () => {
   // Cart toggle button
   const cartToggle = document.getElementById('cartToggle');
   const cartPanel = document.getElementById('cart');
+  const closeCartButton = document.getElementById('closeCart');
   if (cartToggle && cartPanel) {
     cartToggle.addEventListener('click', () => {
       cartPanel.classList.toggle('visible');
+    });
+  }
+  if (closeCartButton && cartPanel) {
+    closeCartButton.addEventListener('click', () => {
+      cartPanel.classList.remove('visible');
+      cartToggle?.focus();
     });
   }
   

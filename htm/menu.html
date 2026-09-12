@@ -42,15 +42,26 @@
       </div>
     </header>
     <main>
+      <aside class="category-sidebar" aria-label="饮品分类">
+        <nav id="categoryNavigation" class="category-navigation"></nav>
+      </aside>
       <div id="products" class="products-container"></div>
       <aside id="cart" class="cart-panel">
-        <h2 data-i18n="cart">购物车</h2>
+        <h2>
+          <span class="cart-title-icon" aria-hidden="true">♧</span>
+          <span data-i18n="cart">购物车</span>
+          <button id="closeCart" class="cart-close-btn" type="button" aria-label="关闭购物车">×</button>
+        </h2>
         <div id="cartItems"></div>
         <p id="total"></p>
         <button id="openCheckout" class="checkout-button" type="button" data-i18n="checkout">结账</button>
         <p class="cart-image-note" data-i18n="cart_image_note">图片仅供参考</p>
       </aside>
     </main>
+
+    <section class="menu-benefits" aria-label="品牌特色">
+      <span>♧ 优质茶叶</span><i></i><span>♡ 新鲜食材</span><i></i><span>♙ 现制现做</span><i></i><span>☺ 一口好心情</span>
+    </section>
 
     <div class="selection-modal" id="selectionModal" aria-hidden="true">
       <div class="selection-modal-overlay" id="selectionOverlay"></div>
