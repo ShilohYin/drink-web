@@ -7,9 +7,7 @@
 
 .home-page {
     overflow-x: hidden;
-    background:
-        radial-gradient(circle at 10% 34%, rgba(222, 168, 119, 0.08), transparent 22%),
-        #fcf7f4;
+    background: #fff;
 }
 
 .home-page .header-box {
@@ -357,11 +355,11 @@
 .category-products li span {
     display: block;
     width: 100%;
-    min-height: 38px;
+    min-height: 30px;
     color: #49352b;
     font-size: 15px;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 30px;
     text-align: left;
 }
 

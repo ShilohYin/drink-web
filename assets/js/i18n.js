@@ -59,6 +59,11 @@ const i18n = {
       const key = element.getAttribute('data-i18n-title');
       element.title = this.t(key);
     });
+
+    document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+      const key = element.getAttribute('data-i18n-alt');
+      element.alt = this.t(key);
+    });
   }
 };
 

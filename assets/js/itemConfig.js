@@ -133,7 +133,7 @@ export const items = {
             text: "荔枝沁柠"
         },
         F11: {
-            price: 550,
+            price: 650,
             text: "牛油果燕麦酸奶"
         },
         F12: {
@@ -146,7 +146,7 @@ export const items = {
             text: "青梅山茶",
             toppings: "大杯含寒天（脆啵啵）"
         },
-        F12: {
+        F15: {
             price: 550,
             mPrice: 450,
             text: "青野奇遇",
