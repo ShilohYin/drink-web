@@ -29,7 +29,7 @@
 
 .home-page .header-box > a .logo {
     display: block;
-    height: 62px !important;
+    height: 80px !important;
     object-fit: contain;
 }
 
@@ -678,6 +678,7 @@
     }
 
     .home-page .footer-box {
+        display: flex;
         width: 100%;
         align-items: center;
         flex-direction: column;
@@ -699,6 +700,16 @@
         gap: 8px;
     }
 
+    .home-page .social-links::before,
+    .home-page .social-links::after {
+        display: none;
+    }
+
+    .home-page .footer-box > .social-links,
+    .home-page .footer-box > .contant-txt {
+        border-left: 0;
+    }
+
     .home-page .social-link,
     .home-page .social-link2.telegram,
     .home-page .social-link2.viber {
@@ -708,6 +719,15 @@
         border-radius: 50%;
         transform: none;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .home-page .footer-box > .social-links .social-link,
+    .home-page .footer-box > .social-links .social-link2 {
+        flex: 0 0 36px;
+        width: 36px;
+        height: 36px;
+        margin: 0;
+        transform: none;
     }
 
     .home-page .social-link {
