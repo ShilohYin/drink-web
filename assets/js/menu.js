@@ -179,7 +179,7 @@ function loadCart() {
 }
 
 function render() {
-  const lang = localStorage.lang || 'zh';
+  const lang = localStorage.lang || 'sr';
   const wrap = document.getElementById('products');
   const categoryNavigation = document.getElementById('categoryNavigation');
   wrap.innerHTML = '';
@@ -640,7 +640,7 @@ function update() {
   });
 
   if (count === 0) {
-    const emptyLabels = emptyCartLabels[localStorage.lang || 'zh'] || emptyCartLabels.zh;
+    const emptyLabels = emptyCartLabels[localStorage.lang || 'sr'] || emptyCartLabels.sr;
     c.innerHTML = `<div class="cart-empty" role="status"><span class="cart-empty-cup" aria-hidden="true">♧</span><strong>${emptyLabels[0]}</strong><small>${emptyLabels[1]}</small></div>`;
   }
 
@@ -700,7 +700,7 @@ function initCheckoutModal() {
 window.addEventListener('DOMContentLoaded', () => {
   const langSwitch = document.getElementById('langSwitch');
   if (langSwitch) {
-    langSwitch.value = localStorage.lang || 'zh';
+    langSwitch.value = localStorage.lang || 'sr';
     langSwitch.addEventListener('change', (e) => {
       i18n.setLanguage(e.target.value);
       render();

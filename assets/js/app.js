@@ -4,7 +4,7 @@ async function submitOrder(order){
 }
 
 // Language switcher
-document.getElementById('langSwitch').value = localStorage.getItem('lang') || 'zh';
+document.getElementById('langSwitch').value = localStorage.getItem('lang') || 'sr';
 document.getElementById('langSwitch').addEventListener('change', (e) => {
   i18n.setLanguage(e.target.value);
 });
@@ -21,7 +21,7 @@ window.addEventListener('languageChanged', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   const langSwitch = document.getElementById('langSwitch');
   if (langSwitch) {
-    langSwitch.value = localStorage.getItem('lang') || 'zh';
+    langSwitch.value = localStorage.getItem('lang') || 'sr';
     langSwitch.addEventListener('change', (e) => {
       i18n.setLanguage(e.target.value);
     });

@@ -172,7 +172,7 @@ form .required {
 .footer-container {
     position: relative;
     overflow: hidden;
-    padding: 20px 28px 0;
+    padding: 14px 28px 0;
     border-top: 1px solid #f2e6dd;
     background: #fffdfb;
     box-shadow: 0 -2px 12px rgba(91, 59, 42, 0.05);
@@ -202,14 +202,14 @@ form .required {
     z-index: 1;
 }
 .footer-container {
-    min-height: 300px;
+    min-height: 260px;
 }
 .footer-txt {
     text-align: center;
     font-size: 14px;
     color: #5b3b2a;
-    margin: 34px auto 0;
-    padding: 20px 0 62px;
+    margin: 22px auto 0;
+    padding: 12px 0 28px;
     border-top: 1px solid #f0e1d6;
     max-width: 1440px;
 }
@@ -243,15 +243,18 @@ form .required {
 .footer-box > .social-links {
     position: relative;
     display: flex;
+    min-width: 0;
     padding: 0;
     align-content: center;
     align-items: center;
     justify-content: center;
+    flex-wrap: nowrap;
     gap: 0;
 }
 .footer-box > .social-links .social-link,
 .footer-box > .social-links .social-link2 {
-    flex: 0 0 65px;
+    flex: 0 1 65px;
+    min-width: 0;
     margin-left: 0;
     transform: scale(.6);
 }
@@ -284,7 +287,7 @@ form .required {
     padding-left: 34px;
     border-left-color: #ead9cd;
     color: #55392c;
-    line-height: 1.9;
+    line-height: 1.5;
 }
 .contant-txt {
     line-height: 1.8;
@@ -292,7 +295,11 @@ form .required {
 .contant-txt .title {
     font-weight: bold;
     font-size: 22px;
-    margin-bottom: 8px;
+    margin: 0 0 8px;
+}
+.footer-box > .contant-txt p:not(.title) {
+    margin: 4px 0;
+    line-height: 1.4;
 }
 .contant-txt p:not(.title)::before {
     display: inline-block;

@@ -1,6 +1,6 @@
 // i18n - Internationalization Module
 const i18n = {
-  currentLang: localStorage.getItem('lang') || 'zh',
+  currentLang: localStorage.getItem('lang') || 'sr',
   translations: {},
 
   // Initialize i18n by loading language file
@@ -39,6 +39,8 @@ const i18n = {
 
   // Apply translations to all elements with data-i18n attribute
   applyTranslations() {
+    document.documentElement.lang = this.currentLang === 'zh' ? 'zh-CN' : this.currentLang;
+
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
       element.textContent = this.t(key);
