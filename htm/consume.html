@@ -60,6 +60,13 @@
           <p data-i18n="consume_confirm_tip">请确认金额无误后提交</p>
         </div>
         <label class="consume-field">
+          <strong data-i18n="consume_location">记录门店</strong>
+          <select id="consumeLocation" class="consume-location-select">
+            <option value="EURASIA">EURASIA</option>
+            <option value="BELGRADE">BELGRADE</option>
+          </select>
+        </label>
+        <label class="consume-field">
           <strong data-i18n="consume_amount">消费金额</strong>
           <span class="currency-input">
             <input type="number" inputmode="decimal" min="0.01" step="0.01" data-i18n-placeholder="consume_amount_placeholder" placeholder="请输入本次消费金额" id="consume" required>

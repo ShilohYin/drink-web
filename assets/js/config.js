@@ -1,4 +1,11 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzAxjUQ83CYn0UBkLTBMRzeBOJUsRizlj_LUi0f3buSDNHshCvNdnj6N4SwySzyqAcNtQ/exec";
+const EURASIA_API_URL = 'https://script.google.com/macros/s/AKfycbzAxjUQ83CYn0UBkLTBMRzeBOJUsRizlj_LUi0f3buSDNHshCvNdnj6N4SwySzyqAcNtQ/exec';
+const BELGRADE_API_URL = "https://script.google.com/macros/s/AKfycbzeQuDcUKer8YJd2dY6TxLSu3qAunHUZIFuVtqe-Ml81pu8KR3CINlIzu2yb8lvud0o/exec";
+const branchFromUrl = new URLSearchParams(window.location.search).get('fixedBranch')?.toUpperCase();
+if (['EURASIA', 'BELGRADE'].includes(branchFromUrl)) {
+    localStorage.setItem('fixedBranch', branchFromUrl);
+}
+const fixedBranch = localStorage.getItem('fixedBranch');
+const API_URL = fixedBranch === 'BELGRADE' ? BELGRADE_API_URL : EURASIA_API_URL;
 
 const contacts = {
     telegram: "https://t.me/+38162389638",

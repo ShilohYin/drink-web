@@ -331,7 +331,7 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
   const title = document.getElementById('selectionTitle');
   const priceLabel = document.getElementById('selectionPrice');
   const sizeSelector = document.getElementById('sizeSelector');
-  const toppingSelect = document.getElementById('selectionTopping');
+  const toppingOptions = document.getElementById('selectionTopping');
   const iceSelect = document.getElementById('selectionIce');
   const sugarSelect = document.getElementById('selectionSugar');
   const remarkInput = document.getElementById('selectionRemark');
@@ -361,19 +361,22 @@ function openSelectionModal(categoryKey, itemKey, editCartId = null, preset = {}
     });
   }
 
-  toppingSelect.innerHTML = '';
-  const noneOption = document.createElement('option');
-  noneOption.value = '';
-  noneOption.textContent = menuT('none');
-  toppingSelect.appendChild(noneOption);
+  toppingOptions.innerHTML = '';
+  const selectedToppings = new Set((preset.toppings || []).map((name) => getToppingOption(name).text));
   toppings.forEach((t) => {
-    const option = document.createElement('option');
-    option.value = t.text;
-    option.textContent = `${t.text}  +${t.price} RSD`;
-    toppingSelect.appendChild(option);
+    const optionLabel = document.createElement('label');
+    optionLabel.className = 'topping-option';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.name = 'selectionTopping';
+    checkbox.value = t.text;
+    checkbox.checked = selectedToppings.has(t.text);
+    const optionText = document.createElement('span');
+    optionText.textContent = `${t.text}  +${t.price} RSD`;
+    optionLabel.append(checkbox, optionText);
+    toppingOptions.appendChild(optionLabel);
   });
-  const selectedTopping = preset.toppings?.[0];
-  toppingSelect.value = selectedTopping ? getToppingOption(selectedTopping).text : '';
+  updateToppingOptionAvailability(toppingOptions);
 
   iceSelect.innerHTML = '';
   Object.entries(ices).forEach(([key, obj]) => {
@@ -434,6 +437,11 @@ function initSelectionModal() {
   if (cancelBtn) cancelBtn.addEventListener('click', closeSelectionModal);
 
   modal.addEventListener('click', (event) => {
+    if (event.target.matches('#selectionTopping input[type="checkbox"]')) {
+      updateToppingOptionAvailability(document.getElementById('selectionTopping'));
+      return;
+    }
+
     const quantityButton = event.target.closest('[data-quantity-change]');
     if (quantityButton) {
       const quantityChange = Number(quantityButton.dataset.quantityChange) || 0;
@@ -464,11 +472,11 @@ function initSelectionModal() {
       const current = modal.dataset.currentItem;
       if (!current) return;
       const [categoryKey, itemKey] = current.split('||');
-      const toppingSelect = document.getElementById('selectionTopping');
+      const toppingOptions = document.getElementById('selectionTopping');
       const iceSelect = document.getElementById('selectionIce');
       const sugarSelect = document.getElementById('selectionSugar');
       const remarkInput = document.getElementById('selectionRemark');
-      const selected = toppingSelect.value ? [toppingSelect.value] : [];
+      const selected = Array.from(toppingOptions.querySelectorAll('input:checked'), (input) => input.value);
       const iceVal = iceSelect ? iceSelect.value : null;
       const sugarVal = sugarSelect ? sugarSelect.value : null;
       const sizeVal = modal.dataset.selectedSize || 'L';
@@ -487,6 +495,14 @@ function initSelectionModal() {
     if (e.key === 'Escape') {
       closeSelectionModal();
     }
+  });
+}
+
+function updateToppingOptionAvailability(container) {
+  const checkboxes = Array.from(container.querySelectorAll('input[type="checkbox"]'));
+  const limitReached = checkboxes.filter((checkbox) => checkbox.checked).length >= 3;
+  checkboxes.forEach((checkbox) => {
+    checkbox.disabled = limitReached && !checkbox.checked;
   });
 }
 
@@ -573,9 +589,20 @@ function update() {
     const itemHeader = document.createElement('div');
     itemHeader.className = 'cart-item-header';
 
+    const titleGroup = document.createElement('div');
+    titleGroup.className = 'cart-item-title-group';
     const mainLine = document.createElement('div');
+    mainLine.className = 'cart-item-title';
     mainLine.textContent = `${idx + 1}. ${i.name} ${i.size || 'L'} x${i.qty}  ${i.price} RSD`;
-    itemHeader.appendChild(mainLine);
+    titleGroup.appendChild(mainLine);
+    if (i.toppings && i.toppings.length > 0) {
+      const toppingSubtitle = document.createElement('div');
+      toppingSubtitle.className = 'cart-item-subtitle';
+      const toppingNames = i.toppings.map((topping) => getToppingOption(topping).text || topping);
+      toppingSubtitle.textContent = `${menuT('cart_included_toppings')}: ${toppingNames.join('、')}`;
+      titleGroup.appendChild(toppingSubtitle);
+    }
+    itemHeader.appendChild(titleGroup);
 
     const actions = document.createElement('div');
     actions.className = 'cart-item-actions';
@@ -704,6 +731,30 @@ window.addEventListener('DOMContentLoaded', () => {
     langSwitch.addEventListener('change', (e) => {
       i18n.setLanguage(e.target.value);
       render();
+    });
+  }
+
+  const locationSwitch = document.getElementById('locationSwitch');
+  if (locationSwitch) {
+    const validLocations = ['EURASIA', 'BELGRADE'];
+    const branchFromUrl = new URLSearchParams(window.location.search).get('fixedBranch')?.toUpperCase();
+    if (validLocations.includes(branchFromUrl)) {
+      localStorage.setItem('fixedBranch', branchFromUrl);
+    }
+    const fixedBranch = localStorage.getItem('fixedBranch');
+    const savedLocation = localStorage.getItem('storeLocation');
+    const locationAliases = { ouya: 'EURASIA', laobei: 'BELGRADE' };
+    const locationValue = locationAliases[savedLocation] || savedLocation;
+    const selectedLocation = validLocations.includes(fixedBranch)
+      ? fixedBranch
+      : validLocations.includes(locationValue) ? locationValue : 'EURASIA';
+    locationSwitch.value = selectedLocation;
+    locationSwitch.disabled = validLocations.includes(fixedBranch);
+    if (!validLocations.includes(fixedBranch)) {
+      localStorage.setItem('storeLocation', selectedLocation);
+    }
+    locationSwitch.addEventListener('change', (e) => {
+      localStorage.setItem('storeLocation', e.target.value);
     });
   }
   

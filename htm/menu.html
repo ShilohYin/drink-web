@@ -23,6 +23,10 @@
             <option value="en">English</option>
             <option value="sr">Srpski</option>
           </select>
+          <select id="locationSwitch" class="location-switch" aria-label="选择门店" data-i18n-aria-label="select_location">
+            <option value="EURASIA">EURASIA</option>
+            <option value="BELGRADE">BELGRADE</option>
+          </select>
         </nav>
         <div class="header-right">
           <button class="menu-nav-toggle" type="button" aria-label="打开导航菜单" data-i18n-aria-label="open_navigation" aria-expanded="false" aria-controls="menuNavigation">
@@ -67,17 +71,22 @@
       <div class="selection-modal-overlay" id="selectionOverlay"></div>
       <div class="selection-modal-content">
         <button class="modal-close-btn" id="closeSelectionModal" aria-label="Close selection">×</button>
-        <h2 id="selectionTitle" data-i18n="selection_config">选择配置</h2>
-        <p class="selection-price" id="selectionPrice"></p>
-        <div class="size-selector" id="sizeSelector" aria-label="选择杯型" data-i18n-aria-label="select_size" hidden>
-          <button type="button" class="size-option active" data-size="L">L</button>
-          <button type="button" class="size-option" data-size="M">M</button>
+        <div class="selection-title-row">
+          <h2 id="selectionTitle" data-i18n="selection_config">选择配置</h2>
+          <p class="selection-price" id="selectionPrice"></p>
+          <div class="size-selector" id="sizeSelector" aria-label="选择杯型" data-i18n-aria-label="select_size" hidden>
+            <button type="button" class="size-option active" data-size="L">L</button>
+            <button type="button" class="size-option" data-size="M">M</button>
+          </div>
         </div>
         <form id="selectionForm">
-          <label>
-            <span data-i18n="toppings">小料</span>
-            <select id="selectionTopping"></select>
-          </label>
+          <div class="selection-toppings-field" role="group" aria-labelledby="selectionToppingsLabel">
+            <span id="selectionToppingsLabel" data-i18n="toppings">小料</span>
+            <div class="topping-picker">
+              <div id="selectionTopping" class="topping-options"></div>
+              <small class="topping-limit" data-i18n="topping_limit">最多选择 3 种</small>
+            </div>
+          </div>
           <label>
             <span data-i18n="ice">冰度</span>
             <select id="selectionIce"></select>
@@ -118,11 +127,7 @@
             <strong><span data-i18n="name">姓名</span><em class="required">*</em></strong>
             <input data-i18n-placeholder="name_placeholder" placeholder="请输入您的姓名" id="name" required>
           </label>
-          <!-- <label>
-            <strong><span data-i18n="phone">电话</span><em class="required">*</em></strong>
-            <input data-i18n-placeholder="phone_placeholder" placeholder="请输入您的电话" id="phone" required>
-          </label> -->
-          <div class="checkout-choice-row">
+          <div class="checkout-choice-row" id="contactMethodField">
             <strong><span data-i18n="contact_method">联系方式</span><em class="required">*</em></strong>
             <select id="contactMethod" aria-label="联系方式" data-i18n-aria-label="contact_method">
               <option value="Phone" data-i18n="contact_phone">手机号码</option>
@@ -131,11 +136,11 @@
               <option value="Wechat" data-i18n="contact_wechat">微信</option>
             </select>
           </div>
-          <label>
+          <label id="contactAccountField">
             <strong><span data-i18n="contact_account">联系账号</span><em class="required">*</em></strong>
             <input data-i18n-placeholder="contact_account_placeholder" placeholder="请输入您的联系账号" id="account" required>
           </label>
-          <div class="checkout-choice-row">
+          <div class="checkout-choice-row" id="deliveryTypeField">
             <strong data-i18n="pickup_method">取餐方式</strong>
             <div class="checkout-radio-group" role="radiogroup" aria-label="取餐方式" data-i18n-aria-label="pickup_method">
               <label class="checkout-radio-option">

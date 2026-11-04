@@ -92,7 +92,8 @@ body {
 .daily-report-header .header-search input::placeholder { color: #b3a59e; }
 .daily-report-header .header-tools-divider { width: 1px; height: 28px; margin: 0 4px; background: #d8bca9; }
 .daily-report-header .language-icon { color: #533426; font: 25px/1 Arial, sans-serif; }
-.daily-report-header .lang-switch {
+.daily-report-header .lang-switch,
+.daily-report-header .branch-switch {
   width: auto;
   height: 40px;
   margin-left: 0;
@@ -711,6 +712,16 @@ body {
     border-radius: 10px;
     background: #fff8f2;
     font-size: 12px;
+  }
+  .daily-report-header .header-tools .branch-switch {
+    width: 94px;
+    height: 36px;
+    margin: 0;
+    padding: 0 7px;
+    border-color: transparent;
+    border-radius: 10px;
+    background: #fff8f2;
+    font-size: 11px;
   }
   .daily-report-header .header-tool-link { width: 36px; height: 36px; }
   .daily-report-header .header-nav-links {

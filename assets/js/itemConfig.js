@@ -84,6 +84,11 @@ export const items = {
         M17: {
             price: 500,
             text: "桂花厚乳"
+        },
+        M18: {
+            price: 500,
+            text: "布蕾焦糖板栗",
+            toppings: "板栗泥，布蕾奶盖"
         }
     },
     fruitTea: {
@@ -151,6 +156,10 @@ export const items = {
             mPrice: 450,
             text: "青野奇遇",
             toppings: "大杯含寒天（脆啵啵）"
+        },
+        F16: {
+            price: 500,
+            text: "柠香芒芒"
         }
     },
     matchaTea: {
@@ -179,6 +188,18 @@ export const items = {
         G6: {
             price: 600,
             text: "海盐冰抹"
+        },
+        // G7: {
+        //     price: 500,
+        //     text: "绿野仙踪"
+        // },
+        // G9: {
+        //     price: 550,
+        //     text: "芝芝抹茶"
+        // },
+        G10: {
+            price: 500,
+            text: "玫瑰抹茶冰椰"
         }
     },
     coffee: {
@@ -208,16 +229,10 @@ export const items = {
             text: "可可冰奶",
             image: "assets/images/drinks/c12.PNG"
         },
-        // C6: {
-        //     name: "tea13",
-        //     price: 600,
-        //     text: "奥利奥冰可可"
-        // },
-        // C7: {
-        //     name: "tea14",
-        //     price: 550,
-        //     text: "生椰可可"
-        // }
+        C7: {
+            price: 500,
+            text: "海底星空拿铁"
+        }
     },
     chinessTea: {
         Z1: {

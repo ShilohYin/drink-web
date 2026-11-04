@@ -24,7 +24,8 @@ function isSameDay(left, right) {
 
 function renderConsumeSummary() {
     const now = new Date();
-    const records = getConsumeRecords();
+    const selectedLocation = document.getElementById('consumeLocation').value;
+    const records = getConsumeRecords().filter(record => (record.location || 'EURASIA') === selectedLocation);
     const todayRecords = records.filter(record => isSameDay(new Date(record.createdAt), now));
     const monthRecords = records.filter(record => {
         const date = new Date(record.createdAt);
@@ -46,7 +47,7 @@ function setConsumeLoading(visible) {
     loading.setAttribute('aria-hidden', String(!visible));
     document.body.classList.toggle('daily-is-loading', visible);
 
-    document.querySelectorAll('#consumeForm input, #consumeForm textarea, #consumeForm button')
+    document.querySelectorAll('#consumeForm input, #consumeForm select, #consumeForm textarea, #consumeForm button')
         .forEach(control => {
             control.disabled = visible;
         });
@@ -63,6 +64,8 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
     const remarkInput = document.getElementById('remark');
     const amount = amountInput.value.trim();
     const remark = remarkInput.value.trim();
+    const location = document.getElementById('consumeLocation').value;
+    const apiUrl = location === 'EURASIA' ? EURASIA_API_URL : BELGRADE_API_URL;
 
     if (!consumeNumberPattern.test(amount) || Number(amount) <= 0) {
         alert(consumeT('consume_invalid_amount'));
@@ -89,11 +92,12 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
 
     const form = new FormData();
     form.append('amount', amount);
+    form.append('location', location);
     form.append('remark', remark);
     form.append('submitType', 'consume');
 
     try {
-        await fetch(API_URL, {
+        await fetch(apiUrl, {
             method: 'POST',
             mode: 'no-cors',
             body: form
@@ -107,12 +111,14 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
         const records = getConsumeRecords();
         records.push({
             amount: Number(amount),
+            location,
             remark,
             createdAt: new Date().toISOString()
         });
         localStorage.setItem(consumeRecordsKey, JSON.stringify(records));
         renderConsumeSummary();
         document.getElementById('consumeForm').reset();
+        document.getElementById('consumeLocation').value = location;
         alert(consumeT('consume_submit_success'));
     } catch (error) {
         console.error(error);
@@ -121,6 +127,19 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
     } finally {
         setConsumeLoading(false);
     }
+});
+
+const consumeLocation = document.getElementById('consumeLocation');
+const savedLocation = localStorage.getItem('storeLocation');
+const branchFromUrl = new URLSearchParams(window.location.search).get('branch')?.toUpperCase();
+console.log('branchFromUrl:', branchFromUrl, 'savedLocation:', savedLocation);
+const validLocations = ['EURASIA', 'BELGRADE'];
+consumeLocation.value = validLocations.includes(branchFromUrl)
+    ? branchFromUrl
+    : validLocations.includes(savedLocation) ? savedLocation : 'EURASIA';
+consumeLocation.addEventListener('change', () => {
+    localStorage.setItem('storeLocation', consumeLocation.value);
+    renderConsumeSummary();
 });
 
 renderConsumeSummary();

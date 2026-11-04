@@ -1,6 +1,8 @@
 const checkoutLastSubmitKey = 'checkoutLastSubmitTime';
 const checkoutMinLoadingTime = 700;
 const checkoutT = key => i18n.t(key);
+const fixedCheckoutBranch = localStorage.getItem('storeLocation')?.toUpperCase() || localStorage.getItem('fixedBranch')?.toUpperCase();
+const hasFixedCheckoutBranch = ['EURASIA', 'BELGRADE'].includes(fixedCheckoutBranch);
 
 function canCheckoutSubmit() {
     const last = Number(localStorage.getItem(checkoutLastSubmitKey) || 0);
@@ -64,9 +66,25 @@ function formatCheckoutItems(cart) {
     }).join('\n');
 }
 
+function getOrderBranch() {
+    const validBranches = ['EURASIA', 'BELGRADE'];
+    const fixedBranch = localStorage.getItem('fixedBranch');
+    if (validBranches.includes(fixedBranch)) return fixedBranch;
+
+    const locationAliases = { ouya: 'EURASIA', laobei: 'BELGRADE' };
+    const savedLocation = locationAliases[localStorage.getItem('storeLocation')]
+        || localStorage.getItem('storeLocation');
+    return validBranches.includes(savedLocation) ? savedLocation : 'EURASIA';
+}
+
 function syncAddressField() {
     const addressField = document.getElementById('addressField');
     const addressInput = document.getElementById('address');
+    if (hasFixedCheckoutBranch) {
+        addressField.hidden = true;
+        addressInput.disabled = true;
+        return;
+    }
     const isDelivery = document.querySelector('input[name="deliveryType"]:checked')?.value === '配送';
 
     if (!addressField || !addressInput) return;
@@ -81,6 +99,17 @@ document.querySelectorAll('input[name="deliveryType"]').forEach(input => {
 
 syncAddressField();
 
+if (hasFixedCheckoutBranch) {
+    ['contactMethodField', 'contactAccountField', 'deliveryTypeField', 'addressField'].forEach(id => {
+        const field = document.getElementById(id);
+        if (!field) return;
+        field.hidden = true;
+        field.querySelectorAll('input, select, textarea').forEach(control => {
+            control.disabled = true;
+        });
+    });
+}
+
 document.getElementById('checkoutForm').onsubmit = async e => {
     e.preventDefault();
 
@@ -90,10 +119,10 @@ document.getElementById('checkoutForm').onsubmit = async e => {
     }
 
     const name = document.getElementById("name").value.trim();
-    const contactMethod = document.getElementById('contactMethod').value;
-    const account = document.getElementById("account").value.trim();
-    const address = document.getElementById("address").value.trim();
-    const deliveryType = document.querySelector('input[name="deliveryType"]:checked')?.value || '配送';
+    const contactMethod = hasFixedCheckoutBranch ? '' : document.getElementById('contactMethod').value;
+    const account = hasFixedCheckoutBranch ? '' : document.getElementById("account").value.trim();
+    const address = hasFixedCheckoutBranch ? '' : document.getElementById("address").value.trim();
+    const deliveryType = hasFixedCheckoutBranch ? '' : document.querySelector('input[name="deliveryType"]:checked')?.value || '配送';
     const remark = document.getElementById("remark").value.trim();
     const cart = getCheckoutCart();
 
@@ -103,20 +132,20 @@ document.getElementById('checkoutForm').onsubmit = async e => {
         return;
     }
 
-    if (!account) {
+    if (!hasFixedCheckoutBranch && !account) {
         alert(checkoutT('enter_contact_account'));
         document.getElementById('account').focus();
         return;
     }
 
     const phonePattern = /^[0-9\s+\-()]{6,20}$/;
-    if (contactMethod === 'Phone' && !phonePattern.test(account)) {
+    if (!hasFixedCheckoutBranch && contactMethod === 'Phone' && !phonePattern.test(account)) {
         alert(checkoutT('invalid_phone'));
         document.getElementById('account').focus();
         return;
     }
 
-    if (deliveryType === '配送' && !address) {
+    if (!hasFixedCheckoutBranch && deliveryType === '配送' && !address) {
         alert(checkoutT('enter_address'));
         document.getElementById('address').focus();
         return;
@@ -127,8 +156,11 @@ document.getElementById('checkoutForm').onsubmit = async e => {
         return;
     }
 
+    const branch = getOrderBranch();
+    const orderApiUrl = branch === 'EURASIA' ? EURASIA_API_URL : BELGRADE_API_URL;
     const form = new FormData();
     form.append("submitType", "order");
+    form.append("branch", branch);
     form.append("name", name);
     form.append("contactMethod", contactMethod);
     form.append("account", account);
@@ -147,7 +179,7 @@ document.getElementById('checkoutForm').onsubmit = async e => {
     await waitForLoadingPaint();
 
     try {
-        await fetch(API_URL, {
+        await fetch(orderApiUrl, {
             method: "POST",
             mode: "no-cors",
             body: form

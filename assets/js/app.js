@@ -27,6 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const branchSwitch = document.getElementById('branchSwitch');
+  if (branchSwitch) {
+    const savedLocation = localStorage.getItem('storeLocation');
+    const locationAliases = { ouya: 'EURASIA', laobei: 'BELGRADE' };
+    const location = locationAliases[savedLocation] || savedLocation;
+    branchSwitch.value = ['EURASIA', 'BELGRADE'].includes(location) ? location : 'EURASIA';
+    localStorage.setItem('storeLocation', branchSwitch.value);
+    branchSwitch.addEventListener('change', (event) => {
+      localStorage.setItem('storeLocation', event.target.value);
+    });
+  }
+
   const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
   const navigationId = mobileNavToggle?.getAttribute('aria-controls');
   const homeNavigation = navigationId ? document.getElementById(navigationId) : null;

@@ -153,7 +153,9 @@ document.getElementById('dailyForm').onsubmit = async e => {
     await waitForLoadingPaint();
 
     const form = new FormData();
+    const branch = document.getElementById('branchSwitch').value;
     form.append("submitType", "daily");
+    form.append("branch", branch);
     form.append("votes", values.votes);
     form.append("cash", values.cash);
     form.append("wolt", values.wolt || 0);
@@ -164,7 +166,8 @@ document.getElementById('dailyForm').onsubmit = async e => {
     form.append("remark", values.remark || "");
 
     try {
-        const res = await fetch(API_URL, {
+        const apiUrl = branch === 'EURASIA' ? EURASIA_API_URL : BELGRADE_API_URL;
+        const res = await fetch(apiUrl, {
             method: "POST",
             body: form
         });
