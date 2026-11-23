@@ -57,8 +57,15 @@ function waitForConsume(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+let isConsumeSubmitting = false;
+
 document.getElementById('consumeForm').addEventListener('submit', async event => {
     event.preventDefault();
+
+    if (isConsumeSubmitting) {
+        return;
+    }
+    isConsumeSubmitting = true;
 
     const amountInput = document.getElementById('consume');
     const remarkInput = document.getElementById('remark');
@@ -70,25 +77,20 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
     if (!consumeNumberPattern.test(amount) || Number(amount) <= 0) {
         alert(consumeT('consume_invalid_amount'));
         amountInput.focus();
+        isConsumeSubmitting = false;
         return;
     }
 
     if (!remark) {
         alert(consumeT('consume_note_required'));
         remarkInput.focus();
-        return;
-    }
-
-    const lastSubmitTime = Number(localStorage.getItem(consumeLastSubmitKey) || 0);
-    if (Date.now() - lastSubmitTime < 10000) {
-        alert(consumeT('duplicate_submit'));
+        isConsumeSubmitting = false;
         return;
     }
 
     localStorage.setItem(consumeLastSubmitKey, String(Date.now()));
     const loadingStartTime = Date.now();
     setConsumeLoading(true);
-    await new Promise(resolve => requestAnimationFrame(resolve));
 
     const form = new FormData();
     form.append('amount', amount);
@@ -126,16 +128,16 @@ document.getElementById('consumeForm').addEventListener('submit', async event =>
         alert(consumeT('network_submit_failed'));
     } finally {
         setConsumeLoading(false);
+        isConsumeSubmitting = false;
     }
 });
 
 const consumeLocation = document.getElementById('consumeLocation');
 const savedLocation = localStorage.getItem('storeLocation');
-const branchFromUrl = new URLSearchParams(window.location.search).get('branch')?.toUpperCase();
-console.log('branchFromUrl:', branchFromUrl, 'savedLocation:', savedLocation);
+const consumeBranchFromUrl = new URLSearchParams(window.location.search).get('branch')?.toUpperCase();
 const validLocations = ['EURASIA', 'BELGRADE'];
-consumeLocation.value = validLocations.includes(branchFromUrl)
-    ? branchFromUrl
+consumeLocation.value = validLocations.includes(consumeBranchFromUrl)
+    ? consumeBranchFromUrl
     : validLocations.includes(savedLocation) ? savedLocation : 'EURASIA';
 consumeLocation.addEventListener('change', () => {
     localStorage.setItem('storeLocation', consumeLocation.value);
